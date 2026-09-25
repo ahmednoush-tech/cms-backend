@@ -1,0 +1,103 @@
+{
+  "title": "المشاريع",
+  "action": {
+    "create": "مشروع جديد"
+  },
+  "columns": {
+    "number": "الرقم",
+    "name": "الاسم",
+    "status": "الحالة",
+    "endDate": "تاريخ الانتهاء"
+  },
+  "filters": {
+    "customerId": "معرّف العميل",
+    "status": "الحالة"
+  },
+  "empty": {
+    "title": "لا توجد مشاريع بعد",
+    "description": "أنشئ أول مشروع للبدء."
+  },
+  "fields": {
+    "customerId": "معرّف العميل",
+    "name": "الاسم",
+    "description": "الوصف",
+    "opportunityId": "معرّف الفرصة (اختياري)",
+    "quotationId": "معرّف عرض السعر (اختياري)",
+    "startDate": "تاريخ البدء",
+    "endDate": "تاريخ الانتهاء",
+    "projectManagerId": "معرّف مدير المشروع"
+  },
+  "form": {
+    "createTitle": "مشروع جديد",
+    "quotationIdHint": "يجب أن ينتمي لنفس العميل وأن يكون مقبولًا",
+    "projectManagerIdHint": "يجب أن يكون موظفًا نشطًا في شركتك"
+  },
+  "tabs": {
+    "overview": "نظرة عامة",
+    "members": "الأعضاء"
+  },
+  "detail": {
+    "noManager": "لا يوجد مدير معيّن",
+    "moveTo": "نقل إلى {{status}}",
+    "statusChangeTitle": "تغيير الحالة",
+    "statusChangeMessage": "نقل هذا المشروع إلى \"{{status}}\"؟",
+    "assignManager": "تعيين مدير المشروع",
+    "assign": "تعيين",
+    "employeeIdPlaceholder": "معرّف الموظف",
+    "addMember": "إضافة عضو",
+    "noMembers": "لا يوجد أعضاء بعد",
+    "removeMemberTitle": "إزالة العضو",
+    "removeMemberMessage": "ستتم إزالة هذا الموظف من المشروع."
+  },
+  "memberRole": {
+    "manager": "مدير",
+    "coordinator": "منسّق",
+    "technician": "فني",
+    "qa": "ضمان الجودة",
+    "support": "دعم",
+    "member": "عضو"
+  },
+  "gantt": {
+    "title": "مخطط جانت — {{name}}",
+    "task": "المهمة",
+    "today": "اليوم",
+    "noDatesYet": "لا توجد مهام بتواريخ بعد — أضف تاريخ بدء أو استحقاق للمهام لتظهر على الخط الزمني.",
+    "noScheduledTasks": "لا توجد مهام مجدولة لعرضها.",
+    "unscheduledTasks": "مهام بلا تواريخ (غير معروضة على الخط الزمني أعلاه):",
+    "partialDateWarning": "هذه المهمة لديها تاريخ واحد فقط — الشريط المعروض تقديري فقط، وليس نطاقًا مؤكدًا.",
+    "addDependency": "إضافة اعتماد",
+    "selectTask": "اختر مهمة…",
+    "dependsOn": "تعتمد على",
+    "existingDependencies": "الاعتماديات الحالية",
+    "noDependenciesYet": "لا توجد اعتماديات بعد.",
+    "viewLink": "عرض مخطط جانت"
+  },
+  "progress": {
+    "title": "التقدّم والميزانية",
+    "viewLink": "عرض التقدّم",
+    "health": {
+      "on_track": "على المسار الصحيح",
+      "at_risk": "في خطر"
+    },
+    "percentComplete": "نسبة الإنجاز",
+    "totalTasks": "إجمالي المهام",
+    "overdueTasks": "المهام المتأخرة",
+    "completedTasks": "مكتملة",
+    "taskBreakdown": "تفصيل المهام",
+    "status": {
+      "pending": "معلّقة",
+      "inProgress": "جارية",
+      "completed": "مكتملة",
+      "cancelled": "ملغاة"
+    },
+    "budgetTitle": "الميزانية مقابل الفعلي",
+    "noBudgetSet": "لا توجد ميزانية محددة لهذا المشروع بعد.",
+    "setBudget": "تحديد الميزانية",
+    "budget": "الميزانية",
+    "actualLaborCost": "تكلفة العمالة الفعلية",
+    "variance": "الفرق",
+    "utilization": "نسبة الاستهلاك",
+    "actualMaterialCost": "تكلفة المواد والموردين",
+    "actualTotalCost": "إجمالي التكلفة الفعلية"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Work Orders",
+  "action": { "create": "New Work Order" },
+  "columns": { "number": "Number", "title": "Title", "status": "Status", "priority": "Priority", "dueDate": "Due Date" },
+  "filters": { "projectId": "Project ID", "status": "Status", "assignedToEmployeeId": "Assigned To (Employee ID)" },
+  "empty": { "title": "No work orders yet", "description": "Create your first work order to get started." },
+  "fields": {
+    "projectId": "Project ID",
+    "title": "Title",
+    "description": "Description",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "assignedToEmployeeId": "Assigned To (Employee ID)"
+  },
+  "form": { "createTitle": "New Work Order" },
+  "detail": {
+    "unassigned": "Unassigned",
+    "moveTo": "Move to {{status}}",
+    "statusChangeTitle": "Change status",
+    "statusChangeMessage": "Move this work order to \"{{status}}\"?",
+    "assign": "Assign",
+    "assignAction": "Assign",
+    "employeeIdPlaceholder": "Employee ID"
+  }
+}

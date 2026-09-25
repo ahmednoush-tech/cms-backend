@@ -1,0 +1,63 @@
+{
+  "title": "Dashboard",
+  "tabs": {
+    "summary": "Summary",
+    "sales": "Sales",
+    "operations": "Operations",
+    "workload": "Workload"
+  },
+  "summary": {
+    "totalCustomers": "Total Customers",
+    "newLeads": "New Leads",
+    "openOpportunities": "Open Opportunities",
+    "pipelineValue": "Pipeline Value",
+    "activeProjects": "Active Projects",
+    "completedProjects": "Completed Projects",
+    "openWorkOrders": "Open Work Orders",
+    "overdueWorkOrders": "Overdue Work Orders",
+    "pendingTasks": "Pending Tasks",
+    "completedTasks": "Completed Tasks",
+    "totalOpenAssignments": "Total Open Assignments"
+  },
+  "sales": {
+    "pipelineValue": "Pipeline Value",
+    "conversionRate": "Conversion Rate",
+    "conversionRateHint": "{{won}} won / {{lost}} lost",
+    "acceptedQuotationValue": "Accepted Quotation Value",
+    "opportunitiesWonLost": "Won / Lost",
+    "wonLostHint": "Opportunities decided in the selected range",
+    "leadsByStatus": "Leads by Status",
+    "opportunitiesByStage": "Opportunities by Stage",
+    "quotationsByStatus": "Quotations by Status",
+    "quotationValueByStatus": "Quotation Value by Status",
+    "status": "Status",
+    "value": "Value"
+  },
+  "operations": {
+    "overdueWorkOrders": "Overdue Work Orders",
+    "projectsByStatus": "Projects by Status",
+    "workOrdersByStatus": "Work Orders by Status",
+    "workOrdersByPriority": "Work Orders by Priority",
+    "tasksByStatus": "Tasks by Status",
+    "tasksByPriority": "Tasks by Priority"
+  },
+  "workload": {
+    "employee": "Employee",
+    "openTasks": "Open Tasks",
+    "openWorkOrders": "Open Work Orders",
+    "totalAssignments": "Total Assignments",
+    "empty": "No workload data",
+    "emptyDescription": "No employees currently have open tasks or work orders assigned."
+  },
+  "filters": {
+    "dateFrom": "From date",
+    "dateTo": "To date",
+    "departmentId": "Department ID",
+    "employeeId": "Employee ID",
+    "customerId": "Customer ID",
+    "projectId": "Project ID",
+    "status": "Status",
+    "priority": "Priority",
+    "clear": "Clear filters"
+  }
+}

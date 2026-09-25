@@ -1,0 +1,22 @@
+{
+  "title": "المرفقات",
+  "upload": "رفع ملف",
+  "loading": "جاري تحميل المرفقات…",
+  "empty": "لا يوجد ملفات مرفقة بعد.",
+  "confirm": {
+    "deleteTitle": "حذف هذا الملف؟",
+    "deleteMessage": "لا يمكن التراجع عن هذا الإجراء."
+  },
+  "viewDetails": "التفاصيل",
+  "noPreview": "لا تتوفر معاينة لهذا النوع من الملفات — حمّله لعرضه.",
+  "uploadNewVersion": "رفع إصدار جديد",
+  "signTyped": "توقيع (كتابة الاسم)",
+  "signDrawn": "توقيع (رسم)",
+  "typedNameLabel": "اكتب اسمك الكامل",
+  "submitSignature": "إرسال التوقيع",
+  "drawSignatureHint": "ارسم توقيعك تحت باستخدام الماوس.",
+  "versionHistory": "سجل الإصدارات",
+  "versionLabel": "الإصدار {{number}}",
+  "current": "الحالي",
+  "signedBy": "وقّعه {{name}} في {{date}}"
+}

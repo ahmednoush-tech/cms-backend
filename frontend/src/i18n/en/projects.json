@@ -1,0 +1,103 @@
+{
+  "title": "Projects",
+  "action": {
+    "create": "New Project"
+  },
+  "columns": {
+    "number": "Number",
+    "name": "Name",
+    "status": "Status",
+    "endDate": "End Date"
+  },
+  "filters": {
+    "customerId": "Customer ID",
+    "status": "Status"
+  },
+  "empty": {
+    "title": "No projects yet",
+    "description": "Create your first project to get started."
+  },
+  "fields": {
+    "customerId": "Customer ID",
+    "name": "Name",
+    "description": "Description",
+    "opportunityId": "Opportunity ID (optional)",
+    "quotationId": "Quotation ID (optional)",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "projectManagerId": "Project Manager ID"
+  },
+  "form": {
+    "createTitle": "New Project",
+    "quotationIdHint": "Must belong to the same customer and be accepted",
+    "projectManagerIdHint": "Must be an active employee in your company"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "members": "Members"
+  },
+  "detail": {
+    "noManager": "No manager assigned",
+    "moveTo": "Move to {{status}}",
+    "statusChangeTitle": "Change status",
+    "statusChangeMessage": "Move this project to \"{{status}}\"?",
+    "assignManager": "Assign Project Manager",
+    "assign": "Assign",
+    "employeeIdPlaceholder": "Employee ID",
+    "addMember": "Add Member",
+    "noMembers": "No members yet",
+    "removeMemberTitle": "Remove member",
+    "removeMemberMessage": "This employee will be removed from the project."
+  },
+  "memberRole": {
+    "manager": "Manager",
+    "coordinator": "Coordinator",
+    "technician": "Technician",
+    "qa": "QA",
+    "support": "Support",
+    "member": "Member"
+  },
+  "gantt": {
+    "title": "Gantt Chart — {{name}}",
+    "task": "Task",
+    "today": "Today",
+    "noDatesYet": "No tasks with dates yet — add start or due dates to tasks to see them on the timeline.",
+    "noScheduledTasks": "No scheduled tasks to show.",
+    "unscheduledTasks": "Tasks with no dates (not shown on the timeline above):",
+    "partialDateWarning": "Only one date is set for this task — the bar shown is a rough placeholder, not a confirmed range.",
+    "addDependency": "Add a Dependency",
+    "selectTask": "Select a task…",
+    "dependsOn": "depends on",
+    "existingDependencies": "Existing Dependencies",
+    "noDependenciesYet": "No dependencies set yet.",
+    "viewLink": "View Gantt Chart"
+  },
+  "progress": {
+    "title": "Progress & Budget",
+    "viewLink": "View Progress",
+    "health": {
+      "on_track": "On Track",
+      "at_risk": "At Risk"
+    },
+    "percentComplete": "Complete",
+    "totalTasks": "Total Tasks",
+    "overdueTasks": "Overdue Tasks",
+    "completedTasks": "Completed",
+    "taskBreakdown": "Task Breakdown",
+    "status": {
+      "pending": "Pending",
+      "inProgress": "In Progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "budgetTitle": "Budget vs Actual",
+    "noBudgetSet": "No budget set for this project yet.",
+    "setBudget": "Set Budget",
+    "budget": "Budget",
+    "actualLaborCost": "Actual Labor Cost",
+    "variance": "Variance",
+    "utilization": "Utilization",
+    "actualMaterialCost": "Material/Vendor Cost",
+    "actualTotalCost": "Total Actual Cost"
+  }
+}

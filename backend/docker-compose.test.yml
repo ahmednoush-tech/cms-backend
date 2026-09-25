@@ -1,0 +1,22 @@
+version: "3.9"
+
+# Dedicated, disposable test database for Phase 2B/2C verification.
+# Never point this at a shared or production instance.
+services:
+  cms_test_db:
+    image: postgres:16
+    container_name: cms_test_db
+    restart: "no"
+    environment:
+      POSTGRES_USER: cms_test
+      POSTGRES_PASSWORD: cms_test_password
+      POSTGRES_DB: cms_test
+    ports:
+      - "5433:5432"   # non-default host port to avoid clobbering a local Postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cms_test -d cms_test"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    tmpfs:
+      - /var/lib/postgresql/data   # ephemeral: fresh DB every run

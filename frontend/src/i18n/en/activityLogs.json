@@ -1,0 +1,93 @@
+{
+  "title": "Activity Log",
+  "columns": {
+    "when": "When",
+    "actor": "Performed By",
+    "system": "System",
+    "action": "Action",
+    "entityType": "Type",
+    "summary": "Details"
+  },
+  "action": {
+    "created": "Created",
+    "updated": "Updated",
+    "deleted": "Deleted",
+    "status_changed": "Status Changed",
+    "converted": "Converted",
+    "sent": "Sent",
+    "expired": "Expired",
+    "contact_added": "Contact Added",
+    "contact_updated": "Contact Updated",
+    "contact_removed": "Contact Removed",
+    "member_added": "Member Added",
+    "member_removed": "Member Removed",
+    "member_role_changed": "Member Role Changed",
+    "manager_assigned": "Manager Assigned",
+    "item_created": "Item Added",
+    "item_updated": "Item Updated",
+    "item_deleted": "Item Deleted",
+    "linked_user": "User Linked",
+    "portal_user_created": "Portal User Created",
+    "portal_user_linked": "Portal User Linked",
+    "portal_user_revoked": "Portal User Revoked",
+    "permissions_assigned": "Permissions Granted",
+    "role_assigned": "Role Assigned",
+    "role_removed": "Role Removed",
+    "permission_granted": "Direct Permission Granted",
+    "permission_revoked": "Direct Permission Revoked"
+  },
+  "entityType": {
+    "customer": "Customer",
+    "lead": "Lead",
+    "opportunity": "Opportunity",
+    "quotation": "Quotation",
+    "project": "Project",
+    "work_order": "Work Order",
+    "task": "Task",
+    "employee": "Employee",
+    "user": "User",
+    "role": "Role"
+  },
+  "filters": {
+    "allEntityTypes": "All Types",
+    "allActions": "All Actions",
+    "allUsers": "All users",
+    "from": "From",
+    "to": "To",
+    "clear": "Clear filters",
+    "singleRecord": "Showing the change history of one record ({{type}})",
+    "showAll": "Show all"
+  },
+  "empty": {
+    "title": "No log entries yet",
+    "description": "Every recorded event across the system will appear here."
+  },
+  "summary": {
+    "roleAssigned": "Assigned the \"{{roleName}}\" role",
+    "roleRemoved": "Removed the \"{{roleName}}\" role",
+    "permissionsAssigned": "Granted {{count}} permission(s)",
+    "fieldsChanged": "Changed: {{fields}}",
+    "listSeparator": ", "
+  },
+  "intro": "A tamper-proof record of every change in the system: who made it, when, and from which device. Salary and identity fields are only shown to people allowed to see them.",
+  "historyLink": "Change history",
+  "export": {
+    "csv": "Export CSV",
+    "inProgress": "Exporting…",
+    "error": "Couldn't export the log. Please try again.",
+    "truncated": "Only the newest 5,000 entries were exported. Narrow the date range to export the rest."
+  },
+  "detail": {
+    "ip": "IP address",
+    "browser": "Browser",
+    "notRecorded": "Not recorded",
+    "field": "Field",
+    "before": "Before",
+    "after": "After",
+    "hidden": "Hidden",
+    "hiddenHint": "Some values are hidden because they require payroll or employee-data permission.",
+    "redacted": "Redacted (secret data is never stored)",
+    "empty": "(empty)",
+    "noFieldData": "No field details for this action."
+  }
+}

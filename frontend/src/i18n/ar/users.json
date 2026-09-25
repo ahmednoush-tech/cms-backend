@@ -1,0 +1,29 @@
+{
+  "title": "المستخدمون",
+  "action": { "create": "مستخدم جديد" },
+  "columns": { "name": "الاسم", "email": "البريد الإلكتروني", "status": "الحالة", "lastLogin": "آخر تسجيل دخول", "never": "أبدًا" },
+  "status": { "active": "نشط", "inactive": "غير نشط", "locked": "مقفل" },
+  "empty": { "title": "لا يوجد مستخدمون بعد", "description": "أنشئ أول مستخدم للبدء." },
+  "fields": { "name": "الاسم", "email": "البريد الإلكتروني", "password": "كلمة المرور", "phone": "الهاتف", "status": "الحالة", "lastLogin": "آخر تسجيل دخول" },
+  "form": { "createTitle": "مستخدم جديد", "editTitle": "تعديل المستخدم" },
+  "detail": {
+    "currentRoles": "الأدوار الحالية",
+    "noRoles": "لا يوجد أي دور مُسنَد لهذا المستخدم بعد.",
+    "removeRole": "إزالة دور {{name}}",
+    "selectRolePlaceholder": "اختر دورًا لإسناده…",
+    "assignRole": "إسناد",
+    "directPermissions": "صلاحيات مباشرة إضافية",
+    "directPermissionsHint": "استثناءات فردية تُمنح لهذا المستخدم تحديدًا، بدون الحاجة لإنشاء أو تعديل دور.",
+    "noDirectPermissions": "لا توجد صلاحيات مباشرة إضافية بعد.",
+    "revokePermission": "إلغاء {{name}}",
+    "selectPermissionPlaceholder": "اختر صلاحية لمنحها…",
+    "grantPermission": "منح",
+    "setPassword": "تعيين كلمة مرور جديدة",
+    "setPasswordHint": "هذا يستبدل كلمة مرور المستخدم فورًا — لا يتم إشعاره تلقائيًا، لذا أبلغه بكلمة المرور الجديدة مباشرة.",
+    "newPasswordPlaceholder": "كلمة المرور الجديدة (8 أحرف على الأقل، تشمل حرفًا كبيرًا وصغيرًا ورقمًا ورمزًا)",
+    "setPasswordAction": "تعيين كلمة المرور",
+    "setPasswordSuccess": "تم تحديث كلمة المرور بنجاح.",
+    "deleteTitle": "حذف هذا المستخدم؟",
+    "deleteMessage": "حذف \"{{name}}\"؟ سيفقد هذا الشخص القدرة على تسجيل الدخول فورًا. لا يمكن التراجع عن هذا الإجراء."
+  }
+}

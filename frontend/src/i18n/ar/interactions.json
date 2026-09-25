@@ -1,0 +1,28 @@
+{
+  "type": {
+    "call": "مكالمة",
+    "meeting": "اجتماع",
+    "email": "بريد إلكتروني",
+    "note": "ملاحظة",
+    "other": "أخرى"
+  },
+  "fields": {
+    "type": "النوع",
+    "subject": "الموضوع",
+    "interactionDate": "التاريخ",
+    "notes": "ملاحظات",
+    "outcome": "النتيجة",
+    "followUpDate": "تاريخ المتابعة"
+  },
+  "form": {
+    "createTitle": "تسجيل تفاعل",
+    "editTitle": "تعديل التفاعل"
+  },
+  "section": {
+    "title": "سجل التفاعلات",
+    "logInteraction": "تسجيل تفاعل",
+    "empty": "لا توجد تفاعلات مُسجَّلة بعد.",
+    "deleteConfirmTitle": "مسح التفاعل ده؟",
+    "deleteConfirmMessage": "الإجراء ده مينفعش يترجع فيه."
+  }
+}

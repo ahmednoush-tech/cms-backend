@@ -1,0 +1,93 @@
+{
+  "title": "سجل النشاط",
+  "columns": {
+    "when": "التوقيت",
+    "actor": "من نفّذ الإجراء",
+    "system": "النظام",
+    "action": "الإجراء",
+    "entityType": "النوع",
+    "summary": "التفاصيل"
+  },
+  "action": {
+    "created": "إنشاء",
+    "updated": "تعديل",
+    "deleted": "حذف",
+    "status_changed": "تغيير الحالة",
+    "converted": "تحويل",
+    "sent": "إرسال",
+    "expired": "انتهاء الصلاحية",
+    "contact_added": "إضافة جهة اتصال",
+    "contact_updated": "تعديل جهة اتصال",
+    "contact_removed": "إزالة جهة اتصال",
+    "member_added": "إضافة عضو",
+    "member_removed": "إزالة عضو",
+    "member_role_changed": "تغيير دور عضو",
+    "manager_assigned": "تعيين مدير",
+    "item_created": "إضافة بند",
+    "item_updated": "تعديل بند",
+    "item_deleted": "حذف بند",
+    "linked_user": "ربط مستخدم",
+    "portal_user_created": "إنشاء مستخدم بوابة",
+    "portal_user_linked": "ربط مستخدم بوابة",
+    "portal_user_revoked": "إلغاء مستخدم بوابة",
+    "permissions_assigned": "منح صلاحيات",
+    "role_assigned": "إسناد دور",
+    "role_removed": "إزالة دور",
+    "permission_granted": "منح صلاحية مباشرة",
+    "permission_revoked": "إلغاء صلاحية مباشرة"
+  },
+  "entityType": {
+    "customer": "عميل",
+    "lead": "عميل محتمل",
+    "opportunity": "فرصة بيعية",
+    "quotation": "عرض سعر",
+    "project": "مشروع",
+    "work_order": "أمر شغل",
+    "task": "مهمة",
+    "employee": "موظف",
+    "user": "مستخدم",
+    "role": "دور"
+  },
+  "filters": {
+    "allEntityTypes": "كل الأنواع",
+    "allActions": "كل الإجراءات",
+    "allUsers": "كل المستخدمين",
+    "from": "من",
+    "to": "إلى",
+    "clear": "مسح الفلاتر",
+    "singleRecord": "تعرض سجل تغييرات سجل واحد ({{type}})",
+    "showAll": "عرض الكل"
+  },
+  "empty": {
+    "title": "لا توجد سجلات بعد",
+    "description": "ستظهر هنا كل الأحداث المُسجَّلة عبر النظام."
+  },
+  "summary": {
+    "roleAssigned": "تم إسناد دور \"{{roleName}}\"",
+    "roleRemoved": "تمت إزالة دور \"{{roleName}}\"",
+    "permissionsAssigned": "تم منح {{count}} صلاحية",
+    "fieldsChanged": "تعديل: {{fields}}",
+    "listSeparator": "، "
+  },
+  "intro": "سجل غير قابل للتعديل لكل تغيير في النظام: من قام به، ومتى، ومن أي جهاز. حقول الرواتب والهوية تظهر فقط لمن يملك صلاحية الاطلاع عليها.",
+  "historyLink": "سجل التغييرات",
+  "export": {
+    "csv": "تصدير CSV",
+    "inProgress": "جارٍ التصدير…",
+    "error": "تعذّر تصدير السجل. حاول مرة أخرى.",
+    "truncated": "تم تصدير أحدث 5,000 سجل فقط. ضيّق نطاق التاريخ لتصدير الباقي."
+  },
+  "detail": {
+    "ip": "عنوان IP",
+    "browser": "المتصفح",
+    "notRecorded": "لم يُسجَّل",
+    "field": "الحقل",
+    "before": "قبل",
+    "after": "بعد",
+    "hidden": "مخفي",
+    "hiddenHint": "بعض القيم مخفية لأنها تتطلب صلاحية الرواتب أو صلاحية بيانات الموظفين.",
+    "redacted": "محجوب (بيانات سرية لا تُحفظ)",
+    "empty": "(فارغ)",
+    "noFieldData": "لا توجد تفاصيل حقول لهذا الإجراء."
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "type": {
+    "call": "Call",
+    "meeting": "Meeting",
+    "email": "Email",
+    "note": "Note",
+    "other": "Other"
+  },
+  "fields": {
+    "type": "Type",
+    "subject": "Subject",
+    "interactionDate": "Date",
+    "notes": "Notes",
+    "outcome": "Outcome",
+    "followUpDate": "Follow-up Date"
+  },
+  "form": {
+    "createTitle": "Log Interaction",
+    "editTitle": "Edit Interaction"
+  },
+  "section": {
+    "title": "Interaction History",
+    "logInteraction": "Log Interaction",
+    "empty": "No interactions logged yet.",
+    "deleteConfirmTitle": "Delete this interaction?",
+    "deleteConfirmMessage": "This cannot be undone."
+  }
+}

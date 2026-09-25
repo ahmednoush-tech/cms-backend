@@ -1,0 +1,28 @@
+{
+  "fields": {
+    "employee": "الموظف",
+    "entryDate": "التاريخ",
+    "hours": "الساعات",
+    "notes": "ملاحظات",
+    "billable": "قابل للفوترة",
+    "nonBillable": "غير قابل للفوترة"
+  },
+  "form": {
+    "createTitle": "تسجيل وقت",
+    "editTitle": "تعديل تسجيل الوقت"
+  },
+  "section": {
+    "title": "الوقت المُسجَّل",
+    "logTime": "تسجيل وقت",
+    "empty": "لا يوجد وقت مُسجَّل على هذه المهمة بعد.",
+    "deleteConfirmTitle": "مسح تسجيل الوقت ده؟",
+    "deleteConfirmMessage": "الإجراء ده مينفعش يترجع فيه."
+  },
+  "summary": {
+    "title": "ملخص الوقت",
+    "totalHours": "إجمالي الساعات",
+    "billableHours": "الساعات القابلة للفوترة",
+    "totalCost": "تكلفة العمالة",
+    "costUnknown": "غير مُسعَّرة"
+  }
+}

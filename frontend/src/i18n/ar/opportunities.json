@@ -1,0 +1,47 @@
+{
+  "title": "الفرص",
+  "action": {
+    "create": "فرصة جديدة"
+  },
+  "columns": {
+    "name": "الاسم",
+    "stage": "المرحلة",
+    "value": "القيمة",
+    "probability": "الاحتمالية"
+  },
+  "filters": {
+    "customerId": "معرّف العميل",
+    "stage": "المرحلة"
+  },
+  "empty": {
+    "title": "لا توجد فرص بعد",
+    "description": "أنشئ أول فرصة للبدء."
+  },
+  "fields": {
+    "customerId": "معرّف العميل",
+    "name": "الاسم",
+    "description": "الوصف",
+    "value": "القيمة",
+    "currency": "العملة",
+    "probability": "الاحتمالية (%)",
+    "expectedCloseDate": "تاريخ الإغلاق المتوقع"
+  },
+  "form": {
+    "createTitle": "فرصة جديدة",
+    "editTitle": "تعديل الفرصة",
+    "customerIdHint": "العميل الذي تنتمي إليه هذه الفرصة"
+  },
+  "detail": {
+    "moveTo": "نقل إلى {{stage}}",
+    "stageChangeTitle": "تغيير المرحلة",
+    "stageChangeMessage": "نقل هذه الفرصة إلى \"{{stage}}\"؟"
+  },
+  "stage": {
+    "prospecting": "استكشاف",
+    "qualification": "تأهيل",
+    "proposal": "عرض سعر",
+    "negotiation": "تفاوض",
+    "won": "فوز",
+    "lost": "خسارة"
+  }
+}

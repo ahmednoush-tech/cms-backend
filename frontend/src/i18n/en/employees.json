@@ -1,0 +1,78 @@
+{
+  "title": "Employees",
+  "action": {
+    "create": "New Employee"
+  },
+  "columns": {
+    "number": "Employee #",
+    "name": "Name",
+    "jobTitle": "Job Title",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "terminated": "Terminated"
+  },
+  "empty": {
+    "title": "No employees yet",
+    "description": "Create your first employee to get started."
+  },
+  "fields": {
+    "employeeNumber": "Employee Number",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "departmentId": "Department ID",
+    "jobTitle": "Job Title",
+    "phone": "Phone",
+    "email": "Email",
+    "hireDate": "Hire Date",
+    "managerId": "Manager ID",
+    "status": "Status",
+    "department": "Department",
+    "manager": "Manager",
+    "linkedUser": "Linked User"
+  },
+  "form": {
+    "createTitle": "New Employee",
+    "editTitle": "Edit Employee",
+    "managerIdHint": "Must be an active employee in your company; cannot create a circular management chain"
+  },
+  "detail": {
+    "noDepartment": "No department",
+    "noManager": "No manager",
+    "noLinkedUser": "No login access",
+    "linkUser": "Link Login Access",
+    "userIdPlaceholder": "User ID",
+    "link": "Link"
+  },
+  "compensation": {
+    "title": "Compensation & GOSI",
+    "hint": "Required before this employee can be included in a payroll run. GOSI rates must be verified against gosi.gov.sa — this system never assumes a default.",
+    "basicSalary": "Basic Salary",
+    "housingAllowance": "Housing Allowance",
+    "otherAllowances": "Other Allowances",
+    "gosiEmployeeRate": "GOSI Employee Rate (%)",
+    "gosiEmployerRate": "GOSI Employer Rate (%)",
+    "gosiHint": "As a percentage, e.g. 9.75. Leave blank if not applicable to this employee."
+  },
+  "residency": {
+    "title": "Residency (Iqama)",
+    "hint": "For foreign employees. Used to track Iqama expiry and notify HR before it lapses.",
+    "nationality": "Nationality",
+    "iqamaNumber": "Iqama Number",
+    "iqamaExpiryDate": "Iqama Expiry Date",
+    "expiringIqamasLink": "Expiring Iqamas",
+    "expiringIqamasTitle": "Expiring Iqamas",
+    "onDemandDisclosure": "This check now also runs automatically every day — the button below still works for an immediate, on-demand check at any time.",
+    "daysThreshold": "Within (days)",
+    "checkNow": "Check Now",
+    "resultSummary": "{{expiringCount}} employee(s) found expiring soon. {{notificationsSent}} notification(s) sent to HR.",
+    "noneExpiring": "No employees have an Iqama expiring within this window.",
+    "daysRemaining": "Days Remaining",
+    "daysRemainingValue": "{{count}} day left",
+    "daysRemainingValue_other": "{{count}} days left",
+    "expiredDaysAgo": "{{count}} day overdue",
+    "expiredDaysAgo_other": "{{count}} days overdue"
+  }
+}

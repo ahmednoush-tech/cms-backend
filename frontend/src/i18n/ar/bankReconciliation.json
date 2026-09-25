@@ -1,0 +1,57 @@
+{
+  "title": "التسوية البنكية",
+  "status": {
+    "in_progress": "قيد التنفيذ",
+    "completed": "مكتملة"
+  },
+  "unmatchedCount": "بنود غير مطابقة",
+  "columns": {
+    "bankAccount": "الحساب البنكي",
+    "statementDate": "تاريخ الكشف",
+    "statementBalance": "رصيد الكشف",
+    "status": "الحالة"
+  },
+  "actions": {
+    "new": "تسوية جديدة",
+    "autoMatch": "مطابقة تلقائية",
+    "match": "مطابقة",
+    "unmatch": "إلغاء المطابقة",
+    "select": "اختيار",
+    "complete": "إتمام التسوية"
+  },
+  "autoMatch": {
+    "result": "تمت مطابقة {{matched}} بند تلقائيًا — ولا يزال {{remaining}} غير مطابق."
+  },
+  "form": {
+    "createTitle": "تسوية بنكية جديدة"
+  },
+  "fields": {
+    "bankAccount": "الحساب البنكي",
+    "statementDate": "تاريخ الكشف",
+    "statementEndingBalance": "رصيد الكشف الختامي",
+    "bookBalance": "الرصيد الدفتري"
+  },
+  "empty": {
+    "title": "لا يوجد تسويات بعد",
+    "description": "ابدأ تسوية لمطابقة كشف الحساب البنكي مع دفتر الأستاذ."
+  },
+  "statementLines": {
+    "title": "بنود الكشف",
+    "date": "التاريخ",
+    "description": "الوصف",
+    "amount": "المبلغ",
+    "matchStatus": "حالة المطابقة",
+    "matched": "مطابَق",
+    "unmatched": "غير مطابَق",
+    "add": "إضافة بند"
+  },
+  "unmatchedLedgerLines": {
+    "selectPrompt": "اختر قيد الأستاذ الذي يقابل بند الكشف هذا:",
+    "entryNumber": "رقم القيد",
+    "description": "الوصف"
+  },
+  "confirm": {
+    "completeTitle": "إتمام هذه التسوية؟",
+    "completeMessage": "يؤدي هذا إلى إقفال الرصيد الدفتري في تاريخ الكشف. إذا لم يتوازن رصيد البنك مع الدفاتر تمامًا، سيُرفض الإتمام وسيظهر لك الفرق بدقة."
+  }
+}

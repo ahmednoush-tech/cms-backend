@@ -1,0 +1,66 @@
+{
+  "title": "المستودعات",
+  "fields": {
+    "name": "الاسم",
+    "address": "العنوان",
+    "status": "الحالة"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "action": {
+    "add": "إضافة مستودع",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل"
+  },
+  "items": {
+    "title": "أصناف المخزون",
+    "empty": "لا توجد أصناف مخزون بعد.",
+    "stockByWarehouse": "الرصيد حسب المستودع",
+    "noStock": "لا يوجد رصيد مسجَّل لهذا الصنف في أي مستودع بعد.",
+    "fields": {
+      "sku": "رمز الصنف",
+      "name": "الاسم",
+      "unitOfMeasure": "الوحدة",
+      "reorderPoint": "حد إعادة الطلب",
+      "status": "الحالة",
+      "quantityOnHand": "الكمية المتاحة"
+    },
+    "action": {
+      "add": "إضافة صنف",
+      "deactivate": "إلغاء التفعيل"
+    }
+  },
+  "movements": {
+    "history": "سجل الحركات",
+    "fields": {
+      "quantity": "الكمية",
+      "newQuantity": "الكمية الجديدة (بعد الجرد)",
+      "reason": "السبب (اختياري)",
+      "fromWarehouse": "من مستودع",
+      "toWarehouse": "إلى مستودع"
+    },
+    "action": {
+      "receipt": "استلام مخزون",
+      "issue": "صرف مخزون",
+      "transfer": "نقل",
+      "adjustment": "تسوية (جرد)"
+    },
+    "type": {
+      "receipt": "استلام",
+      "issue": "صرف",
+      "transfer_out": "نقل صادر",
+      "transfer_in": "نقل وارد",
+      "adjustment": "تسوية"
+    }
+  },
+  "lowStock": {
+    "title": "تنبيهات نقص المخزون",
+    "description": "الأصناف التي وصلت إلى حد إعادة الطلب أو أقل، بإجمالي كل المستودعات.",
+    "empty": "لا يوجد أي صنف ناقص حاليًا.",
+    "fields": {
+      "totalQuantity": "الكمية الإجمالية"
+    }
+  }
+}

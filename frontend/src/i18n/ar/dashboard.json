@@ -1,0 +1,63 @@
+{
+  "title": "لوحة التحكم",
+  "tabs": {
+    "summary": "الملخص",
+    "sales": "المبيعات",
+    "operations": "العمليات",
+    "workload": "أعباء العمل"
+  },
+  "summary": {
+    "totalCustomers": "إجمالي العملاء",
+    "newLeads": "العملاء المحتملون الجدد",
+    "openOpportunities": "الفرص المفتوحة",
+    "pipelineValue": "قيمة خط المبيعات",
+    "activeProjects": "المشاريع النشطة",
+    "completedProjects": "المشاريع المكتملة",
+    "openWorkOrders": "أوامر العمل المفتوحة",
+    "overdueWorkOrders": "أوامر العمل المتأخرة",
+    "pendingTasks": "المهام المعلّقة",
+    "completedTasks": "المهام المكتملة",
+    "totalOpenAssignments": "إجمالي التكليفات المفتوحة"
+  },
+  "sales": {
+    "pipelineValue": "قيمة خط المبيعات",
+    "conversionRate": "معدل التحويل",
+    "conversionRateHint": "{{won}} تم الفوز بها / {{lost}} خُسرت",
+    "acceptedQuotationValue": "قيمة عروض الأسعار المقبولة",
+    "opportunitiesWonLost": "الفوز / الخسارة",
+    "wonLostHint": "الفرص المحسومة ضمن النطاق المحدد",
+    "leadsByStatus": "العملاء المحتملون حسب الحالة",
+    "opportunitiesByStage": "الفرص حسب المرحلة",
+    "quotationsByStatus": "عروض الأسعار حسب الحالة",
+    "quotationValueByStatus": "قيمة عروض الأسعار حسب الحالة",
+    "status": "الحالة",
+    "value": "القيمة"
+  },
+  "operations": {
+    "overdueWorkOrders": "أوامر العمل المتأخرة",
+    "projectsByStatus": "المشاريع حسب الحالة",
+    "workOrdersByStatus": "أوامر العمل حسب الحالة",
+    "workOrdersByPriority": "أوامر العمل حسب الأولوية",
+    "tasksByStatus": "المهام حسب الحالة",
+    "tasksByPriority": "المهام حسب الأولوية"
+  },
+  "workload": {
+    "employee": "الموظف",
+    "openTasks": "المهام المفتوحة",
+    "openWorkOrders": "أوامر العمل المفتوحة",
+    "totalAssignments": "إجمالي التكليفات",
+    "empty": "لا توجد بيانات أعباء عمل",
+    "emptyDescription": "لا يوجد حاليًا موظفون لديهم مهام أو أوامر عمل مفتوحة مُسندة إليهم."
+  },
+  "filters": {
+    "dateFrom": "من تاريخ",
+    "dateTo": "إلى تاريخ",
+    "departmentId": "معرّف القسم",
+    "employeeId": "معرّف الموظف",
+    "customerId": "معرّف العميل",
+    "projectId": "معرّف المشروع",
+    "status": "الحالة",
+    "priority": "الأولوية",
+    "clear": "مسح عوامل التصفية"
+  }
+}

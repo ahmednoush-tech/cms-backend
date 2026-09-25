@@ -1,0 +1,2216 @@
+// ============================================================
+// Prisma schema — Company Management System V1
+// Mirrors the approved 21 migration files exactly.
+// No schema changes made in Phase 2 — this is a direct
+// translation of 001-019 into Prisma models.
+// ============================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------------------------------------------------
+// MODULE 1 — ADMINISTRATION
+// ------------------------------------------------------------
+
+model Company {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  legalName  String?   @map("legal_name")
+  email      String?
+  phone      String?
+  website    String?
+  logo       String?
+  address    String?
+  city       String?
+  country    String?
+  taxNumber  String?   @map("tax_number")
+  microsoftClientId String? @map("microsoft_client_id")
+  microsoftClientSecretEncrypted String? @map("microsoft_client_secret_encrypted")
+  status     String    @default("active") // active | inactive | suspended
+  defaultWorkingDays Int[] @default([0, 1, 2, 3, 4]) @map("default_working_days")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at")
+
+  departments    Department[]
+  users          User[]
+  employees      Employee[]
+  roles          Role[]
+  customers      Customer[]
+  customerUsers  CustomerUser[]
+  leads          Lead[]
+  opportunities  Opportunity[]
+  quotations     Quotation[]
+  projects       Project[]
+  workOrders     WorkOrder[]
+  tasks          Task[]
+  comments       Comment[]
+  activityLogs   ActivityLog[]
+  notifications  Notification[]
+  chartOfAccounts Account[]
+  journalEntries  JournalEntry[]
+  financeSettings FinanceSettings?
+  invoices        Invoice[]
+  payments        Payment[]
+  vendors         Vendor[]
+  bills           Bill[]
+  billPayments    BillPayment[]
+  accountingPeriods AccountingPeriod[]
+  invoiceNotes InvoiceNote[]
+  customerPayments CustomerPayment[]
+  inventoryItems InventoryItem[]
+  inventoryMovements InventoryMovement[]
+  payrollSettings PayrollSettings?
+  payrollRuns PayrollRun[]
+  timeEntries TimeEntry[]
+  interactions Interaction[]
+  purchaseOrders PurchaseOrder[]
+  fixedAssets FixedAsset[]
+  depreciationRuns DepreciationRun[]
+  attachments Attachment[]
+  bankReconciliations BankReconciliation[]
+  recurringInvoiceTemplates RecurringInvoiceTemplate[]
+  vehicles Vehicle[]
+  emailIntegrations EmailIntegration[]
+  automationRules AutomationRule[]
+  customFieldDefinitions CustomFieldDefinition[]
+  leaveTypes LeaveType[]
+  leaveBalances LeaveBalance[]
+  leaveRequests LeaveRequest[]
+  performanceCycles PerformanceCycle[]
+  performanceCriteria PerformanceCriterion[]
+  performanceEvaluations PerformanceEvaluation[]
+  reportDefinitions ReportDefinition[]
+  approvalWorkflows ApprovalWorkflow[]
+  approvalRequests ApprovalRequest[]
+  warehouses Warehouse[]
+  stockItems StockItem[]
+  inventoryStock InventoryStock[]
+  stockMovements StockMovement[]
+  zatcaCertificates ZatcaCertificate[]
+  zatcaSubmissions ZatcaSubmission[]
+  attachmentSignatures AttachmentSignature[]
+
+  @@map("companies")
+}
+
+model Department {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId   String    @map("company_id") @db.Uuid
+  name        String
+  description String?
+  managerId   String?   @map("manager_id") @db.Uuid // -> employees.id
+  status      String    @default("active") // active | inactive
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  company   Company    @relation(fields: [companyId], references: [id])
+  manager   Employee?  @relation("DepartmentManager", fields: [managerId], references: [id])
+  employees Employee[] @relation("EmployeeDepartment")
+
+  @@map("departments")
+}
+
+model User {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId     String    @map("company_id") @db.Uuid
+  name          String
+  email         String    @unique
+  passwordHash  String    @map("password_hash")
+  phone         String?
+  status        String    @default("active") // active | inactive | locked
+  failedLoginAttempts Int @default(0) @map("failed_login_attempts")
+  lastLoginAt   DateTime? @map("last_login_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  company       Company        @relation(fields: [companyId], references: [id])
+  employee      Employee?      // 0..1, owned by Employee.userId
+  userRoles     UserRole[]
+  userPermissions UserPermission[]
+  customerUsers CustomerUser[]
+  ownedCustomers    Customer[]     @relation("CustomerOwner")
+  ownedLeads        Lead[]         @relation("LeadOwner")
+  convertedLeads    Lead[]         @relation("LeadConvertedBy")
+  ownedOpportunities Opportunity[] @relation("OpportunityOwner")
+  createdQuotations  Quotation[]   @relation("QuotationCreatedBy")
+  createdProjects    Project[]     @relation("ProjectCreatedBy")
+  createdWorkOrders  WorkOrder[]   @relation("WorkOrderCreatedBy")
+  createdTasks       Task[]        @relation("TaskCreatedBy")
+  comments           Comment[]
+  activityLogs       ActivityLog[]
+  notifications      Notification[]
+  passwordResetTokens PasswordResetToken[]
+  postedJournalEntries JournalEntry[]
+  createdInvoices      Invoice[]
+  createdPayments      Payment[]
+  createdBills         Bill[]
+  createdBillPayments  BillPayment[]
+  lockedAccountingPeriods AccountingPeriod[]
+  createdInvoiceNotes InvoiceNote[]
+  createdCustomerPayments CustomerPayment[]
+  createdTimeEntries TimeEntry[]
+  loggedInteractions Interaction[]
+  approvedPurchaseOrders PurchaseOrder[] @relation("PurchaseOrderApprovedBy")
+  createdPurchaseOrders  PurchaseOrder[] @relation("PurchaseOrderCreatedBy")
+  createdFixedAssets FixedAsset[]
+  createdRecurringInvoiceTemplates RecurringInvoiceTemplate[]
+  createdVehicles Vehicle[]
+  createdVehicleAssignments VehicleAssignment[]
+  createdVehicleMaintenanceRecords VehicleMaintenanceRecord[]
+  createdTaskDependencies TaskDependency[]
+  emailIntegration EmailIntegration?
+  emailSyncedMessages EmailSyncedMessage[]
+  createdAutomationRules AutomationRule[]
+  createdCustomFieldDefinitions CustomFieldDefinition[]
+  uploadedAttachments Attachment[]
+  approvedLeaveRequests LeaveRequest[]
+  performanceEvaluationsGiven PerformanceEvaluation[]
+  createdReportDefinitions ReportDefinition[]
+  requestedApprovals ApprovalRequest[] @relation("ApprovalRequestedBy")
+  approvalActionsGiven ApprovalAction[] @relation("ApprovalActionedBy")
+  performedInventoryMovements StockMovement[]
+  attachmentSignatures AttachmentSignature[]
+  createdBankReconciliations BankReconciliation[]
+
+  @@map("users")
+}
+
+model PasswordResetToken {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at")
+  usedAt    DateTime? @map("used_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("password_reset_tokens")
+}
+
+// ============================================================
+// Finance — Phase F1 foundation (Chart of Accounts + Journal
+// Entries + Lines). See migration 027 for the full design
+// rationale. Later Finance phases (invoicing, payments,
+// financial statements, ZATCA e-invoicing) build on top of this
+// without needing to change these three models.
+// ============================================================
+
+model Account {
+  id            String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId     String    @map("company_id") @db.Uuid
+  code          String    @db.VarChar(20)
+  name          String    @db.VarChar(200)
+  type          String // asset | liability | equity | revenue | expense
+  normalBalance String    @map("normal_balance") // debit | credit
+  cashFlowCategory String? @map("cash_flow_category") // operating | investing | financing
+  zakatCategory String? @map("zakat_category") // long_term_liability | fixed_asset | long_term_investment
+  parentId      String?   @map("parent_id") @db.Uuid
+  description   String?
+  isActive      Boolean   @default(true) @map("is_active")
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt     DateTime? @map("deleted_at")
+
+  company           Company            @relation(fields: [companyId], references: [id])
+  parent            Account?           @relation("AccountHierarchy", fields: [parentId], references: [id])
+  children          Account[]          @relation("AccountHierarchy")
+  journalEntryLines JournalEntryLine[]
+  bankReconciliations BankReconciliation[]
+
+  @@unique([companyId, code])
+  @@map("chart_of_accounts")
+}
+
+model JournalEntry {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId   String    @map("company_id") @db.Uuid
+  entryNumber String    @map("entry_number") @db.VarChar(50)
+  entryDate   DateTime  @map("entry_date") @db.Date
+  reference   String?   @db.VarChar(200)
+  description String?
+  status      String    @default("draft") // draft | posted | void
+  createdBy   String?   @map("created_by") @db.Uuid
+  postedAt    DateTime? @map("posted_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  company Company            @relation(fields: [companyId], references: [id])
+  creator User?              @relation(fields: [createdBy], references: [id])
+  lines   JournalEntryLine[]
+  invoice Invoice?
+  payment Payment?
+  bill    Bill?
+  billPayment BillPayment?
+  invoiceNote InvoiceNote?
+  disposedFixedAsset FixedAsset?
+
+  @@unique([companyId, entryNumber])
+  @@map("journal_entries")
+}
+
+model JournalEntryLine {
+  id             String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  journalEntryId String  @map("journal_entry_id") @db.Uuid
+  accountId      String  @map("account_id") @db.Uuid
+  debit          Decimal @default(0) @db.Decimal(14, 2)
+  credit         Decimal @default(0) @db.Decimal(14, 2)
+  description    String?
+  lineOrder      Int     @default(0) @map("line_order")
+
+  journalEntry JournalEntry @relation(fields: [journalEntryId], references: [id], onDelete: Cascade)
+  account      Account      @relation(fields: [accountId], references: [id])
+  bankStatementLine BankStatementLine?
+
+  @@map("journal_entry_lines")
+}
+
+// ============================================================
+// Finance — Phase F2 (Invoicing + Payments). Builds on F1's
+// Chart of Accounts / Journal Entries. See migration 029 for the
+// full design rationale, especially FinanceSettings' role in
+// telling the system which accounts to auto-post issued invoices
+// and recorded payments against.
+// ============================================================
+
+model Currency {
+  code      String   @id @db.VarChar(3)
+  name      String   @db.VarChar(50)
+  symbol    String   @db.VarChar(5)
+  isActive  Boolean  @default(true) @map("is_active")
+
+  @@map("currencies")
+}
+
+model FinanceSettings {
+  companyId                   String   @id @map("company_id") @db.Uuid
+  defaultReceivableAccountId  String?  @map("default_receivable_account_id") @db.Uuid
+  defaultRevenueAccountId     String?  @map("default_revenue_account_id") @db.Uuid
+  defaultTaxPayableAccountId  String?  @map("default_tax_payable_account_id") @db.Uuid
+  defaultCashAccountId        String?  @map("default_cash_account_id") @db.Uuid
+  defaultPayableAccountId     String?  @map("default_payable_account_id") @db.Uuid
+  defaultExpenseAccountId     String?  @map("default_expense_account_id") @db.Uuid
+  defaultTaxRecoverableAccountId String? @map("default_tax_recoverable_account_id") @db.Uuid
+  defaultAssetDisposalGainLossAccountId String? @map("default_asset_disposal_gain_loss_account_id") @db.Uuid
+  defaultFxGainLossAccountId  String?  @map("default_fx_gain_loss_account_id") @db.Uuid
+  sellerName                  String?  @map("seller_name") @db.VarChar(200)
+  vatRegistrationNumber       String?  @map("vat_registration_number") @db.VarChar(15)
+  sellerStreetName            String?  @map("seller_street_name") @db.VarChar(200)
+  sellerBuildingNumber        String?  @map("seller_building_number") @db.VarChar(10)
+  sellerDistrict              String?  @map("seller_district") @db.VarChar(100)
+  sellerCity                  String?  @map("seller_city") @db.VarChar(100)
+  sellerPostalCode            String?  @map("seller_postal_code") @db.VarChar(10)
+  lastZatcaIcv                Int      @default(0) @map("last_zatca_icv")
+  updatedAt                   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+
+  @@map("finance_settings")
+}
+
+model Invoice {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  customerId     String    @map("customer_id") @db.Uuid
+  quotationId    String?   @unique @map("quotation_id") @db.Uuid
+  invoiceNumber  String    @map("invoice_number") @db.VarChar(50)
+  issueDate      DateTime  @map("issue_date") @db.Date
+  issuedAt       DateTime? @map("issued_at")
+  dueDate        DateTime? @map("due_date") @db.Date
+  status         String    @default("draft") // draft | sent | partially_paid | paid | overdue | cancelled
+  subtotal       Decimal   @default(0) @db.Decimal(14, 2)
+  discount       Decimal   @default(0) @db.Decimal(14, 2)
+  tax            Decimal   @default(0) @db.Decimal(14, 2)
+  total          Decimal   @default(0) @db.Decimal(14, 2)
+  amountPaid     Decimal   @default(0) @map("amount_paid") @db.Decimal(14, 2)
+  currencyCode     String  @default("SAR") @map("currency_code") @db.VarChar(3)
+  exchangeRateToBase Decimal @default(1) @map("exchange_rate_to_base") @db.Decimal(14, 6)
+  recurringTemplateId String? @map("recurring_template_id") @db.Uuid
+  notes          String?
+  warehouseId    String?   @map("warehouse_id") @db.Uuid
+  journalEntryId String?   @unique @map("journal_entry_id") @db.Uuid
+  createdBy      String?   @map("created_by") @db.Uuid
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  company      Company        @relation(fields: [companyId], references: [id])
+  customer     Customer       @relation(fields: [customerId], references: [id])
+  quotation    Quotation?     @relation(fields: [quotationId], references: [id])
+  recurringTemplate RecurringInvoiceTemplate? @relation(fields: [recurringTemplateId], references: [id])
+  warehouse    Warehouse?     @relation(fields: [warehouseId], references: [id])
+  journalEntry JournalEntry?  @relation(fields: [journalEntryId], references: [id])
+  createdByUser User?         @relation(fields: [createdBy], references: [id])
+  items        InvoiceItem[]
+  payments     Payment[]
+  noteEntries  InvoiceNote[]
+  zatcaSubmissions ZatcaSubmission[]
+
+  @@unique([companyId, invoiceNumber])
+  @@map("invoices")
+}
+
+model InvoiceItem {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  invoiceId   String   @map("invoice_id") @db.Uuid
+  description String
+  quantity    Decimal  @db.Decimal(12, 2)
+  unitPrice   Decimal  @map("unit_price") @db.Decimal(14, 2)
+  discount    Decimal  @default(0) @db.Decimal(14, 2)
+  tax         Decimal  @default(0) @db.Decimal(14, 2)
+  total       Decimal  @db.Decimal(14, 2)
+  inventoryItemId String? @map("inventory_item_id") @db.Uuid
+  stockItemId String?  @map("stock_item_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  inventoryItem InventoryItem? @relation("InvoiceItemInventory", fields: [inventoryItemId], references: [id])
+  stockItem     StockItem?     @relation(fields: [stockItemId], references: [id])
+
+  @@map("invoice_items")
+}
+
+model Payment {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  invoiceId      String    @map("invoice_id") @db.Uuid
+  amount         Decimal   @db.Decimal(14, 2)
+  exchangeRateToBase Decimal @default(1) @map("exchange_rate_to_base") @db.Decimal(14, 6)
+  paymentDate    DateTime  @map("payment_date") @db.Date
+  method         String // cash | bank_transfer | card | cheque | other
+  reference      String?   @db.VarChar(200)
+  journalEntryId String?   @unique @map("journal_entry_id") @db.Uuid
+  customerPaymentId String? @map("customer_payment_id") @db.Uuid
+  createdBy      String?   @map("created_by") @db.Uuid
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  company      Company       @relation(fields: [companyId], references: [id])
+  invoice      Invoice       @relation(fields: [invoiceId], references: [id])
+  journalEntry JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  createdByUser User?        @relation(fields: [createdBy], references: [id])
+  customerPayment CustomerPayment? @relation(fields: [customerPaymentId], references: [id])
+
+  @@map("payments")
+}
+
+// ============================================================
+// Finance — Phase F4 (Expenses / Accounts Payable). The mirror
+// image of F2's Invoicing+Payments — money going OUT to vendors
+// instead of coming IN from customers. See migration 031 for the
+// full design rationale, especially why bill_payments is a
+// SEPARATE table from payments rather than a shared/generic one.
+// ============================================================
+
+model Vendor {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId   String    @map("company_id") @db.Uuid
+  vendorCode  String    @map("vendor_code") @db.VarChar(50)
+  name        String    @db.VarChar(200)
+  email       String?
+  phone       String?
+  address     String?
+  city        String?
+  country     String?
+  status      String    @default("active") // active | inactive
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  bills   Bill[]
+  purchaseOrders PurchaseOrder[]
+
+  @@unique([companyId, vendorCode])
+  @@map("vendors")
+}
+
+model Bill {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String    @map("company_id") @db.Uuid
+  vendorId        String    @map("vendor_id") @db.Uuid
+  billNumber      String    @map("bill_number") @db.VarChar(50)
+  vendorReference String?   @map("vendor_reference") @db.VarChar(200)
+  billDate        DateTime  @map("bill_date") @db.Date
+  dueDate         DateTime? @map("due_date") @db.Date
+  status          String    @default("draft") // draft | received | partially_paid | paid | overdue | cancelled
+  subtotal        Decimal   @default(0) @db.Decimal(14, 2)
+  discount        Decimal   @default(0) @db.Decimal(14, 2)
+  tax             Decimal   @default(0) @db.Decimal(14, 2)
+  total           Decimal   @default(0) @db.Decimal(14, 2)
+  amountPaid      Decimal   @default(0) @map("amount_paid") @db.Decimal(14, 2)
+  notes           String?
+  journalEntryId  String?   @unique @map("journal_entry_id") @db.Uuid
+  projectId       String?   @map("project_id") @db.Uuid
+  createdBy       String?   @map("created_by") @db.Uuid
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  company      Company        @relation(fields: [companyId], references: [id])
+  vendor       Vendor         @relation(fields: [vendorId], references: [id])
+  journalEntry JournalEntry?  @relation(fields: [journalEntryId], references: [id])
+  project      Project?       @relation(fields: [projectId], references: [id])
+  createdByUser User?         @relation(fields: [createdBy], references: [id])
+  items        BillItem[]
+  payments     BillPayment[]
+  purchaseOrder PurchaseOrder?
+
+  @@unique([companyId, billNumber])
+  @@map("bills")
+}
+
+model BillItem {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  billId      String   @map("bill_id") @db.Uuid
+  description String
+  quantity    Decimal  @db.Decimal(12, 2)
+  unitPrice   Decimal  @map("unit_price") @db.Decimal(14, 2)
+  discount    Decimal  @default(0) @db.Decimal(14, 2)
+  tax         Decimal  @default(0) @db.Decimal(14, 2)
+  total       Decimal  @db.Decimal(14, 2)
+  inventoryItemId String? @map("inventory_item_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  bill Bill @relation(fields: [billId], references: [id], onDelete: Cascade)
+  inventoryItem InventoryItem? @relation("BillItemInventory", fields: [inventoryItemId], references: [id])
+
+  @@map("bill_items")
+}
+
+model BillPayment {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  billId         String    @map("bill_id") @db.Uuid
+  amount         Decimal   @db.Decimal(14, 2)
+  paymentDate    DateTime  @map("payment_date") @db.Date
+  method         String // cash | bank_transfer | card | cheque | other
+  reference      String?   @db.VarChar(200)
+  journalEntryId String?   @unique @map("journal_entry_id") @db.Uuid
+  createdBy      String?   @map("created_by") @db.Uuid
+  createdAt      DateTime  @default(now()) @map("created_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  company      Company       @relation(fields: [companyId], references: [id])
+  bill         Bill          @relation(fields: [billId], references: [id])
+  journalEntry JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  createdByUser User?        @relation(fields: [createdBy], references: [id])
+
+  @@map("bill_payments")
+}
+
+// ============================================================
+// Finance — Phase F6 (Period Locking). Once a period's status is
+// 'locked', PeriodLockService.assertDateNotLocked() rejects any
+// NEW journal entry dated inside it, from any code path (manual
+// entry, invoice issue, bill receive, either payment type). See
+// migration 034 for why this deliberately does not also include
+// an automatic closing-entry mechanism.
+// ============================================================
+
+model AccountingPeriod {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId String    @map("company_id") @db.Uuid
+  name      String    @db.VarChar(100)
+  startDate DateTime  @map("start_date") @db.Date
+  endDate   DateTime  @map("end_date") @db.Date
+  status    String    @default("open") // open | locked
+  lockedAt  DateTime? @map("locked_at")
+  lockedBy  String?   @map("locked_by") @db.Uuid
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  locker  User?   @relation(fields: [lockedBy], references: [id])
+
+  @@map("accounting_periods")
+}
+
+model Employee {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  departmentId   String?   @map("department_id") @db.Uuid
+  userId         String?   @unique @map("user_id") @db.Uuid // sole FK expressing User<->Employee
+  employeeNumber String    @map("employee_number")
+  firstName      String    @map("first_name")
+  lastName       String    @map("last_name")
+  jobTitle       String?   @map("job_title")
+  phone          String?
+  email          String?
+  hireDate       DateTime? @map("hire_date") @db.Date
+  managerId      String?   @map("manager_id") @db.Uuid
+  status         String    @default("active") // active | inactive | terminated
+  basicSalary       Decimal? @map("basic_salary") @db.Decimal(14, 2)
+  housingAllowance  Decimal  @default(0) @map("housing_allowance") @db.Decimal(14, 2)
+  otherAllowances   Decimal  @default(0) @map("other_allowances") @db.Decimal(14, 2)
+  gosiEmployeeRate  Decimal? @map("gosi_employee_rate") @db.Decimal(6, 3)
+  gosiEmployerRate  Decimal? @map("gosi_employer_rate") @db.Decimal(6, 3)
+  hourlyRate        Decimal? @map("hourly_rate") @db.Decimal(10, 2)
+  nationality       String?
+  iqamaNumber       String?   @map("iqama_number")
+  iqamaExpiryDate   DateTime? @map("iqama_expiry_date") @db.Date
+  workingDaysOverride Int[]   @default([]) @map("working_days_override")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  company           Company      @relation(fields: [companyId], references: [id])
+  department        Department?  @relation("EmployeeDepartment", fields: [departmentId], references: [id])
+  user              User?        @relation(fields: [userId], references: [id])
+  manager           Employee?    @relation("EmployeeManager", fields: [managerId], references: [id])
+  subordinates      Employee[]   @relation("EmployeeManager")
+  managedDepartments Department[] @relation("DepartmentManager")
+  projectMembers    ProjectMember[]
+  managedProjects   Project[]    @relation("ProjectManager")
+  assignedWorkOrders WorkOrder[] @relation("WorkOrderAssignee")
+  assignedTasks     Task[]       @relation("TaskAssignee")
+  payslips          Payslip[]
+  timeEntries       TimeEntry[]
+  vehicleAssignments VehicleAssignment[]
+  leaveBalances     LeaveBalance[]
+  leaveRequests     LeaveRequest[]
+  performanceEvaluations PerformanceEvaluation[]
+
+  @@unique([companyId, employeeNumber])
+  @@map("employees")
+}
+
+model Role {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId   String   @map("company_id") @db.Uuid
+  name        String
+  description String?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company         Company          @relation(fields: [companyId], references: [id])
+  userRoles       UserRole[]
+  rolePermissions RolePermission[]
+  approvalWorkflowSteps ApprovalWorkflowStep[]
+
+  @@unique([companyId, name])
+  @@map("roles")
+}
+
+model Permission {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  module    String
+  resource  String
+  action    String
+  createdAt DateTime @default(now()) @map("created_at")
+
+  rolePermissions RolePermission[]
+  userPermissions UserPermission[]
+
+  @@unique([module, resource, action])
+  @@map("permissions")
+}
+
+model UserRole {
+  userId    String   @map("user_id") @db.Uuid
+  roleId    String   @map("role_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  // Scope narrows this specific grant to one record of scopeType
+  // rather than the whole company — e.g. scopeType 'department',
+  // scopeId <a real departments.id> means this role only applies
+  // to that department's own data.
+  //
+  // scopeId is NOT NULL with a fixed sentinel
+  // ('00000000-0000-0000-0000-000000000000') meaning "unscoped —
+  // applies company-wide", rather than actual NULL. This is
+  // deliberate: Postgres primary/unique keys can't contain a
+  // nullable column cleanly (multiple NULLs are treated as
+  // distinct, which would silently allow duplicate "unscoped"
+  // grants of the same role to slip in), and this project has no
+  // real Prisma install available in this environment to verify
+  // nullable-compound-unique-key `where` behavior empirically —
+  // the sentinel sidesteps needing to trust that untested
+  // behavior at all. COMPANY_WIDE_SCOPE_ID in roles.service.ts is
+  // the single source of truth for this constant; nothing should
+  // hardcode the literal string a second time.
+  scopeType String  @default("company") @map("scope_type")
+  scopeId   String  @default("00000000-0000-0000-0000-000000000000") @map("scope_id") @db.Uuid
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role Role @relation(fields: [roleId], references: [id], onDelete: Cascade)
+
+  @@id([userId, roleId, scopeId])
+  @@map("user_roles")
+}
+
+model UserPermission {
+  userId       String   @map("user_id") @db.Uuid
+  permissionId String   @map("permission_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  // Same scoping idea and same sentinel-over-NULL rationale as
+  // UserRole.scopeType/scopeId — see its comment. Granting a
+  // direct permission this way (a "permission set" style
+  // exception) does not require creating or editing a role.
+  scopeType    String   @default("company") @map("scope_type")
+  scopeId      String   @default("00000000-0000-0000-0000-000000000000") @map("scope_id") @db.Uuid
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([userId, permissionId, scopeId])
+  @@map("user_permissions")
+}
+
+model RolePermission {
+  roleId       String   @map("role_id") @db.Uuid
+  permissionId String   @map("permission_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+  @@map("role_permissions")
+}
+
+model RevokedRefreshToken {
+  jti       String   @id
+  expiresAt DateTime @map("expires_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("revoked_refresh_tokens")
+}
+
+// ------------------------------------------------------------
+// MODULE 2 — CRM
+// ------------------------------------------------------------
+
+model Customer {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId    String    @map("company_id") @db.Uuid
+  customerType String    @map("customer_type") // company | individual
+  companyName  String?   @map("company_name")
+  customerCode String    @map("customer_code")
+  email        String?
+  phone        String?
+  website      String?
+  address      String?
+  city         String?
+  country      String?
+  vatRegistrationNumber String? @map("vat_registration_number") @db.VarChar(15)
+  status       String    @default("active") // active | inactive | blacklisted
+  ownerId      String?   @map("owner_id") @db.Uuid
+  customFields Json      @default("{}") @map("custom_fields")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt    DateTime? @map("deleted_at")
+
+  company       Company         @relation(fields: [companyId], references: [id])
+  owner         User?           @relation("CustomerOwner", fields: [ownerId], references: [id])
+  contacts      CustomerContact[]
+  customerUsers CustomerUser[]
+  leads         Lead[]
+  opportunities Opportunity[]
+  quotations    Quotation[]
+  recurringInvoiceTemplates RecurringInvoiceTemplate[]
+  projects      Project[]
+  workOrders    WorkOrder[]
+  invoices      Invoice[]
+  customerPayments CustomerPayment[]
+  interactions Interaction[]
+
+  @@unique([companyId, customerCode])
+  @@map("customers")
+}
+
+model CustomerContact {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  customerId String  @map("customer_id") @db.Uuid
+  name      String
+  jobTitle  String?  @map("job_title")
+  email     String?
+  phone     String?
+  isPrimary Boolean  @default(false) @map("is_primary")
+  status    String   @default("active") // active | inactive
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  customer      Customer       @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  customerUsers CustomerUser[]
+
+  @@map("customer_contacts")
+}
+
+/// Customer Portal access path: User -> CustomerUser -> Customer
+model CustomerUser {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId  String    @map("company_id") @db.Uuid
+  customerId String    @map("customer_id") @db.Uuid
+  userId     String    @map("user_id") @db.Uuid
+  contactId  String?   @map("contact_id") @db.Uuid
+  status     String    @default("active") // active | inactive
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt  DateTime? @map("deleted_at")
+
+  company  Company          @relation(fields: [companyId], references: [id])
+  customer Customer         @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  user     User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  contact  CustomerContact? @relation(fields: [contactId], references: [id])
+
+  @@unique([customerId, userId])
+  @@map("customer_users")
+}
+
+model Lead {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId   String    @map("company_id") @db.Uuid
+  customerId  String?   @map("customer_id") @db.Uuid
+  name        String
+  companyName String?   @map("company_name")
+  email       String?
+  phone       String?
+  source      String?
+  status      String    @default("new") // new|contacted|qualified|proposal|won|lost
+  ownerId     String?   @map("owner_id") @db.Uuid
+  notes       String?
+  convertedAt DateTime? @map("converted_at")
+  convertedBy String?   @map("converted_by") @db.Uuid
+  customFields Json     @default("{}") @map("custom_fields")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  company       Company       @relation(fields: [companyId], references: [id])
+  customer      Customer?     @relation(fields: [customerId], references: [id])
+  owner         User?         @relation("LeadOwner", fields: [ownerId], references: [id])
+  convertedByUser User?       @relation("LeadConvertedBy", fields: [convertedBy], references: [id])
+  opportunities Opportunity[]
+  interactions  Interaction[]
+
+  @@map("leads")
+}
+
+model Opportunity {
+  id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId          String    @map("company_id") @db.Uuid
+  customerId         String    @map("customer_id") @db.Uuid
+  leadId             String?   @map("lead_id") @db.Uuid
+  name               String
+  description        String?
+  value              Decimal?  @default(0) @db.Decimal(14, 2)
+  currency           String?   @default("SAR")
+  stage              String    @default("prospecting")
+  // prospecting|qualification|proposal|negotiation|won|lost — sole state field
+  probability        Int?
+  expectedCloseDate  DateTime? @map("expected_close_date") @db.Date
+  ownerId            String?   @map("owner_id") @db.Uuid
+  customFields       Json      @default("{}") @map("custom_fields")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at")
+
+  company    Company     @relation(fields: [companyId], references: [id])
+  customer   Customer    @relation(fields: [customerId], references: [id])
+  lead       Lead?       @relation(fields: [leadId], references: [id])
+  owner      User?       @relation("OpportunityOwner", fields: [ownerId], references: [id])
+  quotations Quotation[]
+  projects   Project[]
+  interactions Interaction[]
+
+  @@map("opportunities")
+}
+
+model Quotation {
+  id               String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId        String    @map("company_id") @db.Uuid
+  customerId       String    @map("customer_id") @db.Uuid
+  opportunityId    String?   @map("opportunity_id") @db.Uuid
+  quotationNumber  String    @map("quotation_number")
+  status           String    @default("draft") // draft|sent|accepted|rejected|expired
+  publicToken      String    @default(dbgenerated("gen_random_uuid()")) @map("public_token") @db.Uuid
+  subtotal         Decimal   @default(0) @db.Decimal(14, 2)
+  discount         Decimal   @default(0) @db.Decimal(14, 2)
+  tax              Decimal   @default(0) @db.Decimal(14, 2)
+  total            Decimal   @default(0) @db.Decimal(14, 2)
+  currencyCode     String    @default("SAR") @map("currency_code") @db.VarChar(3)
+  exchangeRateToBase Decimal @default(1) @map("exchange_rate_to_base") @db.Decimal(14, 6)
+  validUntil       DateTime? @map("valid_until") @db.Date
+  createdBy        String?   @map("created_by") @db.Uuid
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt        DateTime? @map("deleted_at")
+
+  company     Company         @relation(fields: [companyId], references: [id])
+  customer    Customer        @relation(fields: [customerId], references: [id])
+  opportunity Opportunity?    @relation(fields: [opportunityId], references: [id])
+  createdByUser User?         @relation("QuotationCreatedBy", fields: [createdBy], references: [id])
+  items       QuotationItem[]
+  projects    Project[]
+  invoice     Invoice?
+
+  @@unique([companyId, quotationNumber])
+  @@unique([publicToken])
+  @@map("quotations")
+}
+
+model QuotationItem {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  quotationId String   @map("quotation_id") @db.Uuid
+  description String
+  quantity    Decimal  @default(1) @db.Decimal(12, 2)
+  unitPrice   Decimal  @default(0) @map("unit_price") @db.Decimal(14, 2)
+  discount    Decimal  @default(0) @db.Decimal(14, 2)
+  tax         Decimal  @default(0) @db.Decimal(14, 2)
+  total       Decimal  @default(0) @db.Decimal(14, 2)
+  stockItemId String?  @map("stock_item_id") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at")
+
+  quotation Quotation @relation(fields: [quotationId], references: [id], onDelete: Cascade)
+  stockItem StockItem? @relation(fields: [stockItemId], references: [id])
+
+  @@map("quotation_items")
+}
+
+// ------------------------------------------------------------
+// MODULE 3 — OPERATIONS
+// ------------------------------------------------------------
+
+model Project {
+  id                String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId         String    @map("company_id") @db.Uuid
+  customerId        String    @map("customer_id") @db.Uuid
+  opportunityId     String?   @map("opportunity_id") @db.Uuid
+  quotationId       String?   @map("quotation_id") @db.Uuid
+  projectNumber     String    @map("project_number")
+  name              String
+  description       String?
+  status            String    @default("planning")
+  // planning|approved|in_progress|on_hold|completed|cancelled
+  startDate         DateTime? @map("start_date") @db.Date
+  endDate           DateTime? @map("end_date") @db.Date
+  budget            Decimal?  @db.Decimal(14, 2)
+  projectManagerId  String?   @map("project_manager_id") @db.Uuid
+  createdBy         String?   @map("created_by") @db.Uuid
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt         DateTime? @map("deleted_at")
+
+  company       Company      @relation(fields: [companyId], references: [id])
+  customer      Customer     @relation(fields: [customerId], references: [id])
+  opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
+  quotation     Quotation?   @relation(fields: [quotationId], references: [id])
+  projectManager Employee?   @relation("ProjectManager", fields: [projectManagerId], references: [id])
+  createdByUser User?        @relation("ProjectCreatedBy", fields: [createdBy], references: [id])
+  members       ProjectMember[]
+  workOrders    WorkOrder[]
+  tasks         Task[]
+  bills         Bill[]
+
+  @@unique([companyId, projectNumber])
+  @@map("projects")
+}
+
+model ProjectMember {
+  projectId  String   @map("project_id") @db.Uuid
+  employeeId String   @map("employee_id") @db.Uuid
+  role       String
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  project  Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@id([projectId, employeeId])
+  @@map("project_members")
+}
+
+model WorkOrder {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId             String    @map("company_id") @db.Uuid
+  projectId             String    @map("project_id") @db.Uuid
+  customerId            String    @map("customer_id") @db.Uuid
+  workOrderNumber       String    @map("work_order_number")
+  title                 String
+  description           String?
+  priority              String    @default("medium") // low|medium|high|urgent
+  status                String    @default("new")
+  // new|assigned|in_progress|on_hold|completed|cancelled
+  assignedToEmployeeId  String?   @map("assigned_to_employee_id") @db.Uuid
+  dueDate               DateTime? @map("due_date") @db.Date
+  createdBy             String?   @map("created_by") @db.Uuid
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @default(now()) @updatedAt @map("updated_at")
+  completedAt           DateTime? @map("completed_at")
+  deletedAt             DateTime? @map("deleted_at")
+
+  company     Company   @relation(fields: [companyId], references: [id])
+  project     Project   @relation(fields: [projectId], references: [id])
+  customer    Customer  @relation(fields: [customerId], references: [id])
+  assignee    Employee? @relation("WorkOrderAssignee", fields: [assignedToEmployeeId], references: [id])
+  createdByUser User?   @relation("WorkOrderCreatedBy", fields: [createdBy], references: [id])
+  tasks       Task[]
+
+  @@unique([companyId, workOrderNumber])
+  @@map("work_orders")
+}
+
+model Task {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId             String    @map("company_id") @db.Uuid
+  projectId             String?   @map("project_id") @db.Uuid
+  workOrderId           String?   @map("work_order_id") @db.Uuid
+  title                 String
+  description           String?
+  assignedToEmployeeId  String?   @map("assigned_to_employee_id") @db.Uuid
+  priority              String    @default("medium") // low|medium|high|urgent
+  status                String    @default("pending") // pending|in_progress|completed|cancelled
+  startDate             DateTime? @map("start_date") @db.Date
+  dueDate               DateTime? @map("due_date") @db.Date
+  completedAt           DateTime? @map("completed_at")
+  createdBy             String?   @map("created_by") @db.Uuid
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt             DateTime? @map("deleted_at")
+
+  company       Company    @relation(fields: [companyId], references: [id])
+  project       Project?   @relation(fields: [projectId], references: [id])
+  workOrder     WorkOrder? @relation(fields: [workOrderId], references: [id])
+  assignee      Employee?  @relation("TaskAssignee", fields: [assignedToEmployeeId], references: [id])
+  createdByUser User?      @relation("TaskCreatedBy", fields: [createdBy], references: [id])
+  timeEntries   TimeEntry[]
+  dependencies  TaskDependency[] @relation("TaskDependencies")
+  dependents    TaskDependency[] @relation("TaskDependents")
+
+  @@map("tasks")
+}
+
+// ------------------------------------------------------------
+// SYSTEM (cross-cutting, polymorphic)
+// ------------------------------------------------------------
+
+model Comment {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId  String   @map("company_id") @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id") @db.Uuid
+  comment    String
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@map("comments")
+}
+
+model ActivityLog {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId  String   @map("company_id") @db.Uuid
+  userId     String?  @map("user_id") @db.Uuid
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id") @db.Uuid
+  oldValues  Json?    @map("old_values")
+  newValues  Json?    @map("new_values")
+  ipAddress  String?  @map("ip_address")
+  userAgent  String?  @map("user_agent")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  user    User?   @relation(fields: [userId], references: [id])
+
+  @@map("activity_logs")
+}
+
+model Notification {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId  String   @map("company_id") @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  type       String
+  title      String
+  message    String?
+  entityType String?  @map("entity_type")
+  entityId   String?  @map("entity_id") @db.Uuid
+  isRead     Boolean  @default(false) @map("is_read")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+// ============================================================
+// Finance — Phase F8 (Credit/Debit Notes against Invoices).
+// See migration 037 for the full design rationale, especially
+// why one table with a noteType discriminator was chosen over
+// two separate tables.
+// ============================================================
+
+model InvoiceNote {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  invoiceId      String    @map("invoice_id") @db.Uuid
+  noteType       String    @map("note_type") // credit | debit
+  noteNumber     String    @map("note_number") @db.VarChar(50)
+  noteDate       DateTime  @map("note_date") @db.Date
+  reason         String?
+  status         String    @default("draft") // draft | issued | cancelled
+  subtotal       Decimal   @default(0) @db.Decimal(14, 2)
+  discount       Decimal   @default(0) @db.Decimal(14, 2)
+  tax            Decimal   @default(0) @db.Decimal(14, 2)
+  total          Decimal   @default(0) @db.Decimal(14, 2)
+  journalEntryId String?   @unique @map("journal_entry_id") @db.Uuid
+  createdBy      String?   @map("created_by") @db.Uuid
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company      Company       @relation(fields: [companyId], references: [id])
+  invoice      Invoice       @relation(fields: [invoiceId], references: [id])
+  journalEntry JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  createdByUser User?        @relation(fields: [createdBy], references: [id])
+  items        InvoiceNoteItem[]
+
+  @@unique([companyId, noteNumber])
+  @@map("invoice_notes")
+}
+
+model InvoiceNoteItem {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  noteId      String   @map("note_id") @db.Uuid
+  description String
+  quantity    Decimal  @db.Decimal(12, 2)
+  unitPrice   Decimal  @map("unit_price") @db.Decimal(14, 2)
+  discount    Decimal  @default(0) @db.Decimal(14, 2)
+  tax         Decimal  @default(0) @db.Decimal(14, 2)
+  total       Decimal  @db.Decimal(14, 2)
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  note InvoiceNote @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_note_items")
+}
+
+// ============================================================
+// Finance — Phase F11 (Customer Payment Allocation). See
+// migration 041 for the full design rationale, especially why
+// this is a purely additive wrapper around the existing Payment
+// model rather than a restructuring of it.
+// ============================================================
+
+model CustomerPayment {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String   @map("company_id") @db.Uuid
+  customerId      String   @map("customer_id") @db.Uuid
+  amount          Decimal  @db.Decimal(14, 2)
+  unappliedAmount Decimal  @default(0) @map("unapplied_amount") @db.Decimal(14, 2)
+  paymentDate     DateTime @map("payment_date") @db.Date
+  method          String // cash | bank_transfer | card | cheque | other
+  reference       String?  @db.VarChar(200)
+  createdBy       String?  @map("created_by") @db.Uuid
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  company       Company   @relation(fields: [companyId], references: [id])
+  customer      Customer  @relation(fields: [customerId], references: [id])
+  createdByUser User?     @relation(fields: [createdBy], references: [id])
+  payments      Payment[]
+
+  @@map("customer_payments")
+}
+
+// ============================================================
+// Finance — Phase F14/F15 (Inventory Foundation + Invoice/Bill
+// Integration). Weighted Average Cost. See migration 043 for the
+// full rationale on why opening stock posts no journal entry and
+// why every manual adjustment requires an explicit offset account.
+// ============================================================
+
+model InventoryItem {
+  id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId          String    @map("company_id") @db.Uuid
+  sku                String    @db.VarChar(50)
+  name               String    @db.VarChar(200)
+  description        String?
+  unitOfMeasure      String    @default("unit") @map("unit_of_measure") @db.VarChar(30)
+  quantityOnHand     Decimal   @default(0) @map("quantity_on_hand") @db.Decimal(14, 3)
+  averageUnitCost    Decimal   @default(0) @map("average_unit_cost") @db.Decimal(14, 4)
+  inventoryAccountId String?   @map("inventory_account_id") @db.Uuid
+  cogsAccountId      String?   @map("cogs_account_id") @db.Uuid
+  isActive           Boolean   @default(true) @map("is_active")
+  createdBy          String?   @map("created_by") @db.Uuid
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt          DateTime? @map("deleted_at")
+
+  company   Company             @relation(fields: [companyId], references: [id])
+  movements InventoryMovement[]
+  invoiceItems InvoiceItem[] @relation("InvoiceItemInventory")
+  billItems    BillItem[]    @relation("BillItemInventory")
+  purchaseOrderItems PurchaseOrderItem[]
+
+  @@unique([companyId, sku])
+  @@map("inventory_items")
+}
+
+model InventoryMovement {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String   @map("company_id") @db.Uuid
+  inventoryItemId String   @map("inventory_item_id") @db.Uuid
+  type            String // opening | purchase | sale | adjustment_increase | adjustment_decrease
+  quantity        Decimal  @db.Decimal(14, 3)
+  unitCost        Decimal? @map("unit_cost") @db.Decimal(14, 4)
+  quantityAfter   Decimal  @map("quantity_after") @db.Decimal(14, 3)
+  averageCostAfter Decimal @map("average_cost_after") @db.Decimal(14, 4)
+  journalEntryId  String?  @map("journal_entry_id") @db.Uuid
+  referenceType   String?  @map("reference_type") @db.VarChar(20)
+  referenceId     String?  @map("reference_id") @db.Uuid
+  notes           String?
+  createdBy       String?  @map("created_by") @db.Uuid
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  company       Company       @relation(fields: [companyId], references: [id])
+  inventoryItem InventoryItem @relation(fields: [inventoryItemId], references: [id])
+
+  @@map("inventory_movements")
+}
+
+// ============================================================
+// Payroll. See migration 045 for the full design rationale,
+// especially why GOSI rates are per-employee fields with no
+// hardcoded default rather than a company-wide constant.
+// ============================================================
+
+model PayrollSettings {
+  id                            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId                     String   @unique @map("company_id") @db.Uuid
+  salaryExpenseAccountId        String?  @map("salary_expense_account_id") @db.Uuid
+  gosiEmployerExpenseAccountId  String?  @map("gosi_employer_expense_account_id") @db.Uuid
+  gosiPayableAccountId          String?  @map("gosi_payable_account_id") @db.Uuid
+  netPayPayableAccountId        String?  @map("net_pay_payable_account_id") @db.Uuid
+  updatedAt                     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+
+  @@map("payroll_settings")
+}
+
+model PayrollRun {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId             String    @map("company_id") @db.Uuid
+  month                 Int
+  year                  Int
+  status                String    @default("draft") // draft | processed | paid | cancelled
+  totalGross            Decimal   @default(0) @map("total_gross") @db.Decimal(14, 2)
+  totalGosiEmployee     Decimal   @default(0) @map("total_gosi_employee") @db.Decimal(14, 2)
+  totalGosiEmployer     Decimal   @default(0) @map("total_gosi_employer") @db.Decimal(14, 2)
+  totalNet              Decimal   @default(0) @map("total_net") @db.Decimal(14, 2)
+  journalEntryId        String?   @unique @map("journal_entry_id") @db.Uuid
+  paymentJournalEntryId String?   @unique @map("payment_journal_entry_id") @db.Uuid
+  processedAt           DateTime? @map("processed_at")
+  paidAt                DateTime? @map("paid_at")
+  createdBy             String?   @map("created_by") @db.Uuid
+  createdAt             DateTime  @default(now()) @map("created_at")
+
+  company Company   @relation(fields: [companyId], references: [id])
+  payslips Payslip[]
+
+  @@unique([companyId, month, year])
+  @@map("payroll_runs")
+}
+
+model Payslip {
+  id                        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  payrollRunId              String   @map("payroll_run_id") @db.Uuid
+  employeeId                String   @map("employee_id") @db.Uuid
+  basicSalary               Decimal  @map("basic_salary") @db.Decimal(14, 2)
+  housingAllowance          Decimal  @default(0) @map("housing_allowance") @db.Decimal(14, 2)
+  otherAllowances           Decimal  @default(0) @map("other_allowances") @db.Decimal(14, 2)
+  grossPay                  Decimal  @map("gross_pay") @db.Decimal(14, 2)
+  gosiEmployeeRate          Decimal  @default(0) @map("gosi_employee_rate") @db.Decimal(6, 3)
+  gosiEmployerRate          Decimal  @default(0) @map("gosi_employer_rate") @db.Decimal(6, 3)
+  gosiEmployeeDeduction     Decimal  @default(0) @map("gosi_employee_deduction") @db.Decimal(14, 2)
+  gosiEmployerContribution  Decimal  @default(0) @map("gosi_employer_contribution") @db.Decimal(14, 2)
+  netPay                    Decimal  @map("net_pay") @db.Decimal(14, 2)
+  createdAt                 DateTime @default(now()) @map("created_at")
+
+  payrollRun PayrollRun @relation(fields: [payrollRunId], references: [id], onDelete: Cascade)
+  employee   Employee   @relation(fields: [employeeId], references: [id])
+
+  @@unique([payrollRunId, employeeId])
+  @@map("payslips")
+}
+
+// ============================================================
+// Operations — Time Tracking. See migration 047 for the full
+// design rationale, especially why hourlyRateSnapshot is frozen
+// at creation and why this is ordinary CRUD rather than the
+// immutable-once-posted pattern financial documents use.
+// ============================================================
+
+model TimeEntry {
+  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId           String    @map("company_id") @db.Uuid
+  taskId              String    @map("task_id") @db.Uuid
+  employeeId          String    @map("employee_id") @db.Uuid
+  entryDate           DateTime  @map("entry_date") @db.Date
+  hours               Decimal   @db.Decimal(6, 2)
+  hourlyRateSnapshot  Decimal?  @map("hourly_rate_snapshot") @db.Decimal(10, 2)
+  laborCost           Decimal?  @map("labor_cost") @db.Decimal(12, 2)
+  notes               String?
+  billable            Boolean   @default(true)
+  createdBy           String?   @map("created_by") @db.Uuid
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt           DateTime? @map("deleted_at")
+
+  company       Company  @relation(fields: [companyId], references: [id])
+  task          Task     @relation(fields: [taskId], references: [id])
+  employee      Employee @relation(fields: [employeeId], references: [id])
+  createdByUser User?    @relation(fields: [createdBy], references: [id])
+
+  @@map("time_entries")
+}
+
+// ============================================================
+// CRM — Customer Interaction Log. See migration 049 for the full
+// design rationale, especially why all three FKs are nullable but
+// at least one is required (enforced by a DB CHECK constraint,
+// not just application logic).
+// ============================================================
+
+model Interaction {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String    @map("company_id") @db.Uuid
+  customerId      String?   @map("customer_id") @db.Uuid
+  leadId          String?   @map("lead_id") @db.Uuid
+  opportunityId   String?   @map("opportunity_id") @db.Uuid
+  type            String // call | meeting | email | note | other
+  subject         String    @db.VarChar(200)
+  notes           String?
+  interactionDate DateTime  @map("interaction_date")
+  outcome         String?   @db.VarChar(200)
+  followUpDate    DateTime? @map("follow_up_date") @db.Date
+  createdBy       String?   @map("created_by") @db.Uuid
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  company       Company      @relation(fields: [companyId], references: [id])
+  customer      Customer?    @relation(fields: [customerId], references: [id])
+  lead          Lead?        @relation(fields: [leadId], references: [id])
+  opportunity   Opportunity? @relation(fields: [opportunityId], references: [id])
+  createdByUser User?        @relation(fields: [createdBy], references: [id])
+  syncedFromEmail EmailSyncedMessage?
+
+  @@map("interactions")
+}
+
+// ============================================================
+// Finance — Purchase Orders with an approval workflow. See
+// migration 053 for the full design rationale, especially why
+// this posts NO journal entry (a PO is a commitment, not yet a
+// liability) and why approval here is single-level, not a
+// multi-step chain.
+// ============================================================
+
+model PurchaseOrder {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId             String    @map("company_id") @db.Uuid
+  vendorId              String    @map("vendor_id") @db.Uuid
+  poNumber              String    @map("po_number") @db.VarChar(50)
+  status                String    @default("draft") // draft|pending_approval|approved|rejected|sent|closed|cancelled
+  expectedDeliveryDate  DateTime? @map("expected_delivery_date") @db.Date
+  notes                 String?
+  rejectionReason       String?   @map("rejection_reason")
+  subtotal              Decimal   @default(0) @db.Decimal(14, 2)
+  discount              Decimal   @default(0) @db.Decimal(14, 2)
+  tax                   Decimal   @default(0) @db.Decimal(14, 2)
+  total                 Decimal   @default(0) @db.Decimal(14, 2)
+  billId                String?   @unique @map("bill_id") @db.Uuid
+  submittedAt           DateTime? @map("submitted_at")
+  approvedBy            String?   @map("approved_by") @db.Uuid
+  approvedAt            DateTime? @map("approved_at")
+  sentAt                DateTime? @map("sent_at")
+  createdBy             String?   @map("created_by") @db.Uuid
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt             DateTime? @map("deleted_at")
+
+  company        Company             @relation(fields: [companyId], references: [id])
+  vendor         Vendor              @relation(fields: [vendorId], references: [id])
+  bill           Bill?               @relation(fields: [billId], references: [id])
+  approvedByUser User?               @relation("PurchaseOrderApprovedBy", fields: [approvedBy], references: [id])
+  createdByUser  User?               @relation("PurchaseOrderCreatedBy", fields: [createdBy], references: [id])
+  items          PurchaseOrderItem[]
+
+  @@unique([companyId, poNumber])
+  @@map("purchase_orders")
+}
+
+model PurchaseOrderItem {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  purchaseOrderId String   @map("purchase_order_id") @db.Uuid
+  description     String
+  quantity        Decimal  @default(1) @db.Decimal(12, 2)
+  unitPrice       Decimal  @default(0) @map("unit_price") @db.Decimal(14, 2)
+  discount        Decimal  @default(0) @db.Decimal(14, 2)
+  tax             Decimal  @default(0) @db.Decimal(14, 2)
+  total           Decimal  @default(0) @db.Decimal(14, 2)
+  inventoryItemId String?  @map("inventory_item_id") @db.Uuid
+  stockItemId     String?  @map("stock_item_id") @db.Uuid
+  receivedQuantity Decimal @default(0) @map("received_quantity") @db.Decimal(12, 2)
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at")
+
+  purchaseOrder PurchaseOrder  @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  inventoryItem InventoryItem? @relation(fields: [inventoryItemId], references: [id])
+  stockItem     StockItem?     @relation(fields: [stockItemId], references: [id])
+
+  @@map("purchase_order_items")
+}
+
+// ============================================================
+// Finance — Fixed Assets & Depreciation. See migration 055 for
+// the full design rationale, especially why straight-line is the
+// only method built and why disposal accounting (gain/loss) is
+// deliberately not included here.
+// ============================================================
+
+model FixedAsset {
+  id                                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId                          String    @map("company_id") @db.Uuid
+  assetNumber                        String    @map("asset_number") @db.VarChar(50)
+  name                               String    @db.VarChar(200)
+  category                           String?   @db.VarChar(100)
+  description                        String?
+  purchaseDate                       DateTime  @map("purchase_date") @db.Date
+  purchaseCost                       Decimal   @map("purchase_cost") @db.Decimal(14, 2)
+  salvageValue                       Decimal   @default(0) @map("salvage_value") @db.Decimal(14, 2)
+  usefulLifeMonths                   Int       @map("useful_life_months")
+  accumulatedDepreciation            Decimal   @default(0) @map("accumulated_depreciation") @db.Decimal(14, 2)
+  fixedAssetAccountId                String?   @map("fixed_asset_account_id") @db.Uuid
+  accumulatedDepreciationAccountId   String?   @map("accumulated_depreciation_account_id") @db.Uuid
+  depreciationExpenseAccountId       String?   @map("depreciation_expense_account_id") @db.Uuid
+  status                             String    @default("active") // active | fully_depreciated | disposed
+  disposedAt                         DateTime? @map("disposed_at")
+  disposalProceeds                   Decimal?  @map("disposal_proceeds") @db.Decimal(14, 2)
+  disposalJournalEntryId             String?   @unique @map("disposal_journal_entry_id") @db.Uuid
+  createdBy                          String?   @map("created_by") @db.Uuid
+  createdAt                          DateTime  @default(now()) @map("created_at")
+  updatedAt                          DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt                          DateTime? @map("deleted_at")
+
+  company             Company              @relation(fields: [companyId], references: [id])
+  createdByUser       User?                @relation(fields: [createdBy], references: [id])
+  disposalJournalEntry JournalEntry?       @relation(fields: [disposalJournalEntryId], references: [id])
+  depreciationEntries DepreciationEntry[]
+
+  @@unique([companyId, assetNumber])
+  @@map("fixed_assets")
+}
+
+model DepreciationRun {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId         String   @map("company_id") @db.Uuid
+  month             Int
+  year              Int
+  totalDepreciation Decimal  @default(0) @map("total_depreciation") @db.Decimal(14, 2)
+  journalEntryId    String?  @unique @map("journal_entry_id") @db.Uuid
+  createdBy         String?  @map("created_by") @db.Uuid
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  company  Company              @relation(fields: [companyId], references: [id])
+  entries  DepreciationEntry[]
+
+  @@unique([companyId, month, year])
+  @@map("depreciation_runs")
+}
+
+model DepreciationEntry {
+  id                            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  depreciationRunId             String   @map("depreciation_run_id") @db.Uuid
+  fixedAssetId                  String   @map("fixed_asset_id") @db.Uuid
+  depreciationAmount            Decimal  @map("depreciation_amount") @db.Decimal(14, 2)
+  accumulatedDepreciationAfter  Decimal  @map("accumulated_depreciation_after") @db.Decimal(14, 2)
+  netBookValueAfter             Decimal  @map("net_book_value_after") @db.Decimal(14, 2)
+  createdAt                     DateTime @default(now()) @map("created_at")
+
+  depreciationRun DepreciationRun @relation(fields: [depreciationRunId], references: [id], onDelete: Cascade)
+  fixedAsset      FixedAsset      @relation(fields: [fixedAssetId], references: [id])
+
+  @@unique([depreciationRunId, fixedAssetId])
+  @@map("depreciation_entries")
+}
+
+// ============================================================
+// Attachments — polymorphic file uploads across every attachable
+// entity type. See migration 057 for the full design rationale,
+// especially the LOCAL DISK storage decision and why entity_type
+// is a closed, validated list rather than an open string.
+// ============================================================
+
+model Attachment {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String   @map("company_id") @db.Uuid
+  entityType     String   @map("entity_type") @db.VarChar(30)
+  entityId       String   @map("entity_id") @db.Uuid
+  fileName       String   @map("file_name") @db.VarChar(255)
+  storedFileName String   @map("stored_file_name") @db.VarChar(255)
+  mimeType       String   @map("mime_type") @db.VarChar(100)
+  fileSizeBytes  Int      @map("file_size_bytes")
+  uploadedBy     String?  @map("uploaded_by") @db.Uuid
+  createdAt      DateTime @default(now()) @map("created_at")
+  documentGroupId   String  @map("document_group_id") @db.Uuid
+  versionNumber     Int     @default(1) @map("version_number")
+  isCurrentVersion  Boolean @default(true) @map("is_current_version")
+
+  company        Company @relation(fields: [companyId], references: [id])
+  uploadedByUser User?   @relation(fields: [uploadedBy], references: [id])
+  documentGroup  Attachment?  @relation("DocumentVersions", fields: [documentGroupId], references: [id])
+  versions       Attachment[] @relation("DocumentVersions")
+  signatures     AttachmentSignature[]
+
+  @@map("attachments")
+}
+
+// NOT a legally-binding e-signature system — see migration 105's
+// comment for the full disclosure. An audit record that a
+// specific user acknowledged/signed a SPECIFIC attachment VERSION
+// (never the document group as a whole — see that same comment
+// for why).
+model AttachmentSignature {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String   @map("company_id") @db.Uuid
+  attachmentId   String   @map("attachment_id") @db.Uuid
+  signedBy       String   @map("signed_by") @db.Uuid
+  signatureType  String   @map("signature_type") // typed | drawn
+  signatureData  String   @map("signature_data")
+  ipAddress      String?  @map("ip_address")
+  signedAt       DateTime @default(now()) @map("signed_at")
+
+  company      Company    @relation(fields: [companyId], references: [id])
+  attachment   Attachment @relation(fields: [attachmentId], references: [id])
+  signedByUser User       @relation(fields: [signedBy], references: [id])
+
+  @@map("attachment_signatures")
+}
+
+// ============================================================
+// Bank Reconciliation. See migration 059 for the full design
+// rationale, especially the two-sided adjustment formula used at
+// completion and why a non-zero variance has no override.
+// ============================================================
+
+model BankReconciliation {
+  id                     String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId              String    @map("company_id") @db.Uuid
+  bankAccountId          String    @map("bank_account_id") @db.Uuid
+  statementDate          DateTime  @map("statement_date") @db.Date
+  statementEndingBalance Decimal   @map("statement_ending_balance") @db.Decimal(14, 2)
+  bookBalance            Decimal?  @map("book_balance") @db.Decimal(14, 2)
+  status                 String    @default("in_progress") // in_progress | completed
+  completedAt            DateTime? @map("completed_at")
+  createdBy              String?   @map("created_by") @db.Uuid
+  createdAt              DateTime  @default(now()) @map("created_at")
+
+  company     Company              @relation(fields: [companyId], references: [id])
+  bankAccount Account              @relation(fields: [bankAccountId], references: [id])
+  createdByUser User?              @relation(fields: [createdBy], references: [id])
+  statementLines BankStatementLine[]
+
+  @@unique([companyId, bankAccountId, statementDate])
+  @@map("bank_reconciliations")
+}
+
+model BankStatementLine {
+  id                        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  bankReconciliationId      String   @map("bank_reconciliation_id") @db.Uuid
+  transactionDate           DateTime @map("transaction_date") @db.Date
+  description               String
+  amount                    Decimal  @db.Decimal(14, 2)
+  matchedJournalEntryLineId String?  @unique @map("matched_journal_entry_line_id") @db.Uuid
+  createdAt                 DateTime @default(now()) @map("created_at")
+
+  bankReconciliation     BankReconciliation @relation(fields: [bankReconciliationId], references: [id], onDelete: Cascade)
+  matchedJournalEntryLine JournalEntryLine? @relation(fields: [matchedJournalEntryLineId], references: [id])
+
+  @@map("bank_statement_lines")
+}
+
+// ============================================================
+// Recurring Invoice Templates — see migration 065 for the full
+// design rationale, especially why generation is an explicit
+// on-demand action, not a real cron job.
+// ============================================================
+
+model RecurringInvoiceTemplate {
+  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId           String    @map("company_id") @db.Uuid
+  customerId          String    @map("customer_id") @db.Uuid
+  name                String    @db.VarChar(200)
+  currencyCode        String    @default("SAR") @map("currency_code") @db.VarChar(3)
+  exchangeRateToBase  Decimal   @default(1) @map("exchange_rate_to_base") @db.Decimal(14, 6)
+  frequency           String // monthly | quarterly | yearly
+  startDate           DateTime  @map("start_date") @db.Date
+  nextGenerationDate  DateTime  @map("next_generation_date") @db.Date
+  endDate             DateTime? @map("end_date") @db.Date
+  status              String    @default("active") // active | paused | completed | cancelled
+  notes               String?
+  createdBy           String?   @map("created_by") @db.Uuid
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company        Company                        @relation(fields: [companyId], references: [id])
+  customer       Customer                       @relation(fields: [customerId], references: [id])
+  createdByUser  User?                          @relation(fields: [createdBy], references: [id])
+  items          RecurringInvoiceTemplateItem[]
+  generatedInvoices Invoice[]
+
+  @@map("recurring_invoice_templates")
+}
+
+model RecurringInvoiceTemplateItem {
+  id          String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  templateId  String  @map("template_id") @db.Uuid
+  description String
+  quantity    Decimal @db.Decimal(14, 2)
+  unitPrice   Decimal @map("unit_price") @db.Decimal(14, 2)
+  discount    Decimal @default(0) @db.Decimal(14, 2)
+  tax         Decimal @default(0) @db.Decimal(14, 2)
+
+  template RecurringInvoiceTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+
+  @@map("recurring_invoice_template_items")
+}
+
+// ============================================================
+// Fleet Management — see migration 068 for the full design
+// rationale, especially why this is administrative record-keeping
+// (who has which vehicle, its service history) and NOT real-time
+// GPS tracking.
+// ============================================================
+
+model Vehicle {
+  id                      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId               String    @map("company_id") @db.Uuid
+  plateNumber             String    @map("plate_number") @db.VarChar(20)
+  make                    String    @db.VarChar(50)
+  model                   String    @db.VarChar(50)
+  year                    Int?
+  vin                     String?   @db.VarChar(50)
+  status                  String    @default("active") // active | maintenance | retired
+  odometerReading         Int       @default(0) @map("odometer_reading")
+  registrationExpiryDate  DateTime? @map("registration_expiry_date") @db.Date
+  insuranceExpiryDate     DateTime? @map("insurance_expiry_date") @db.Date
+  notes                   String?
+  createdBy               String?   @map("created_by") @db.Uuid
+  createdAt               DateTime  @default(now()) @map("created_at")
+  updatedAt               DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company         Company                  @relation(fields: [companyId], references: [id])
+  createdByUser   User?                    @relation(fields: [createdBy], references: [id])
+  assignments     VehicleAssignment[]
+  maintenanceRecords VehicleMaintenanceRecord[]
+
+  @@unique([companyId, plateNumber])
+  @@map("vehicles")
+}
+
+model VehicleAssignment {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  vehicleId    String    @map("vehicle_id") @db.Uuid
+  employeeId   String    @map("employee_id") @db.Uuid
+  assignedDate DateTime  @map("assigned_date") @db.Date
+  returnedDate DateTime? @map("returned_date") @db.Date
+  notes        String?
+  createdBy    String?   @map("created_by") @db.Uuid
+  createdAt    DateTime  @default(now()) @map("created_at")
+
+  vehicle       Vehicle  @relation(fields: [vehicleId], references: [id])
+  employee      Employee @relation(fields: [employeeId], references: [id])
+  createdByUser User?    @relation(fields: [createdBy], references: [id])
+
+  @@map("vehicle_assignments")
+}
+
+model VehicleMaintenanceRecord {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  vehicleId         String   @map("vehicle_id") @db.Uuid
+  serviceDate       DateTime @map("service_date") @db.Date
+  serviceType       String   @map("service_type") @db.VarChar(100)
+  description       String?
+  cost              Decimal  @default(0) @db.Decimal(14, 2)
+  odometerAtService Int      @map("odometer_at_service")
+  performedBy       String?  @map("performed_by") @db.VarChar(200)
+  createdBy         String?  @map("created_by") @db.Uuid
+  createdAt         DateTime @default(now()) @map("created_at")
+
+  vehicle       Vehicle @relation(fields: [vehicleId], references: [id])
+  createdByUser User?   @relation(fields: [createdBy], references: [id])
+
+  @@map("vehicle_maintenance_records")
+}
+
+// ============================================================
+// Task Dependencies — see migration 071 for the full design
+// rationale (finish-to-start only, circular dependencies
+// prevented at the application layer, not by the database).
+// ============================================================
+
+model TaskDependency {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  taskId          String   @map("task_id") @db.Uuid
+  dependsOnTaskId String   @map("depends_on_task_id") @db.Uuid
+  createdBy       String?  @map("created_by") @db.Uuid
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  task          Task  @relation("TaskDependencies", fields: [taskId], references: [id])
+  dependsOn     Task  @relation("TaskDependents", fields: [dependsOnTaskId], references: [id])
+  createdByUser User? @relation(fields: [createdBy], references: [id])
+
+  @@unique([taskId, dependsOnTaskId])
+  @@map("task_dependencies")
+}
+
+// ============================================================
+// Outlook Email Integration — see migration 073 for the full
+// design rationale (per-user connection, Outlook/Microsoft Graph
+// only, read-only, on-demand sync).
+// ============================================================
+
+model EmailIntegration {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  userId         String    @unique @map("user_id") @db.Uuid
+  provider       String    @default("outlook")
+  connectedEmail String    @map("connected_email")
+  accessToken    String    @map("access_token")
+  refreshToken   String    @map("refresh_token")
+  tokenExpiresAt DateTime  @map("token_expires_at")
+  status         String    @default("active") // active | disconnected
+  connectedAt    DateTime  @default(now()) @map("connected_at")
+  lastSyncedAt   DateTime? @map("last_synced_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  user    User    @relation(fields: [userId], references: [id])
+
+  @@map("email_integrations")
+}
+
+model EmailSyncedMessage {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId            String   @map("user_id") @db.Uuid
+  providerMessageId String   @map("provider_message_id") @db.VarChar(300)
+  interactionId     String?  @unique @map("interaction_id") @db.Uuid
+  syncedAt          DateTime @default(now()) @map("synced_at")
+
+  user        User         @relation(fields: [userId], references: [id])
+  interaction Interaction? @relation(fields: [interactionId], references: [id])
+
+  @@unique([userId, providerMessageId])
+  @@map("email_synced_messages")
+}
+
+// ============================================================
+// CRM Workflow Automation — see migration 076 for the full
+// design rationale (notification-only actions, synchronous
+// in-process execution, no event bus).
+// ============================================================
+
+model AutomationRule {
+  id                  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId           String    @map("company_id") @db.Uuid
+  name                String    @db.VarChar(200)
+  isActive            Boolean   @default(true) @map("is_active")
+  triggerEntityType   String    @map("trigger_entity_type") // lead | opportunity
+  triggerEvent        String    @map("trigger_event") // created | stage_changed
+  triggerToStage      String?   @map("trigger_to_stage") @db.VarChar(50)
+  notificationTitle   String    @map("notification_title") @db.VarChar(200)
+  notificationMessage String?   @map("notification_message")
+  createdBy           String?   @map("created_by") @db.Uuid
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company       Company @relation(fields: [companyId], references: [id])
+  createdByUser User?   @relation(fields: [createdBy], references: [id])
+
+  @@map("automation_rules")
+}
+
+// ============================================================
+// Custom Fields — see migration 078 for the full design
+// rationale (LEADS ONLY for this version; values stored as JSONB
+// on the entity, not a separate EAV table).
+// ============================================================
+
+model CustomFieldDefinition {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId     String   @map("company_id") @db.Uuid
+  entityType    String   @map("entity_type") // lead (only value supported today)
+  fieldKey      String   @map("field_key") @db.VarChar(50)
+  label         String   @db.VarChar(200)
+  fieldType     String   @map("field_type") // text | number | date | select
+  selectOptions Json?    @map("select_options")
+  isRequired    Boolean  @default(false) @map("is_required")
+  isActive      Boolean  @default(true) @map("is_active")
+  displayOrder  Int      @default(0) @map("display_order")
+  createdBy     String?  @map("created_by") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company       Company @relation(fields: [companyId], references: [id])
+  createdByUser User?   @relation(fields: [createdBy], references: [id])
+
+  @@unique([companyId, entityType, fieldKey])
+  @@map("custom_field_definitions")
+}
+
+// ============================================================
+// Platform Admin — Mizan's own operations team. Deliberately has
+// NO relation to Company/User and NO companyId — see migration
+// 080 for the full isolation rationale. Never confuse this with
+// User (a tenant's own staff account).
+// ============================================================
+
+model PlatformAdmin {
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String    @db.VarChar(200)
+  email        String    @unique @db.VarChar(255)
+  passwordHash String    @map("password_hash")
+  status       String    @default("active") // active | disabled
+  lastLoginAt  DateTime? @map("last_login_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  @@map("platform_admins")
+}
+
+// ============================================================
+// Platform Settings — a true singleton row (see migration 081)
+// holding Mizan's own editable product identity. No relation to
+// Company/User — same isolation rationale as PlatformAdmin.
+// ============================================================
+
+model PlatformSettings {
+  id              String   @id @db.Uuid
+  productName     String   @map("product_name") @db.VarChar(100)
+  productTagline  String?  @map("product_tagline") @db.VarChar(200)
+  logoUrl         String?  @map("logo_url") @db.VarChar(500)
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("platform_settings")
+}
+
+// Platform-wide, singleton — see migration 093's comment for why
+// this is deliberately NOT a per-company setting. The secret key
+// is stored encrypted; PlatformStorageSettingsService never
+// returns it in plaintext via any API response.
+model PlatformStorageSettings {
+  id                          String   @id @db.Uuid
+  storageDriver               String   @default("local") @map("storage_driver") // local | s3
+  s3Region                    String?  @map("s3_region") @db.VarChar(50)
+  s3Bucket                    String?  @map("s3_bucket") @db.VarChar(255)
+  s3AccessKeyId                String?  @map("s3_access_key_id") @db.VarChar(255)
+  s3SecretAccessKeyEncrypted   String?  @map("s3_secret_access_key_encrypted")
+  s3Endpoint                   String?  @map("s3_endpoint") @db.VarChar(500)
+  s3ForcePathStyle             Boolean  @default(false) @map("s3_force_path_style")
+  updatedAt                    DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("platform_storage_settings")
+}
+
+// ============================================================
+// Leave Management — see migration 084 for the full design
+// rationale (balance-tracked vs non-balance types, deduction only
+// on approval, Sun-Thu working-week day counting).
+// ============================================================
+
+model LeaveType {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String    @map("company_id") @db.Uuid
+  name            String    @db.VarChar(100)
+  requiresBalance Boolean   @default(true) @map("requires_balance")
+  isPaid          Boolean   @default(true) @map("is_paid")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt       DateTime? @map("deleted_at")
+
+  company  Company        @relation(fields: [companyId], references: [id])
+  balances LeaveBalance[]
+  requests LeaveRequest[]
+
+  @@unique([companyId, name])
+  @@map("leave_types")
+}
+
+model LeaveBalance {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId     String   @map("company_id") @db.Uuid
+  employeeId    String   @map("employee_id") @db.Uuid
+  leaveTypeId   String   @map("leave_type_id") @db.Uuid
+  year          Int
+  allocatedDays Decimal  @map("allocated_days") @db.Decimal(6, 2)
+  usedDays      Decimal  @default(0) @map("used_days") @db.Decimal(6, 2)
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company   Company   @relation(fields: [companyId], references: [id])
+  employee  Employee  @relation(fields: [employeeId], references: [id])
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id])
+
+  @@unique([employeeId, leaveTypeId, year])
+  @@map("leave_balances")
+}
+
+model LeaveRequest {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String    @map("company_id") @db.Uuid
+  employeeId      String    @map("employee_id") @db.Uuid
+  leaveTypeId     String    @map("leave_type_id") @db.Uuid
+  startDate       DateTime  @map("start_date") @db.Date
+  endDate         DateTime  @map("end_date") @db.Date
+  daysRequested   Decimal   @map("days_requested") @db.Decimal(6, 2)
+  reason          String?
+  status          String    @default("pending") // pending|approved|rejected|cancelled
+  approvedBy      String?   @map("approved_by") @db.Uuid
+  approvedAt      DateTime? @map("approved_at")
+  rejectionReason String?   @map("rejection_reason")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company        Company   @relation(fields: [companyId], references: [id])
+  employee       Employee  @relation(fields: [employeeId], references: [id])
+  leaveType      LeaveType @relation(fields: [leaveTypeId], references: [id])
+  approvedByUser User?     @relation(fields: [approvedBy], references: [id])
+
+  @@map("leave_requests")
+}
+
+// ============================================================
+// Performance Evaluation — see migration 087 for the full design
+// rationale (unweighted snapshot rating, no employee self-service
+// acknowledgment step, subquery-based RLS on the child scores
+// table).
+// ============================================================
+
+model PerformanceCycle {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId  String   @map("company_id") @db.Uuid
+  name       String   @db.VarChar(150)
+  startDate  DateTime @map("start_date") @db.Date
+  endDate    DateTime @map("end_date") @db.Date
+  status     String   @default("open") // open | closed
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company     Company                @relation(fields: [companyId], references: [id])
+  evaluations PerformanceEvaluation[]
+
+  @@map("performance_cycles")
+}
+
+model PerformanceCriterion {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId   String    @map("company_id") @db.Uuid
+  name        String    @db.VarChar(150)
+  description String?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt   DateTime? @map("deleted_at")
+
+  company Company                       @relation(fields: [companyId], references: [id])
+  scores  PerformanceEvaluationScore[]
+
+  @@unique([companyId, name])
+  @@map("performance_criteria")
+}
+
+model PerformanceEvaluation {
+  id              String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String    @map("company_id") @db.Uuid
+  cycleId         String    @map("cycle_id") @db.Uuid
+  employeeId      String    @map("employee_id") @db.Uuid
+  evaluatorId     String    @map("evaluator_id") @db.Uuid
+  overallComments String?   @map("overall_comments")
+  overallRating   Decimal?  @map("overall_rating") @db.Decimal(3, 2)
+  status          String    @default("draft") // draft | finalized
+  finalizedAt     DateTime? @map("finalized_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company   Company                      @relation(fields: [companyId], references: [id])
+  cycle     PerformanceCycle             @relation(fields: [cycleId], references: [id])
+  employee  Employee                     @relation(fields: [employeeId], references: [id])
+  evaluator User                         @relation(fields: [evaluatorId], references: [id])
+  scores    PerformanceEvaluationScore[]
+
+  @@unique([cycleId, employeeId])
+  @@map("performance_evaluations")
+}
+
+model PerformanceEvaluationScore {
+  id           String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  evaluationId String  @map("evaluation_id") @db.Uuid
+  criterionId  String  @map("criterion_id") @db.Uuid
+  score        Int
+  comments     String?
+
+  evaluation PerformanceEvaluation @relation(fields: [evaluationId], references: [id], onDelete: Cascade)
+  criterion  PerformanceCriterion  @relation(fields: [criterionId], references: [id])
+
+  @@unique([evaluationId, criterionId])
+  @@map("performance_evaluation_scores")
+}
+
+// ============================================================
+// Custom Reports Engine — see migration 089's comment for the
+// full "safe by design" rationale: entityType/groupByField/
+// aggregateField/filters are validated against a fixed backend
+// registry (reports-registry.ts) before ever building a query,
+// never used as raw identifiers.
+// ============================================================
+
+model ReportDefinition {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  name           String    @db.VarChar(150)
+  entityType     String    @map("entity_type") @db.VarChar(50)
+  groupByField   String    @map("group_by_field") @db.VarChar(50)
+  aggregateType  String    @map("aggregate_type") // count | sum
+  aggregateField String?   @map("aggregate_field") @db.VarChar(50)
+  chartType      String    @default("bar") @map("chart_type") // bar | line | table
+  filters        Json      @default("[]")
+  createdBy      String?   @map("created_by") @db.Uuid
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  company       Company @relation(fields: [companyId], references: [id])
+  createdByUser User?   @relation(fields: [createdBy], references: [id])
+
+  @@map("report_definitions")
+}
+
+// ============================================================
+// Generic Approval Workflow Engine — see migration 091's comment
+// for the full "pure tracking, never execution" safety rationale.
+// ============================================================
+
+model ApprovalWorkflow {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId String   @map("company_id") @db.Uuid
+  name      String   @db.VarChar(150)
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company  Company                @relation(fields: [companyId], references: [id])
+  steps    ApprovalWorkflowStep[]
+  requests ApprovalRequest[]
+
+  @@unique([companyId, name])
+  @@map("approval_workflows")
+}
+
+model ApprovalWorkflowStep {
+  id              String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  workflowId      String @map("workflow_id") @db.Uuid
+  stepOrder       Int    @map("step_order")
+  approverRoleId  String @map("approver_role_id") @db.Uuid
+
+  workflow     ApprovalWorkflow @relation(fields: [workflowId], references: [id], onDelete: Cascade)
+  approverRole Role             @relation(fields: [approverRoleId], references: [id])
+
+  @@unique([workflowId, stepOrder])
+  @@map("approval_workflow_steps")
+}
+
+model ApprovalRequest {
+  id                String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId         String   @map("company_id") @db.Uuid
+  workflowId        String   @map("workflow_id") @db.Uuid
+  title             String   @db.VarChar(200)
+  description       String?
+  amount            Decimal? @db.Decimal(14, 2)
+  requestedBy       String   @map("requested_by") @db.Uuid
+  status            String   @default("pending") // pending | approved | rejected | cancelled
+  currentStepOrder  Int      @default(1) @map("current_step_order")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company         Company           @relation(fields: [companyId], references: [id])
+  workflow        ApprovalWorkflow  @relation(fields: [workflowId], references: [id])
+  requestedByUser User              @relation("ApprovalRequestedBy", fields: [requestedBy], references: [id])
+  actions         ApprovalAction[]
+
+  @@map("approval_requests")
+}
+
+model ApprovalAction {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  requestId  String   @map("request_id") @db.Uuid
+  stepOrder  Int      @map("step_order")
+  actorId    String   @map("actor_id") @db.Uuid
+  decision   String   // approved | rejected
+  comments   String?
+  actionedAt DateTime @default(now()) @map("actioned_at")
+
+  request ApprovalRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  actor   User            @relation("ApprovalActionedBy", fields: [actorId], references: [id])
+
+  @@map("approval_actions")
+}
+
+// ============================================================
+// Multi-Warehouse Inventory — see migration 094 for the full
+// design rationale (cached stock quantity updated atomically
+// alongside the movement ledger, transfer pairing, never-negative
+// enforcement in the application layer).
+// ============================================================
+
+model Warehouse {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId  String    @map("company_id") @db.Uuid
+  name       String    @db.VarChar(150)
+  address    String?
+  isActive   Boolean   @default(true) @map("is_active")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company   Company          @relation(fields: [companyId], references: [id])
+  stock     InventoryStock[]
+  movements StockMovement[]
+  invoices  Invoice[]
+
+  @@unique([companyId, name])
+  @@map("warehouses")
+}
+
+// Named StockItem (not InventoryItem) — this system ALREADY has a
+// different, accounting-integrated InventoryItem model (single
+// implicit warehouse, average costing, linked to inventory/COGS GL
+// accounts — see finance module). This is a deliberately separate,
+// simpler multi-warehouse stock-tracking model with no accounting
+// integration; the two are NOT the same catalog and are not
+// currently linked to each other.
+model StockItem {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId      String    @map("company_id") @db.Uuid
+  sku            String    @db.VarChar(100)
+  name           String    @db.VarChar(200)
+  description    String?
+  unitOfMeasure  String    @default("unit") @map("unit_of_measure") @db.VarChar(50)
+  reorderPoint   Decimal?  @map("reorder_point") @db.Decimal(14, 2)
+  isActive       Boolean   @default(true) @map("is_active")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt      DateTime? @map("deleted_at")
+
+  company   Company          @relation(fields: [companyId], references: [id])
+  stock     InventoryStock[]
+  movements StockMovement[]
+  purchaseOrderItems PurchaseOrderItem[]
+  invoiceItems InvoiceItem[]
+  quotationItems QuotationItem[]
+
+  @@unique([companyId, sku])
+  @@map("stock_items")
+}
+
+model InventoryStock {
+  id              String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId       String   @map("company_id") @db.Uuid
+  warehouseId     String   @map("warehouse_id") @db.Uuid
+  itemId          String   @map("item_id") @db.Uuid
+  quantityOnHand  Decimal  @default(0) @map("quantity_on_hand") @db.Decimal(14, 2)
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at")
+
+  company   Company   @relation(fields: [companyId], references: [id])
+  warehouse Warehouse @relation(fields: [warehouseId], references: [id])
+  item      StockItem @relation(fields: [itemId], references: [id])
+
+  @@unique([warehouseId, itemId])
+  @@map("inventory_stock")
+}
+
+model StockMovement {
+  id                 String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId          String   @map("company_id") @db.Uuid
+  itemId             String   @map("item_id") @db.Uuid
+  warehouseId        String   @map("warehouse_id") @db.Uuid
+  movementType       String   @map("movement_type") // receipt | issue | transfer_out | transfer_in | adjustment
+  quantity           Decimal  @db.Decimal(14, 2)
+  relatedMovementId  String?  @map("related_movement_id") @db.Uuid
+  reason             String?
+  performedBy        String   @map("performed_by") @db.Uuid
+  createdAt          DateTime @default(now()) @map("created_at")
+
+  company        Company        @relation(fields: [companyId], references: [id])
+  item           StockItem      @relation(fields: [itemId], references: [id])
+  warehouse      Warehouse      @relation(fields: [warehouseId], references: [id])
+  performedByUser User          @relation(fields: [performedBy], references: [id])
+  relatedMovement StockMovement? @relation("MovementPair", fields: [relatedMovementId], references: [id])
+  pairedMovements StockMovement[] @relation("MovementPair")
+
+  @@map("stock_movements")
+}
+
+// ============================================================
+// ZATCA Phase 2 (Integration Phase) — see migration 099 for the
+// full design rationale and the IMPORTANT disclosure about this
+// never having been verified against a live ZATCA environment.
+// ============================================================
+
+model ZatcaCertificate {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId             String    @map("company_id") @db.Uuid
+  csidType              String    @map("csid_type") // compliance | production
+  privateKeyEncrypted   String    @map("private_key_encrypted")
+  csrPem                String?   @map("csr_pem")
+  certificatePem        String?   @map("certificate_pem")
+  binarySecurityToken   String?   @map("binary_security_token")
+  apiSecretEncrypted    String?   @map("api_secret_encrypted")
+  status                String    @default("pending_csr") // pending_csr | pending_zatca_issuance | active | expired | revoked
+  zatcaRequestId        String?   @map("zatca_request_id")
+  issuedAt              DateTime? @map("issued_at")
+  expiresAt             DateTime? @map("expires_at")
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @default(now()) @updatedAt @map("updated_at")
+
+  company     Company           @relation(fields: [companyId], references: [id])
+  submissions ZatcaSubmission[]
+
+  @@map("zatca_certificates")
+}
+
+model ZatcaSubmission {
+  id                    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  companyId             String    @map("company_id") @db.Uuid
+  invoiceId             String    @map("invoice_id") @db.Uuid
+  certificateId         String    @map("certificate_id") @db.Uuid
+  submissionType        String    @map("submission_type") // clearance | reporting
+  zatcaInvoiceUuid       String    @map("zatca_invoice_uuid")
+  invoiceHash           String    @map("invoice_hash")
+  previousInvoiceHash   String    @map("previous_invoice_hash")
+  status                String    @default("pending") // pending | cleared | reported | rejected | failed
+  requestXml            String?   @map("request_xml")
+  responseBody          String?   @map("response_body")
+  zatcaWarnings         String?   @map("zatca_warnings")
+  clearedInvoiceXml     String?   @map("cleared_invoice_xml")
+  qrCodeBase64          String?   @map("qr_code_base64")
+  submittedAt           DateTime? @map("submitted_at")
+  createdAt             DateTime  @default(now()) @map("created_at")
+
+  company     Company          @relation(fields: [companyId], references: [id])
+  invoice     Invoice          @relation(fields: [invoiceId], references: [id])
+  certificate ZatcaCertificate @relation(fields: [certificateId], references: [id])
+
+  @@map("zatca_submissions")
+}

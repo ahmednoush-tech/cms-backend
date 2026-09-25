@@ -1,0 +1,149 @@
+name: Phase 2B Verification
+
+# Runs the full Phase 2B suite (unit + e2e) against a REAL
+# PostgreSQL 16 instance provided as a GitHub Actions service
+# container — no Docker or Postgres required on the developer's
+# machine. This is the authoritative source of pass/fail results
+# for Phase 2B approval; nothing is marked "passed" without this
+# workflow actually running green.
+#
+# Reuses, rather than duplicates, the same steps codified in
+# scripts/run-full-verification.sh (migrate -> seed -> unit ->
+# e2e) and exercises test/phase2b-checklist.e2e-spec.ts, whose
+# test names map 1:1 to the Phase 2B verification checklist.
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    name: Unit + E2E (PostgreSQL 16)
+    runs-on: ubuntu-latest
+
+    # Real PostgreSQL 16, brought up as a service container and
+    # health-checked before any test step runs.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: cms_test
+          POSTGRES_PASSWORD: cms_test_password
+          POSTGRES_DB: cms_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U cms_test -d cms_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    env:
+      DATABASE_URL: postgresql://cms_test:cms_test_password@localhost:5432/cms_test?schema=public
+      JWT_ACCESS_SECRET: ci-access-secret-not-for-production
+      JWT_ACCESS_TTL: 15m
+      JWT_REFRESH_SECRET: ci-refresh-secret-not-for-production
+      JWT_REFRESH_TTL: 7d
+      MAX_FAILED_LOGIN_ATTEMPTS: 5
+      NODE_ENV: test
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          # NOTE: no npm cache configured yet — this repo does not
+          # currently commit a package-lock.json (dependencies were
+          # never installed in the environment this was authored in,
+          # since it had no network access). `npm install` is used
+          # below instead of `npm ci` for the same reason. Once a
+          # lockfile is committed, switch to `npm ci` and re-enable
+          # `cache: "npm"` with `cache-dependency-path: backend/package-lock.json`
+          # for faster runs.
+
+      - name: Wait for PostgreSQL to be healthy
+        run: |
+          echo "Waiting for PostgreSQL service container health check..."
+          for i in $(seq 1 30); do
+            if pg_isready -h localhost -p 5432 -U cms_test -d cms_test; then
+              echo "PostgreSQL is ready."
+              exit 0
+            fi
+            echo "Not ready yet ($i/30)..."
+            sleep 2
+          done
+          echo "PostgreSQL never became ready." >&2
+          exit 1
+
+      - name: Install PostgreSQL client (for seed loading)
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Apply approved database migrations (001-019) and seed data (020-022)
+        run: |
+          set -euo pipefail
+          # These are the 21 raw-SQL migrations approved in the DB
+          # design review, plus the Phase 2B data-only permission
+          # seed (022). Applied directly via psql, in filename order,
+          # against the ephemeral service-container database — NOT
+          # through `prisma migrate deploy`, since these files don't
+          # use Prisma's migration-history folder format. No schema
+          # content is altered here; this only executes exactly what
+          # was already approved.
+          for f in prisma/migrations-raw/*.sql; do
+            echo "Applying $f"
+            PGPASSWORD=cms_test_password psql \
+              -h localhost -p 5432 -U cms_test -d cms_test \
+              -f "$f" -v ON_ERROR_STOP=1
+          done
+
+      - name: Run unit test suite (with coverage)
+        run: set -o pipefail && npm test -- --coverage --colors=false 2>&1 | tee unit-test-output.log
+
+      - name: Run e2e test suite
+        run: set -o pipefail && npm run test:e2e -- --colors=false 2>&1 | tee e2e-test-output.log
+
+      - name: Report overall result
+        if: always()
+        run: |
+          if [ "${{ job.status }}" = "success" ]; then
+            echo "All Phase 2B checks passed."
+          else
+            echo "Phase 2B verification FAILED — see unit-test-log / e2e-test-log artifacts." >&2
+          fi
+
+      - name: Upload unit test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-log
+          path: backend/unit-test-output.log
+          if-no-files-found: warn
+
+      - name: Upload e2e test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-log
+          path: backend/e2e-test-output.log
+          if-no-files-found: warn
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: backend/coverage
+          if-no-files-found: warn

@@ -1,0 +1,78 @@
+{
+  "title": "الموظفون",
+  "action": {
+    "create": "موظف جديد"
+  },
+  "columns": {
+    "number": "رقم الموظف",
+    "name": "الاسم",
+    "jobTitle": "المسمى الوظيفي",
+    "status": "الحالة"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "terminated": "منتهي الخدمة"
+  },
+  "empty": {
+    "title": "لا يوجد موظفون بعد",
+    "description": "أنشئ أول موظف للبدء."
+  },
+  "fields": {
+    "employeeNumber": "رقم الموظف",
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "departmentId": "معرّف القسم",
+    "jobTitle": "المسمى الوظيفي",
+    "phone": "الهاتف",
+    "email": "البريد الإلكتروني",
+    "hireDate": "تاريخ التعيين",
+    "managerId": "معرّف المدير",
+    "status": "الحالة",
+    "department": "القسم",
+    "manager": "المدير",
+    "linkedUser": "المستخدم المرتبط"
+  },
+  "form": {
+    "createTitle": "موظف جديد",
+    "editTitle": "تعديل الموظف",
+    "managerIdHint": "يجب أن يكون موظفًا نشطًا في شركتك؛ لا يمكن إنشاء سلسلة إدارة دائرية"
+  },
+  "detail": {
+    "noDepartment": "لا يوجد قسم",
+    "noManager": "لا يوجد مدير",
+    "noLinkedUser": "لا يوجد وصول لتسجيل الدخول",
+    "linkUser": "ربط وصول تسجيل الدخول",
+    "userIdPlaceholder": "معرّف المستخدم",
+    "link": "ربط"
+  },
+  "compensation": {
+    "title": "التعويضات والتأمينات الاجتماعية",
+    "hint": "مطلوب قبل إضافة هذا الموظف لأي دورة رواتب. يجب التحقق من نسب GOSI من gosi.gov.sa — لا يفترض هذا النظام أي قيمة افتراضية إطلاقًا.",
+    "basicSalary": "الراتب الأساسي",
+    "housingAllowance": "بدل السكن",
+    "otherAllowances": "بدلات أخرى",
+    "gosiEmployeeRate": "نسبة التأمينات (الموظف) %",
+    "gosiEmployerRate": "نسبة التأمينات (صاحب العمل) %",
+    "gosiHint": "كنسبة مئوية، مثلًا 9.75. اتركه فارغًا إذا لم ينطبق على هذا الموظف."
+  },
+  "residency": {
+    "title": "الإقامة",
+    "hint": "للموظفين الأجانب. تُستخدم لمتابعة انتهاء الإقامة وتنبيه الموارد البشرية قبل انتهائها.",
+    "nationality": "الجنسية",
+    "iqamaNumber": "رقم الإقامة",
+    "iqamaExpiryDate": "تاريخ انتهاء الإقامة",
+    "expiringIqamasLink": "الإقامات المنتهية",
+    "expiringIqamasTitle": "الإقامات المنتهية",
+    "onDemandDisclosure": "يتم هذا الفحص الآن تلقائيًا كل يوم — الزر أدناه لا يزال يعمل إذا رغبت في إجراء فحص فوري في أي وقت.",
+    "daysThreshold": "خلال (أيام)",
+    "checkNow": "افحص الآن",
+    "resultSummary": "تم إيجاد {{expiringCount}} موظف قربت إقامته تنتهي. تم إرسال {{notificationsSent}} إشعار للموارد البشرية.",
+    "noneExpiring": "لا يوجد موظفون تقترب إقامتهم من الانتهاء خلال هذه المدة.",
+    "daysRemaining": "الأيام المتبقية",
+    "daysRemainingValue": "باقي {{count}} يوم",
+    "daysRemainingValue_other": "باقي {{count}} يوم",
+    "expiredDaysAgo": "متأخر {{count}} يوم",
+    "expiredDaysAgo_other": "متأخر {{count}} يوم"
+  }
+}

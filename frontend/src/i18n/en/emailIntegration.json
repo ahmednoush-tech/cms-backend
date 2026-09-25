@@ -1,0 +1,20 @@
+{
+  "title": "Email Integration",
+  "description": "Connect your own Outlook account to automatically log matching emails as CRM interactions. Read-only — this never sends email on your behalf. Only messages to or from an address matching an existing customer or lead are logged.",
+  "notConnected": "Your Outlook account is not connected yet.",
+  "connectOutlook": "Connect Outlook",
+  "connectedAs": "Connected as",
+  "lastSynced": "Last synced",
+  "neverSynced": "Never synced yet",
+  "syncNow": "Sync Now",
+  "syncing": "Syncing…",
+  "disconnect": "Disconnect",
+  "callback": {
+    "success": "Your Outlook account was connected successfully.",
+    "failure": "Could not connect your Outlook account. Please try again."
+  },
+  "syncResult": {
+    "matched": "{{count}} email(s) logged as interactions.",
+    "details": "{{skippedNoMatch}} skipped (no matching contact), {{skippedAlreadySynced}} already synced."
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "title": "الأصول الثابتة",
+  "fields": {
+    "assetNumber": "رقم الأصل",
+    "name": "الاسم",
+    "category": "الفئة",
+    "categoryPlaceholder": "مثال: مركبات، أجهزة تقنية",
+    "description": "الوصف",
+    "purchaseDate": "تاريخ الشراء",
+    "purchaseCost": "تكلفة الشراء",
+    "salvageValue": "القيمة التخريدية",
+    "usefulLifeMonths": "العمر الإنتاجي (بالأشهر)",
+    "accumulatedDepreciation": "مجمّع الإهلاك",
+    "netBookValue": "صافي القيمة الدفترية",
+    "fixedAssetAccount": "حساب الأصل الثابت",
+    "accumulatedDepreciationAccount": "حساب مجمّع الإهلاك",
+    "depreciationExpenseAccount": "حساب مصروف الإهلاك",
+    "disposalDate": "تاريخ التصرف",
+    "disposalProceeds": "عائد التصرف"
+  },
+  "columns": {
+    "assetNumber": "رقم الأصل",
+    "name": "الاسم",
+    "category": "الفئة",
+    "status": "الحالة",
+    "purchaseCost": "التكلفة",
+    "accumulatedDepreciation": "مجمّع الإهلاك",
+    "netBookValue": "صافي القيمة الدفترية"
+  },
+  "actions": {
+    "new": "أصل جديد",
+    "dispose": "التصرف في الأصل",
+    "depreciationRuns": "عمليات الإهلاك"
+  },
+  "form": {
+    "createTitle": "أصل ثابت جديد",
+    "accountsSection": "الإعداد المحاسبي",
+    "accountsHint": "مطلوب قبل أن يتمكن هذا الأصل من الدخول ضمن عملية إهلاك شهرية.",
+    "disposalProceedsHint": "المبلغ الذي استلمته مقابله، إن وُجد. اتركه صفرًا إذا تم إخراج الأصل أو شطبه دون أي مقابل."
+  },
+  "empty": {
+    "title": "لا يوجد أصول ثابتة بعد",
+    "description": "أضف أصلًا ثابتًا لتبدأ في تتبّع إهلاكه عبر الوقت."
+  },
+  "detail": {
+    "date": "التاريخ",
+    "depreciationAmount": "قيمة الإهلاك",
+    "depreciationHistory": "سجل الإهلاك",
+    "noDepreciationYet": "لم يُسجَّل إهلاك على هذا الأصل بعد.",
+    "accountsIncompleteWarning": "ينقص هذا الأصل حساب محاسبي واحد أو أكثر — سيُتخطى في عملية الإهلاك القادمة حتى تُستكمل بياناته.",
+    "netBookValue": "القيمة الدفترية الصافية"
+  },
+  "confirm": {
+    "disposeTitle": "التصرف في هذا الأصل؟",
+    "disposeMessage": "يشير هذا إلى أن الأصل لم يعد قيد الخدمة، ويستبعده من عمليات الإهلاك القادمة. لا يُرحَّل أي قيد محاسبي — تسجيل ربح أو خسارة التصرف خطوة منفصلة.",
+    "estimatedGain": "ربح متوقّع",
+    "estimatedLoss": "خسارة متوقّعة"
+  },
+  "depreciationRuns": {
+    "title": "عمليات الإهلاك",
+    "runNew": "تشغيل الإهلاك الشهري",
+    "month": "الشهر",
+    "year": "السنة",
+    "run": "تشغيل الإهلاك",
+    "runSuccess": "تم ترحيل الإهلاك بنجاح — الإجمالي {{total}}.",
+    "skippedAssets": "الأصول التي تم تخطّيها:",
+    "history": "سجل العمليات",
+    "empty": "لا يوجد عمليات إهلاك بعد.",
+    "period": "الفترة",
+    "totalDepreciation": "إجمالي الإهلاك"
+  }
+}

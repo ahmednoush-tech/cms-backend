@@ -1,0 +1,57 @@
+{
+  "month": {
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
+  },
+  "settings": {
+    "title": "Payroll Settings",
+    "salaryExpenseAccount": "Salary Expense Account",
+    "netPayPayableAccount": "Net Pay Payable Account",
+    "gosiPayableAccount": "GOSI Payable Account",
+    "gosiPayableHint": "Only required if any employee has a GOSI rate configured.",
+    "gosiEmployerExpenseAccount": "GOSI Employer Expense Account",
+    "gosiEmployerExpenseHint": "Only required if any employee has an employer GOSI rate configured.",
+    "cashAccountHint": "Paying a processed run uses the default Cash account configured in Finance Settings — there is no separate cash account here.",
+    "saved": "Saved."
+  },
+  "runs": {
+    "title": "Payroll Runs",
+    "month": "Month",
+    "year": "Year",
+    "period": "Period",
+    "empty": "No payroll runs yet.",
+    "gosiTotal": "GOSI (Employee)",
+    "employerCost": "Employer cost",
+    "action": {
+      "create": "Create Run",
+      "process": "Process",
+      "pay": "Pay"
+    },
+    "columns": {
+      "gross": "Gross",
+      "gosi": "GOSI",
+      "net": "Net Pay"
+    },
+    "skippedTitle": "The following active employees were skipped (no basic salary configured):",
+    "processConfirmTitle": "Process this payroll run?",
+    "processConfirmMessage": "This posts a journal entry for salary expense, GOSI, and net pay payable. It cannot be undone.",
+    "payConfirmTitle": "Pay this payroll run?",
+    "payConfirmMessage": "This disburses net pay from your default Cash account. It cannot be undone."
+  },
+  "payslip": {
+    "employee": "Employee",
+    "gross": "Gross Pay",
+    "gosiDeduction": "GOSI Deduction",
+    "net": "Net Pay"
+  }
+}

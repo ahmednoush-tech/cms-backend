@@ -1,0 +1,40 @@
+{
+  "title": "العملاء المحتملون",
+  "action": {
+    "create": "عميل محتمل جديد"
+  },
+  "columns": {
+    "name": "الاسم",
+    "company": "الشركة",
+    "status": "الحالة",
+    "source": "المصدر"
+  },
+  "empty": {
+    "title": "لا يوجد عملاء محتملون بعد",
+    "description": "أنشئ أول عميل محتمل للبدء."
+  },
+  "fields": {
+    "name": "الاسم",
+    "companyName": "اسم الشركة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "source": "المصدر",
+    "notes": "ملاحظات"
+  },
+  "form": {
+    "createTitle": "عميل محتمل جديد",
+    "editTitle": "تعديل العميل المحتمل"
+  },
+  "detail": {
+    "alreadyConverted": "تم تحويل هذا العميل المحتمل بالفعل",
+    "moveTo": "نقل إلى {{status}}",
+    "convert": "تحويل إلى عميل",
+    "statusChangeTitle": "تغيير الحالة",
+    "statusChangeMessage": "نقل هذا العميل المحتمل إلى \"{{status}}\"؟",
+    "convertTitle": "تحويل العميل المحتمل",
+    "convertMessage": "سيؤدي هذا إلى إنشاء (أو مطابقة) عميل وجهة اتصال من بيانات هذا العميل المحتمل."
+  },
+  "timeline": {
+    "title": "الخط الزمني"
+  }
+}

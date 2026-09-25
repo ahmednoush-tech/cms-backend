@@ -1,0 +1,176 @@
+{
+  "action": {
+    "retry": "Retry",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "processing": "Processing…",
+    "save": "Save",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "none": "None",
+    "logout": "Log out",
+    "copy": "Copy",
+    "add": "Add",
+    "view": "View",
+    "contactViaWhatsapp": "WhatsApp",
+    "yes": "Yes",
+    "no": "No",
+    "submit": "Submit",
+    "back": "Back",
+    "remove": "Remove",
+    "close": "Close"
+  },
+  "error": {
+    "generic": "Something went wrong. Please try again.",
+    "notFound": "We couldn't find what you're looking for.",
+    "forbidden": "You don't have access to this.",
+    "network": "Network error — check your connection."
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "uuid": "Enter a valid ID.",
+    "atLeastOneParent": "Provide a Project ID or a Work Order ID.",
+    "passwordsMustMatch": "Passwords do not match.",
+    "journalEntryMinLines": "A journal entry needs at least two lines.",
+    "minLength": "This value is too short.",
+    "passwordStrength": "Password must include at least one uppercase letter, one lowercase letter, one number, and one symbol."
+  },
+  "pagination": {
+    "summary": "Page {{page}} of {{totalPages}} ({{total}} total)",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "search": {
+    "placeholder": "Search…"
+  },
+  "filters": {
+    "clear": "Clear filters"
+  },
+  "unavailable": {
+    "title": "Not available yet",
+    "notifications": "Notifications will appear here once the backend adds a way to read them. Nothing is broken — this feature simply isn't built on the server yet.",
+    "activityLog": "The activity log will appear here once the backend adds a way to read it. Every action is already being recorded — there's just no page to view it yet."
+  },
+  "empty": {
+    "noData": "No data yet"
+  },
+  "status": {
+    "unknown": "Unknown",
+    "lead": {
+      "new": "New",
+      "contacted": "Contacted",
+      "qualified": "Qualified",
+      "proposal": "Proposal",
+      "won": "Won",
+      "lost": "Lost"
+    },
+    "opportunity": {
+      "prospecting": "Prospecting",
+      "qualification": "Qualification",
+      "proposal": "Proposal",
+      "negotiation": "Negotiation",
+      "won": "Won",
+      "lost": "Lost"
+    },
+    "quotation": {
+      "draft": "Draft",
+      "sent": "Sent",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "expired": "Expired"
+    },
+    "project": {
+      "planning": "Planning",
+      "approved": "Approved",
+      "in_progress": "In Progress",
+      "on_hold": "On Hold",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "workOrder": {
+      "new": "New",
+      "assigned": "Assigned",
+      "in_progress": "In Progress",
+      "on_hold": "On Hold",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "task": {
+      "pending": "Pending",
+      "in_progress": "In Progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "journalEntry": {
+      "draft": "Draft",
+      "posted": "Posted",
+      "void": "Void"
+    },
+    "invoice": {
+      "draft": "Draft",
+      "sent": "Sent",
+      "partially_paid": "Partially Paid",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled"
+    },
+    "bill": {
+      "draft": "Draft",
+      "received": "Received",
+      "partially_paid": "Partially Paid",
+      "paid": "Paid",
+      "overdue": "Overdue",
+      "cancelled": "Cancelled"
+    },
+    "invoiceNote": {
+      "draft": "Draft",
+      "issued": "Issued",
+      "cancelled": "Cancelled"
+    },
+    "payrollRun": {
+      "draft": "Draft",
+      "processed": "Processed",
+      "paid": "Paid",
+      "cancelled": "Cancelled"
+    },
+    "purchaseOrder": {
+      "draft": "Draft",
+      "pending_approval": "Pending Approval",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "sent": "Sent",
+      "closed": "Closed",
+      "cancelled": "Cancelled"
+    },
+    "fixedAsset": {
+      "active": "Active",
+      "fully_depreciated": "Fully Depreciated",
+      "disposed": "Disposed"
+    }
+  },
+  "priority": {
+    "unknown": "Unknown",
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "urgent": "Urgent"
+  },
+  "filter": {
+    "all": "All"
+  },
+  "productName": "Mizan",
+  "productTagline": "Business management platform",
+  "whatsappGreeting": "Hi {{name}}, ",
+  "themes": {
+    "label": "Theme",
+    "mizan": "Mizan",
+    "emerald": "Emerald",
+    "plum": "Plum",
+    "charcoal": "Charcoal",
+    "terracotta": "Terracotta",
+    "ocean": "Ocean",
+    "burgundy": "Burgundy"
+  }
+}

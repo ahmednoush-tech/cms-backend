@@ -1,0 +1,64 @@
+{
+  "title": "Recurring Invoices",
+  "status": {
+    "active": "Active",
+    "paused": "Paused",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "frequency": {
+    "monthly": "Monthly",
+    "quarterly": "Quarterly",
+    "yearly": "Yearly"
+  },
+  "columns": {
+    "name": "Name",
+    "customer": "Customer",
+    "frequency": "Frequency",
+    "nextGeneration": "Next Generation",
+    "status": "Status"
+  },
+  "actions": {
+    "new": "New Template",
+    "generateDue": "Generate Due Invoices",
+    "pause": "Pause",
+    "resume": "Resume",
+    "cancel": "Cancel"
+  },
+  "generateResult": {
+    "summary": "Generated {{count}} invoice(s).",
+    "skippedTitle": "Skipped:"
+  },
+  "form": {
+    "createTitle": "New Recurring Invoice Template",
+    "endDateHint": "Leave empty for an indefinite, ongoing subscription.",
+    "noEndDate": "No end date (ongoing)"
+  },
+  "fields": {
+    "customer": "Customer",
+    "name": "Template Name",
+    "frequency": "Frequency",
+    "startDate": "Start Date",
+    "endDate": "End Date",
+    "currency": "Currency",
+    "exchangeRateToBase": "Exchange Rate to SAR",
+    "notes": "Notes"
+  },
+  "empty": {
+    "title": "No recurring invoice templates yet",
+    "description": "Create a template to automatically bill a customer on a regular schedule."
+  },
+  "detail": {
+    "generatedInvoices": "Generated Invoices",
+    "noInvoicesYet": "No invoices generated from this template yet."
+  },
+  "confirm": {
+    "pauseTitle": "Pause this template?",
+    "pauseMessage": "No new invoices will be generated from it until you resume it.",
+    "resumeTitle": "Resume this template?",
+    "resumeMessage": "It will become due for its next generation again.",
+    "cancelTitle": "Cancel this template?",
+    "cancelMessage": "This cannot be undone. Invoices already generated are not affected."
+  },
+  "autoScheduleNote": "Due invoices are now also generated automatically every day — the button above still works for an immediate, on-demand run at any time."
+}

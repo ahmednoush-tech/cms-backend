@@ -1,0 +1,55 @@
+# ============================================================
+# OPT-IN HTTPS config — NOT used by the Dockerfile by default
+# (see frontend/Dockerfile's comment; plain nginx.conf is the
+# default so local testing needs no domain/certificate). Switch to
+# this file (and run init-letsencrypt.sh) only for a real
+# deployment with an actual domain.
+#
+# Processed by the official nginx:1.27 image's built-in envsubst
+# templating on container start (files under /etc/nginx/templates/
+# are rendered into /etc/nginx/conf.d/ automatically — this is a
+# documented feature of the official image, not custom scripting).
+# ${DOMAIN} is substituted from the DOMAIN environment variable set
+# in docker-compose.yml.
+# ============================================================
+
+# Plain HTTP: only two jobs — serve the ACME HTTP-01 challenge
+# Certbot needs to prove domain ownership, and redirect everything
+# else to HTTPS. Never serves the app itself over HTTP.
+server {
+    listen 80;
+    server_name ${DOMAIN};
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+    server_name ${DOMAIN};
+    root /usr/share/nginx/html;
+    index index.html;
+
+    ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    location /api/ {
+        proxy_pass http://backend:3000/api/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # SPA fallback — a client-side-routed React app needs every
+    # unknown path to still serve index.html.
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}

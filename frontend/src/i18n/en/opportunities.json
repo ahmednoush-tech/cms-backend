@@ -1,0 +1,47 @@
+{
+  "title": "Opportunities",
+  "action": {
+    "create": "New Opportunity"
+  },
+  "columns": {
+    "name": "Name",
+    "stage": "Stage",
+    "value": "Value",
+    "probability": "Probability"
+  },
+  "filters": {
+    "customerId": "Customer ID",
+    "stage": "Stage"
+  },
+  "empty": {
+    "title": "No opportunities yet",
+    "description": "Create your first opportunity to get started."
+  },
+  "fields": {
+    "customerId": "Customer ID",
+    "name": "Name",
+    "description": "Description",
+    "value": "Value",
+    "currency": "Currency",
+    "probability": "Probability (%)",
+    "expectedCloseDate": "Expected Close Date"
+  },
+  "form": {
+    "createTitle": "New Opportunity",
+    "editTitle": "Edit Opportunity",
+    "customerIdHint": "The customer this opportunity belongs to"
+  },
+  "detail": {
+    "moveTo": "Move to {{stage}}",
+    "stageChangeTitle": "Change stage",
+    "stageChangeMessage": "Move this opportunity to \"{{stage}}\"?"
+  },
+  "stage": {
+    "prospecting": "Prospecting",
+    "qualification": "Qualification",
+    "proposal": "Proposal",
+    "negotiation": "Negotiation",
+    "won": "Won",
+    "lost": "Lost"
+  }
+}

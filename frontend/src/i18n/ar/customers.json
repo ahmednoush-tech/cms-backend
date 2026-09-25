@@ -1,0 +1,86 @@
+{
+  "title": "العملاء",
+  "action": {
+    "create": "عميل جديد",
+    "edit": "تعديل"
+  },
+  "columns": {
+    "code": "الرمز",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "status": "الحالة"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "blacklisted": "محظور"
+  },
+  "type": {
+    "company": "شركة",
+    "individual": "فرد"
+  },
+  "empty": {
+    "title": "لا يوجد عملاء بعد",
+    "description": "أنشئ أول عميل لديك للبدء."
+  },
+  "fields": {
+    "customerType": "النوع",
+    "companyName": "اسم الشركة",
+    "customerCode": "رمز العميل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "website": "الموقع الإلكتروني",
+    "address": "العنوان",
+    "city": "المدينة",
+    "country": "الدولة",
+    "status": "الحالة",
+    "vatRegistrationNumber": "الرقم الضريبي (VAT)",
+    "vatRegistrationNumberHint": "مطلوب حتى تعتبر هيئة الزكاة فواتير هذا العميل معيارية (B2B) بدلًا من مبسّطة (B2C)."
+  },
+  "form": {
+    "createTitle": "عميل جديد",
+    "editTitle": "تعديل العميل",
+    "customerCodeHint": "يجب أن يكون فريدًا ضمن شركتك"
+  },
+  "tabs": {
+    "overview": "نظرة عامة",
+    "contacts": "جهات الاتصال",
+    "portal": "الوصول إلى البوابة"
+  },
+  "contacts": {
+    "namePlaceholder": "اسم جهة الاتصال",
+    "add": "إضافة",
+    "empty": "لا توجد جهات اتصال بعد",
+    "primary": "أساسي",
+    "deleteTitle": "إزالة جهة الاتصال",
+    "deleteMessage": "سيتم إزالة جهة الاتصال هذه نهائيًا."
+  },
+  "portal": {
+    "namePlaceholder": "الاسم",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "create": "إنشاء حساب دخول",
+    "empty": "لا يوجد مستخدمو بوابة بعد",
+    "revoke": "إلغاء",
+    "revokeTitle": "إلغاء الوصول إلى البوابة",
+    "revokeMessage": "سيفقد هذا المستخدم الوصول إلى بوابة العملاء.",
+    "status": {
+      "active": "نشط",
+      "inactive": "مُلغى"
+    }
+  },
+  "timeline": {
+    "title": "الخط الزمني"
+  },
+  "duplicates": {
+    "title": "عملاء محتمل تكرارهم",
+    "description": "يوجد عميل بالفعل يطابق بعض البيانات التي أدخلتها. راجعها قبل إنشاء عميل جديد.",
+    "matchedOn": "تطابق في: {{fields}}",
+    "createAnyway": "أنشئه على أي حال",
+    "field": {
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "companyName": "اسم الشركة"
+    }
+  }
+}

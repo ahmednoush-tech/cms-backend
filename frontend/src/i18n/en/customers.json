@@ -1,0 +1,86 @@
+{
+  "title": "Customers",
+  "action": {
+    "create": "New Customer",
+    "edit": "Edit"
+  },
+  "columns": {
+    "code": "Code",
+    "name": "Name",
+    "email": "Email",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "blacklisted": "Blacklisted"
+  },
+  "type": {
+    "company": "Company",
+    "individual": "Individual"
+  },
+  "empty": {
+    "title": "No customers yet",
+    "description": "Create your first customer to get started."
+  },
+  "fields": {
+    "customerType": "Type",
+    "companyName": "Company Name",
+    "customerCode": "Customer Code",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "status": "Status",
+    "vatRegistrationNumber": "VAT Registration Number",
+    "vatRegistrationNumberHint": "Required for ZATCA to treat invoices to this customer as Standard (B2B) rather than Simplified (B2C)."
+  },
+  "form": {
+    "createTitle": "New Customer",
+    "editTitle": "Edit Customer",
+    "customerCodeHint": "Must be unique within your company"
+  },
+  "tabs": {
+    "overview": "Overview",
+    "contacts": "Contacts",
+    "portal": "Portal Access"
+  },
+  "contacts": {
+    "namePlaceholder": "Contact name",
+    "add": "Add",
+    "empty": "No contacts yet",
+    "primary": "Primary",
+    "deleteTitle": "Remove contact",
+    "deleteMessage": "This contact will be permanently removed."
+  },
+  "portal": {
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "create": "Create Login",
+    "empty": "No portal users yet",
+    "revoke": "Revoke",
+    "revokeTitle": "Revoke portal access",
+    "revokeMessage": "This user will lose access to the customer portal.",
+    "status": {
+      "active": "Active",
+      "inactive": "Revoked"
+    }
+  },
+  "timeline": {
+    "title": "Timeline"
+  },
+  "duplicates": {
+    "title": "Possible Duplicate Customers",
+    "description": "A customer matching some of the details you entered already exists. Review before creating a new one.",
+    "matchedOn": "Matches on: {{fields}}",
+    "createAnyway": "Create Anyway",
+    "field": {
+      "email": "Email",
+      "phone": "Phone",
+      "companyName": "Company Name"
+    }
+  }
+}

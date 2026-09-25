@@ -1,0 +1,25 @@
+{
+  "title": "أوامر العمل",
+  "action": { "create": "أمر عمل جديد" },
+  "columns": { "number": "الرقم", "title": "العنوان", "status": "الحالة", "priority": "الأولوية", "dueDate": "تاريخ الاستحقاق" },
+  "filters": { "projectId": "معرّف المشروع", "status": "الحالة", "assignedToEmployeeId": "المُسند إليه (معرّف الموظف)" },
+  "empty": { "title": "لا توجد أوامر عمل بعد", "description": "أنشئ أول أمر عمل للبدء." },
+  "fields": {
+    "projectId": "معرّف المشروع",
+    "title": "العنوان",
+    "description": "الوصف",
+    "priority": "الأولوية",
+    "dueDate": "تاريخ الاستحقاق",
+    "assignedToEmployeeId": "المُسند إليه (معرّف الموظف)"
+  },
+  "form": { "createTitle": "أمر عمل جديد" },
+  "detail": {
+    "unassigned": "غير مُسند",
+    "moveTo": "نقل إلى {{status}}",
+    "statusChangeTitle": "تغيير الحالة",
+    "statusChangeMessage": "نقل أمر العمل هذا إلى \"{{status}}\"؟",
+    "assign": "إسناد",
+    "assignAction": "إسناد",
+    "employeeIdPlaceholder": "معرّف الموظف"
+  }
+}

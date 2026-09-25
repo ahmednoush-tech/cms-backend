@@ -1,0 +1,541 @@
+{
+  "settings": {
+    "title": "Finance Settings",
+    "description": "Choose which accounts the system should post to automatically when an invoice is issued or a payment is recorded. Issuing an invoice or recording a payment is blocked with a clear message until the accounts it needs are set here.",
+    "saved": "Settings saved.",
+    "fields": {
+      "receivable": "Accounts Receivable",
+      "revenue": "Revenue",
+      "taxPayable": "Tax Payable",
+      "cash": "Cash / Bank",
+      "payable": "Accounts Payable",
+      "expense": "Expense",
+      "taxRecoverable": "Tax Recoverable (Input VAT)",
+      "assetDisposalGainLoss": "Asset Disposal Gain/Loss"
+    },
+    "zatca": {
+      "title": "ZATCA Compliance (Phase 1 — Generation)",
+      "description": "These identify your business on the QR code printed on tax invoices, per ZATCA's e-invoicing Generation Phase requirements.",
+      "sellerName": "Legal Seller Name",
+      "vatRegistrationNumber": "VAT Registration Number",
+      "vatNumberHint": "Exactly 15 digits, as issued by ZATCA.",
+      "vatNumberInvalid": "VAT registration number must be exactly 15 digits.",
+      "addressTitle": "Seller Address (required for Phase 2 / Integration invoices)",
+      "streetName": "Street Name",
+      "buildingNumber": "Building Number",
+      "district": "District",
+      "city": "City",
+      "postalCode": "Postal Code"
+    }
+  },
+  "accounts": {
+    "title": "Chart of Accounts",
+    "action": {
+      "create": "New Account"
+    },
+    "columns": {
+      "code": "Code",
+      "name": "Name",
+      "type": "Type",
+      "normalBalance": "Normal Balance",
+      "status": "Status"
+    },
+    "filters": {
+      "type": "Type"
+    },
+    "empty": {
+      "title": "No accounts yet",
+      "description": "Create your first account to get started."
+    },
+    "fields": {
+      "code": "Account Code",
+      "name": "Account Name",
+      "type": "Type",
+      "normalBalance": "Normal Balance",
+      "parentId": "Parent Account ID (optional)",
+      "description": "Description",
+      "isActive": "Active",
+      "cashFlowCategory": "Cash Flow Category",
+      "zakatCategory": "Zakat Category"
+    },
+    "form": {
+      "createTitle": "New Account",
+      "editTitle": "Edit Account",
+      "parentIdHint": "Leave empty for a top-level account",
+      "cashFlowCategoryHint": "Used only by the Cash Flow Statement to classify money movements. Safe to set or change anytime, even after transactions exist.",
+      "zakatCategoryHint": "Used only by the Zakat Base Estimate. Leave unset for normal current items (cash, receivables, payables, revenue, expenses) — they're already reflected in the Equity figure the estimate starts from."
+    },
+    "type": {
+      "asset": "Asset",
+      "liability": "Liability",
+      "equity": "Equity",
+      "revenue": "Revenue",
+      "expense": "Expense"
+    },
+    "normalBalance": {
+      "debit": "Debit",
+      "credit": "Credit"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "cashFlowCategory": {
+      "operating": "Operating",
+      "investing": "Investing",
+      "financing": "Financing"
+    },
+    "zakatCategory": {
+      "long_term_liability": "Long-term Liability",
+      "fixed_asset": "Fixed Asset",
+      "long_term_investment": "Long-term Investment"
+    }
+  },
+  "journalEntries": {
+    "title": "Journal Entries",
+    "action": {
+      "create": "New Journal Entry"
+    },
+    "columns": {
+      "entryNumber": "Entry #",
+      "entryDate": "Date",
+      "reference": "Reference",
+      "status": "Status"
+    },
+    "filters": {
+      "status": "Status"
+    },
+    "empty": {
+      "title": "No journal entries yet",
+      "description": "Create your first journal entry to get started."
+    },
+    "fields": {
+      "entryDate": "Entry Date",
+      "reference": "Reference",
+      "description": "Description",
+      "account": "Account",
+      "debit": "Debit",
+      "credit": "Credit",
+      "lineDescription": "Line Description"
+    },
+    "form": {
+      "createTitle": "New Journal Entry"
+    },
+    "lines": "Lines",
+    "addLine": "Add Line",
+    "runningBalance": "Debits {{debit}} / Credits {{credit}}",
+    "total": "Total",
+    "detail": {
+      "post": "Post",
+      "void": "Mark as Void",
+      "postConfirmTitle": "Post this journal entry",
+      "postConfirmMessage": "Once posted, this entry can no longer be edited or deleted. To correct it later, you'll post a separate reversing entry. Continue?",
+      "voidConfirmTitle": "Void this journal entry",
+      "voidConfirmMessage": "This marks the entry as void — it stays visible for audit purposes but is excluded from reports. Continue?"
+    }
+  },
+  "invoices": {
+    "title": "Invoices",
+    "action": {
+      "create": "New Invoice"
+    },
+    "columns": {
+      "invoiceNumber": "Invoice #",
+      "issueDate": "Issue Date",
+      "total": "Total",
+      "amountPaid": "Paid",
+      "status": "Status"
+    },
+    "filters": {
+      "status": "Status"
+    },
+    "empty": {
+      "title": "No invoices yet",
+      "description": "Create your first invoice to get started."
+    },
+    "items": "Items",
+    "addItem": "Add Item",
+    "fields": {
+      "quotation": "Quotation",
+      "customer": "Customer",
+      "issueDate": "Issue Date",
+      "dueDate": "Due Date",
+      "notes": "Notes",
+      "description": "Description",
+      "quantity": "Quantity",
+      "unitPrice": "Unit Price",
+      "discount": "Discount",
+      "tax": "Tax",
+      "subtotal": "Subtotal",
+      "total": "Total",
+      "amount": "Amount",
+      "paymentDate": "Payment Date",
+      "method": "Method",
+      "reference": "Reference",
+      "currency": "Currency",
+      "exchangeRateToBase": "Exchange Rate to SAR",
+      "warehouse": "Warehouse (for stock-tracked items)",
+      "stockItem": "Stock Item"
+    },
+    "form": {
+      "createTitle": "New Invoice",
+      "fromQuotation": "From Quotation",
+      "standalone": "Standalone Invoice",
+      "noAcceptedQuotations": "No accepted quotations are available to invoice yet.",
+      "editTitle": "Edit Invoice",
+      "editScopeHint": "Only the due date and notes can be changed on a draft. To fix a line item or the customer, delete this draft and create a new one.",
+      "exchangeRateHint": "Units of SAR per 1 unit of the selected currency, frozen at the moment you create this invoice.",
+      "paymentExchangeRateHint": "The SAR exchange rate for {{currency}} today — used to calculate any realized FX gain or loss on this payment."
+    },
+    "paymentMethod": {
+      "cash": "Cash",
+      "bank_transfer": "Bank Transfer",
+      "card": "Card",
+      "cheque": "Cheque",
+      "other": "Other"
+    },
+    "detail": {
+      "issue": "Issue Invoice",
+      "cancel": "Cancel Invoice",
+      "recordPayment": "Record Payment",
+      "amountPaid": "Amount Paid",
+      "remainingBalance": "Remaining balance: {{amount}}",
+      "paymentHistory": "Payment History",
+      "exportPdf": "Export PDF",
+      "zatcaQrTitle": "ZATCA QR Code (Phase 1)",
+      "zatcaQrHint": "Scan to verify this invoice's seller, VAT number, timestamp, and totals — per ZATCA's e-invoicing Generation Phase requirements.",
+      "issueConfirmTitle": "Issue this invoice",
+      "issueConfirmMessage": "This posts an accounting entry (debiting Accounts Receivable, crediting Revenue) and moves the invoice to 'Sent'. This cannot be undone. Continue?",
+      "cancelConfirmTitle": "Cancel this invoice",
+      "cancelConfirmMessage": "This cancels the draft invoice. Continue?",
+      "deleteConfirmTitle": "Delete this draft invoice?",
+      "deleteConfirmMessage": "This permanently removes the draft. This cannot be undone.",
+      "exportPdfArabic": "Export PDF (Arabic)",
+      "foreignCurrencyNote": "Amounts above are in {{currency}}. At the frozen rate of {{rate}}, the total is approximately {{sarEquivalent}} SAR."
+    }
+  },
+  "vendors": {
+    "title": "Vendors",
+    "action": {
+      "create": "New Vendor"
+    },
+    "columns": {
+      "vendorCode": "Code",
+      "name": "Name",
+      "email": "Email",
+      "status": "Status"
+    },
+    "empty": {
+      "title": "No vendors yet",
+      "description": "Create your first vendor to get started."
+    },
+    "fields": {
+      "vendorCode": "Vendor Code",
+      "name": "Vendor Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "city": "City",
+      "country": "Country",
+      "status": "Status"
+    },
+    "form": {
+      "createTitle": "New Vendor",
+      "editTitle": "Edit Vendor"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "detail": {
+      "noPurchaseOrders": "No purchase orders yet.",
+      "noBills": "No bills yet."
+    }
+  },
+  "bills": {
+    "title": "Bills",
+    "action": {
+      "create": "New Bill"
+    },
+    "columns": {
+      "billNumber": "Bill #",
+      "billDate": "Bill Date",
+      "total": "Total",
+      "amountPaid": "Paid",
+      "status": "Status"
+    },
+    "filters": {
+      "status": "Status"
+    },
+    "empty": {
+      "title": "No bills yet",
+      "description": "Create your first vendor bill to get started."
+    },
+    "fields": {
+      "vendor": "Vendor",
+      "vendorReference": "Vendor's Reference #",
+      "billDate": "Bill Date",
+      "dueDate": "Due Date",
+      "project": "Project",
+      "projectHint": "Optional — links this bill's cost to a project for budget tracking."
+    },
+    "form": {
+      "createTitle": "New Bill",
+      "editTitle": "Edit Bill",
+      "editScopeHint": "Only the vendor reference, due date, and notes can be changed on a draft. To fix a line item or the vendor, delete this draft and create a new one."
+    },
+    "detail": {
+      "receive": "Receive Bill",
+      "cancel": "Cancel Bill",
+      "recordPayment": "Record Payment",
+      "receiveConfirmTitle": "Receive this bill",
+      "receiveConfirmMessage": "This posts an accounting entry (debiting Expense, crediting Accounts Payable) and moves the bill to 'Received'. This cannot be undone. Continue?",
+      "cancelConfirmTitle": "Cancel this bill",
+      "cancelConfirmMessage": "This cancels the draft bill. Continue?",
+      "deleteConfirmTitle": "Delete this draft bill?",
+      "deleteConfirmMessage": "This permanently removes the draft. This cannot be undone."
+    }
+  },
+  "reports": {
+    "title": "Financial Reports",
+    "run": "Run",
+    "asOfDate": "As of Date",
+    "fromDate": "From Date",
+    "toDate": "To Date",
+    "noData": "No activity to show for this period.",
+    "exportPdf": "Export PDF",
+    "trialBalance": {
+      "title": "Trial Balance",
+      "balanced": "Balanced — total debits equal total credits.",
+      "notBalanced": "Not balanced — this should never happen; please report this."
+    },
+    "incomeStatement": {
+      "title": "Income Statement",
+      "revenue": "Revenue",
+      "expenses": "Expenses",
+      "totalRevenue": "Total Revenue",
+      "totalExpense": "Total Expense",
+      "netIncome": "Net Income"
+    },
+    "balanceSheet": {
+      "title": "Balance Sheet",
+      "assets": "Assets",
+      "liabilities": "Liabilities",
+      "equity": "Equity",
+      "unclosedNetIncomeTitle": "Net income not yet closed to equity",
+      "unclosedNetIncomeHint": "This system does not yet have a period-closing feature that moves net income into a Retained Earnings account. This figure is shown separately so the balance sheet remains meaningful in the meantime.",
+      "unclosedNetIncome": "Unclosed Net Income",
+      "balanced": "Balanced — Assets equal Liabilities + Equity (including unclosed net income).",
+      "notBalanced": "Not balanced — this should never happen; please report this."
+    },
+    "cashFlow": {
+      "title": "Cash Flow Statement",
+      "beginningBalance": "Beginning Cash Balance",
+      "operating": "Operating Activities",
+      "investing": "Investing Activities",
+      "financing": "Financing Activities",
+      "uncategorized": "Uncategorized",
+      "uncategorizedHint": "These cash movements touch an account with no Cash Flow Category set yet. Assign one on the account (in Chart of Accounts) to move these into the right section.",
+      "netChange": "Net Change in Cash",
+      "endingBalance": "Ending Cash Balance"
+    },
+    "zakat": {
+      "title": "Zakat Base Estimate",
+      "disclaimerTitle": "This is an estimate, not a Zakat return.",
+      "disclaimerBody": "It does not account for shareholder ownership structure (Saudi/GCC nationals owe Zakat; foreign shareholders owe income tax instead — this system has no ownership data at all) or the detailed adjustments required under ZATCA's Implementing Regulation for Zakat Collection. Treat this as a starting point for your Zakat advisor, never a number to file directly.",
+      "totalEquity": "Total Equity",
+      "longTermLiabilities": "Long-term Liabilities",
+      "fixedAssets": "Fixed Assets (net)",
+      "longTermInvestments": "Long-term Investments",
+      "zakatBaseEstimate": "Zakat Base Estimate",
+      "rateHint": "Which rate applies (Hijri vs. Gregorian fiscal year) is a judgment call for your Zakat advisor — both are shown so nothing is decided silently.",
+      "hijriRate": "At 2.5% (Hijri-year rate)",
+      "gregorianRate": "At 2.5769% (Gregorian-year adjusted rate)"
+    },
+    "aging": {
+      "title": "Customer Aging Report",
+      "current": "Current",
+      "days1to30": "1-30 Days",
+      "days31to60": "31-60 Days",
+      "days61to90": "61-90 Days",
+      "over90": "90+ Days",
+      "noDueDate": "No Due Date",
+      "grandTotal": "Grand Total",
+      "clickHint": "Click a customer to open their full statement of account."
+    },
+    "statement": {
+      "title": "Customer Statement of Account",
+      "date": "Date",
+      "reference": "Reference",
+      "balance": "Balance",
+      "openingBalance": "Opening Balance",
+      "closingBalance": "Closing Balance",
+      "type": {
+        "label": "Type",
+        "invoice": "Invoice",
+        "payment": "Payment",
+        "creditNote": "Credit Note",
+        "debitNote": "Debit Note"
+      }
+    },
+    "ledger": {
+      "title": "General Ledger"
+    }
+  },
+  "periods": {
+    "title": "Accounting Periods",
+    "description": "A locked period rejects any new posted entry dated inside it — manual journal entries, invoices being issued, bills being received, or payments being recorded.",
+    "action": {
+      "create": "New Period",
+      "lock": "Lock",
+      "unlock": "Unlock"
+    },
+    "columns": {
+      "name": "Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "status": "Status"
+    },
+    "empty": {
+      "title": "No periods yet",
+      "description": "Create your first accounting period to enable locking."
+    },
+    "fields": {
+      "name": "Period Name",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    },
+    "form": {
+      "createTitle": "New Accounting Period",
+      "namePlaceholder": "e.g. January 2026"
+    },
+    "status": {
+      "open": "Open",
+      "locked": "Locked"
+    },
+    "lockConfirmTitle": "Lock this period",
+    "lockConfirmMessage": "Once locked, no new entry can be posted with a date inside this period — including invoices being issued, bills being received, and payments being recorded. This is meant to be difficult to undo casually. Continue?",
+    "unlockConfirmTitle": "Unlock this period",
+    "unlockConfirmMessage": "This reopens the period to new entries — an exceptional, audit-worthy action. Only do this to correct a genuine mistake. Continue?"
+  },
+  "invoiceNotes": {
+    "title": "Credit / Debit Notes",
+    "empty": "No credit or debit notes issued for this invoice.",
+    "action": {
+      "create": "New Note",
+      "issue": "Issue"
+    },
+    "columns": {
+      "noteNumber": "Note #",
+      "type": "Type",
+      "total": "Total",
+      "status": "Status"
+    },
+    "fields": {
+      "noteType": "Note Type",
+      "noteDate": "Note Date",
+      "reason": "Reason"
+    },
+    "type": {
+      "credit": "Credit Note",
+      "debit": "Debit Note",
+      "creditHint": "Reduces what the customer owes — for returns, pricing errors, or a post-invoice discount.",
+      "debitHint": "Increases what the customer owes — for additional charges tied to this invoice."
+    },
+    "form": {
+      "createTitle": "New Credit / Debit Note"
+    }
+  },
+  "customerPayments": {
+    "title": "Customer Payments",
+    "empty": "No customer payments recorded yet.",
+    "action": {
+      "create": "Record Payment"
+    },
+    "columns": {
+      "amountReceived": "Amount Received",
+      "allocatedTo": "Allocated To"
+    },
+    "fields": {
+      "amountReceived": "Amount Received"
+    },
+    "form": {
+      "createTitle": "Record Customer Payment"
+    },
+    "allocateTo": "Allocate to Open Invoices",
+    "noOpenInvoices": "This customer has no open (unpaid) invoices to allocate against.",
+    "remainingBalance": "Remaining Balance",
+    "allocateAmount": "Allocate Amount",
+    "allocatedTotal": "Total Allocated",
+    "unapplied": "Unapplied",
+    "overAllocatedWarning": "You've allocated more than the amount received — reduce one or more allocations before continuing."
+  },
+  "inventory": {
+    "title": "Inventory",
+    "action": {
+      "create": "New Item",
+      "adjustStock": "Adjust Stock",
+      "viewMovements": "View Movements"
+    },
+    "columns": {
+      "sku": "SKU",
+      "name": "Name",
+      "quantityOnHand": "Qty on Hand",
+      "averageUnitCost": "Avg. Unit Cost",
+      "status": "Status"
+    },
+    "fields": {
+      "sku": "SKU",
+      "name": "Name",
+      "description": "Description",
+      "unitOfMeasure": "Unit of Measure",
+      "openingQuantity": "Opening Quantity",
+      "openingUnitCost": "Opening Unit Cost",
+      "inventoryAccount": "Inventory Account",
+      "cogsAccount": "Cost of Goods Sold Account",
+      "isActive": "Active"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "createTitle": "New Inventory Item",
+      "editTitle": "Edit Inventory Item",
+      "openingStockSection": "Opening Stock (optional)",
+      "inventoryAccountHint": "The asset account this item's value sits in while in stock. Required before it can be purchased or sold.",
+      "cogsAccountHint": "The expense account debited when this item is sold. Required before it can be sold."
+    },
+    "adjust": {
+      "title": "Adjust Stock — {{name}}",
+      "currentStock": "Currently {{qty}} {{unit}} on hand at an average cost of {{cost}} per unit.",
+      "direction": "Direction",
+      "increase": "Increase",
+      "decrease": "Decrease",
+      "quantity": "Quantity",
+      "offsetAccount": "Offsetting Account",
+      "offsetAccountHint": "The other side of this adjustment's journal entry — e.g. a shrinkage expense account for a decrease, or an equity/found-stock account for an increase. Never guessed automatically."
+    },
+    "movements": {
+      "title": "Stock Movements",
+      "empty": "No stock movements recorded yet.",
+      "type": "Type",
+      "quantity": "Quantity",
+      "unitCost": "Unit Cost",
+      "quantityAfter": "Qty After",
+      "averageCostAfter": "Avg. Cost After"
+    },
+    "movementType": {
+      "purchase": "Purchase",
+      "sale": "Sale",
+      "adjustmentIncrease": "Adjustment (Increase)",
+      "adjustmentDecrease": "Adjustment (Decrease)"
+    },
+    "empty": {
+      "title": "No inventory items yet",
+      "description": "Add your first item to start tracking stock and cost of goods sold."
+    },
+    "selectItem": "Inventory Item (optional)",
+    "selectItemHint": "Link this line to a catalog item to automatically track stock and cost of goods sold."
+  }
+}

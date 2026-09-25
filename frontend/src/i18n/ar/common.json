@@ -1,0 +1,176 @@
+{
+  "action": {
+    "retry": "إعادة المحاولة",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "processing": "جارٍ المعالجة…",
+    "save": "حفظ",
+    "create": "إنشاء",
+    "edit": "تعديل",
+    "delete": "حذف",
+    "none": "بلا",
+    "logout": "تسجيل الخروج",
+    "copy": "نسخ",
+    "add": "إضافة",
+    "view": "عرض",
+    "contactViaWhatsapp": "واتساب",
+    "yes": "نعم",
+    "no": "لا",
+    "submit": "إرسال",
+    "back": "رجوع",
+    "remove": "إزالة",
+    "close": "إغلاق"
+  },
+  "error": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "notFound": "تعذر العثور على ما تبحث عنه.",
+    "forbidden": "ليس لديك صلاحية الوصول إلى هذا.",
+    "network": "خطأ في الشبكة — تحقق من اتصالك."
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب.",
+    "email": "أدخل بريدًا إلكترونيًا صالحًا.",
+    "uuid": "أدخل معرّفًا صالحًا.",
+    "atLeastOneParent": "أدخل معرّف مشروع أو معرّف أمر عمل.",
+    "passwordsMustMatch": "كلمتا المرور غير متطابقتين.",
+    "journalEntryMinLines": "يحتاج القيد إلى بندين على الأقل.",
+    "minLength": "هذه القيمة قصيرة جدًا.",
+    "passwordStrength": "يجب أن تحتوي كلمة المرور على حرف كبير وصغير ورقم ورمز على الأقل."
+  },
+  "pagination": {
+    "summary": "صفحة {{page}} من {{totalPages}} (الإجمالي {{total}})",
+    "previous": "السابق",
+    "next": "التالي"
+  },
+  "search": {
+    "placeholder": "بحث…"
+  },
+  "filters": {
+    "clear": "مسح عوامل التصفية"
+  },
+  "unavailable": {
+    "title": "غير متاح بعد",
+    "notifications": "ستظهر الإشعارات هنا بمجرد إضافة الخادم لطريقة لقراءتها. لا شيء معطّل — هذه الميزة ببساطة لم تُبنَ على الخادم بعد.",
+    "activityLog": "سيظهر سجل الأنشطة هنا بمجرد إضافة الخادم لطريقة لقراءته. كل إجراء يُسجَّل بالفعل — لا توجد صفحة لعرضه بعد فقط."
+  },
+  "empty": {
+    "noData": "لا توجد بيانات بعد"
+  },
+  "status": {
+    "unknown": "غير معروف",
+    "lead": {
+      "new": "جديد",
+      "contacted": "تم التواصل",
+      "qualified": "مؤهّل",
+      "proposal": "عرض",
+      "won": "تم الفوز",
+      "lost": "خُسر"
+    },
+    "opportunity": {
+      "prospecting": "استكشاف",
+      "qualification": "تأهيل",
+      "proposal": "عرض",
+      "negotiation": "تفاوض",
+      "won": "تم الفوز",
+      "lost": "خُسر"
+    },
+    "quotation": {
+      "draft": "مسودة",
+      "sent": "مُرسل",
+      "accepted": "مقبول",
+      "rejected": "مرفوض",
+      "expired": "منتهي الصلاحية"
+    },
+    "project": {
+      "planning": "تخطيط",
+      "approved": "معتمد",
+      "in_progress": "قيد التنفيذ",
+      "on_hold": "مُعلّق",
+      "completed": "مكتمل",
+      "cancelled": "ملغى"
+    },
+    "workOrder": {
+      "new": "جديد",
+      "assigned": "مُسند",
+      "in_progress": "قيد التنفيذ",
+      "on_hold": "مُعلّق",
+      "completed": "مكتمل",
+      "cancelled": "ملغى"
+    },
+    "task": {
+      "pending": "قيد الانتظار",
+      "in_progress": "قيد التنفيذ",
+      "completed": "مكتمل",
+      "cancelled": "ملغى"
+    },
+    "journalEntry": {
+      "draft": "مسودة",
+      "posted": "مُرحَّل",
+      "void": "ملغى"
+    },
+    "invoice": {
+      "draft": "مسودة",
+      "sent": "مُرسَلة",
+      "partially_paid": "مدفوعة جزئيًا",
+      "paid": "مدفوعة",
+      "overdue": "متأخرة",
+      "cancelled": "ملغاة"
+    },
+    "bill": {
+      "draft": "مسودة",
+      "received": "مُستلَمة",
+      "partially_paid": "مدفوعة جزئيًا",
+      "paid": "مدفوعة",
+      "overdue": "متأخرة",
+      "cancelled": "ملغاة"
+    },
+    "invoiceNote": {
+      "draft": "مسودة",
+      "issued": "صادر",
+      "cancelled": "ملغى"
+    },
+    "payrollRun": {
+      "draft": "مسودة",
+      "processed": "مُعالَجة",
+      "paid": "مدفوعة",
+      "cancelled": "ملغاة"
+    },
+    "purchaseOrder": {
+      "draft": "مسودة",
+      "pending_approval": "قيد الموافقة",
+      "approved": "معتمد",
+      "rejected": "مرفوض",
+      "sent": "مُرسَل",
+      "closed": "مُقفَل",
+      "cancelled": "مُلغى"
+    },
+    "fixedAsset": {
+      "active": "نشط",
+      "fully_depreciated": "مُستهلَك بالكامل",
+      "disposed": "مُتصرَّف فيه"
+    }
+  },
+  "priority": {
+    "unknown": "غير معروف",
+    "low": "منخفضة",
+    "medium": "متوسطة",
+    "high": "عالية",
+    "urgent": "عاجلة"
+  },
+  "filter": {
+    "all": "الكل"
+  },
+  "productName": "ميزان",
+  "productTagline": "منصة إدارة الأعمال",
+  "whatsappGreeting": "مرحبًا {{name}}، ",
+  "themes": {
+    "label": "المظهر",
+    "mizan": "ميزان",
+    "emerald": "زمردي",
+    "plum": "عنّابي",
+    "charcoal": "فحمي",
+    "terracotta": "نحاسي",
+    "ocean": "محيطي",
+    "burgundy": "خمري"
+  }
+}

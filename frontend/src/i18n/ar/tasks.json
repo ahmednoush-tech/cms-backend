@@ -1,0 +1,34 @@
+{
+  "title": "المهام",
+  "action": { "create": "مهمة جديدة" },
+  "columns": { "title": "العنوان", "status": "الحالة", "priority": "الأولوية", "dueDate": "تاريخ الاستحقاق" },
+  "filters": {
+    "projectId": "معرّف المشروع",
+    "workOrderId": "معرّف أمر العمل",
+    "status": "الحالة",
+    "assignedToEmployeeId": "المُسند إليه (معرّف الموظف)"
+  },
+  "empty": { "title": "لا توجد مهام بعد", "description": "أنشئ أول مهمة للبدء." },
+  "fields": {
+    "projectId": "معرّف المشروع",
+    "workOrderId": "معرّف أمر العمل",
+    "title": "العنوان",
+    "description": "الوصف",
+    "priority": "الأولوية",
+    "dueDate": "تاريخ الاستحقاق",
+    "assignedToEmployeeId": "المُسند إليه (معرّف الموظف)"
+  },
+  "form": {
+    "createTitle": "مهمة جديدة",
+    "parentHint": "مطلوب معرّف مشروع أو معرّف أمر عمل على الأقل"
+  },
+  "detail": {
+    "unassigned": "غير مُسندة",
+    "moveTo": "نقل إلى {{status}}",
+    "statusChangeTitle": "تغيير الحالة",
+    "statusChangeMessage": "نقل هذه المهمة إلى \"{{status}}\"؟",
+    "assign": "إسناد",
+    "assignAction": "إسناد",
+    "employeeIdPlaceholder": "معرّف الموظف"
+  }
+}

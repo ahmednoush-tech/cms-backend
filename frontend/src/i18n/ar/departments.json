@@ -1,0 +1,20 @@
+{
+  "title": "الأقسام",
+  "action": { "create": "قسم جديد" },
+  "columns": { "name": "الاسم", "status": "الحالة", "managerId": "المدير" },
+  "status": { "active": "نشط", "inactive": "غير نشط" },
+  "empty": { "title": "لا توجد أقسام بعد", "description": "أنشئ أول قسم للبدء." },
+  "fields": { "name": "الاسم", "description": "الوصف", "managerId": "المدير", "status": "الحالة" },
+  "form": {
+    "createTitle": "قسم جديد",
+    "editTitle": "تعديل القسم",
+    "managerIdHint": "يجب أن يكون موظفًا نشطًا في شركتك"
+  },
+  "detail": {
+    "deleteTitle": "حذف القسم",
+    "deleteMessage": "حذف \"{{name}}\"؟ لا يمكن التراجع عن هذا إذا لم يكن لدى القسم موظفون نشطون.",
+    "noManager": "لا يوجد مدير مُعيَّن",
+    "employees": "الموظفون",
+    "noEmployees": "لا يوجد موظفون في هذا القسم بعد."
+  }
+}

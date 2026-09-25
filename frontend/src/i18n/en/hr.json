@@ -1,0 +1,112 @@
+{
+  "title": "HR",
+  "leaveTypes": {
+    "title": "Leave Types",
+    "description": "Define the categories of leave your company offers (Annual, Sick, Unpaid, etc.) and whether each draws from a yearly balance.",
+    "fields": {
+      "name": "Name",
+      "requiresBalance": "Tracks a Balance",
+      "isPaid": "Paid"
+    },
+    "action": {
+      "add": "Add Leave Type",
+      "deactivate": "Deactivate"
+    }
+  },
+  "leaveBalances": {
+    "title": "Leave Balances",
+    "description": "Set or correct how many days of each balance-tracked leave type an employee has for a given year.",
+    "selectEmployeePrompt": "Select an employee to view their balances.",
+    "fields": {
+      "employee": "Employee",
+      "year": "Year",
+      "leaveType": "Leave Type",
+      "allocated": "Allocated",
+      "used": "Used",
+      "remaining": "Remaining"
+    },
+    "action": {
+      "set": "Set",
+      "edit": "Edit"
+    }
+  },
+  "leaveRequests": {
+    "title": "Leave Requests",
+    "empty": "No leave requests found.",
+    "rejectTitle": "Reject Leave Request",
+    "fields": {
+      "employee": "Employee",
+      "leaveType": "Leave Type",
+      "dates": "Dates",
+      "days": "Days",
+      "status": "Status",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "reason": "Reason (optional)",
+      "rejectionReason": "Reason for rejection"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled",
+      "all": "All"
+    },
+    "action": {
+      "new": "New Leave Request",
+      "approve": "Approve",
+      "reject": "Reject"
+    }
+  },
+  "performanceCycles": {
+    "title": "Performance Cycles",
+    "description": "Define review periods (e.g. \"Q1 2026\") that employee evaluations are grouped under.",
+    "fields": {
+      "name": "Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "status": "Status"
+    },
+    "status": {
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "action": {
+      "add": "Add Cycle",
+      "close": "Close",
+      "reopen": "Reopen"
+    }
+  },
+  "performanceCriteria": {
+    "title": "Performance Criteria",
+    "description": "Define the rating dimensions (e.g. \"Communication\", \"Technical Skills\") used across every evaluation.",
+    "fields": {
+      "name": "Name",
+      "description": "Description"
+    },
+    "action": {
+      "add": "Add Criterion",
+      "deactivate": "Deactivate"
+    }
+  },
+  "performanceEvaluations": {
+    "title": "Performance Evaluations",
+    "empty": "No evaluations yet for this cycle.",
+    "selectCyclePrompt": "Select a cycle to see its evaluations.",
+    "fields": {
+      "employee": "Employee",
+      "status": "Status",
+      "overallRating": "Overall Rating",
+      "overallComments": "Overall Comments",
+      "criterionComments": "Comments (optional)"
+    },
+    "status": {
+      "draft": "Draft",
+      "finalized": "Finalized"
+    },
+    "action": {
+      "new": "New Evaluation",
+      "finalize": "Finalize"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "title": "Quotations",
+  "action": {
+    "create": "New Quotation"
+  },
+  "columns": {
+    "number": "Number",
+    "status": "Status",
+    "total": "Total",
+    "validUntil": "Valid Until"
+  },
+  "filters": {
+    "customerId": "Customer ID",
+    "status": "Status"
+  },
+  "empty": {
+    "title": "No quotations yet",
+    "description": "Create your first quotation to get started."
+  },
+  "fields": {
+    "customerId": "Customer ID",
+    "opportunityId": "Opportunity ID (optional)",
+    "validUntil": "Valid Until",
+    "currency": "Currency",
+    "exchangeRateToBase": "Exchange Rate to SAR"
+  },
+  "form": {
+    "createTitle": "New Quotation",
+    "customerIdHint": "Line items are added after creating the quotation",
+    "exchangeRateHint": "Units of SAR per 1 unit of the selected currency, frozen at the moment you create this quotation."
+  },
+  "detail": {
+    "validUntil": "Valid until {{date}}",
+    "exportPdf": "Export PDF",
+    "send": "Send",
+    "accept": "Accept",
+    "reject": "Reject",
+    "expire": "Mark Expired",
+    "items": "Line Items",
+    "noItems": "No line items yet",
+    "description": "Description",
+    "quantity": "Qty",
+    "unitPrice": "Unit Price",
+    "lineTotal": "Total",
+    "addItem": "Add Item",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "tax": "Tax",
+    "total": "Total",
+    "actionConfirmTitle": "Confirm action",
+    "actionConfirmMessage": {
+      "send": "Send this quotation to the customer? It cannot be edited as a draft after this.",
+      "accept": "Mark this quotation as accepted?",
+      "reject": "Mark this quotation as rejected?",
+      "expire": "Mark this quotation as expired?"
+    },
+    "share": "Share",
+    "exportPdfArabic": "Export PDF (Arabic)",
+    "foreignCurrencyNote": "Amounts above are in {{currency}}. At the frozen rate of {{rate}}, the total is approximately {{sarEquivalent}} SAR.",
+    "stockItem": "Stock Item (optional)"
+  },
+  "share": {
+    "title": "Share Quotation",
+    "hint": "Anyone with this link or QR code can view this quotation — no login required.",
+    "copied": "Copied!"
+  },
+  "publicView": {
+    "notFoundTitle": "Quotation not found",
+    "notFoundMessage": "This link may have expired or is no longer valid.",
+    "preparedFor": "Prepared for",
+    "validUntil": "Valid until"
+  }
+}

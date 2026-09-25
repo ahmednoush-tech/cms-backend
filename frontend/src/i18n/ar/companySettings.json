@@ -1,0 +1,30 @@
+{
+  "title": "إعدادات الشركة",
+  "saveSuccess": "تم حفظ إعدادات الشركة.",
+  "fields": {
+    "name": "اسم الشركة",
+    "legalName": "الاسم القانوني",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "website": "الموقع الإلكتروني",
+    "address": "العنوان",
+    "city": "المدينة",
+    "country": "الدولة",
+    "taxNumber": "الرقم الضريبي"
+  },
+  "logo": {
+    "title": "شعار الشركة",
+    "alt": "شعار الشركة",
+    "none": "لا يوجد شعار",
+    "upload": "رفع الشعار",
+    "hint": "JPEG أو PNG أو WebP أو SVG. الحد الأقصى 2 ميجا."
+  },
+  "microsoft": {
+    "title": "تكامل Microsoft",
+    "description": "أدخل بيانات اعتماد تطبيق Azure الخاص بك حتى يتمكن الموظفون من ربط حسابات Outlook الخاصة بهم لتسجيل الإيميلات تلقائيًا. أنشئ تطبيقًا على portal.azure.com — راجع دليل الإعداد لمعرفة رابط الاستدعاء (Redirect URI) الدقيق الذي يجب تسجيله.",
+    "clientId": "معرّف العميل (Client ID)",
+    "clientSecret": "السر السري (Client Secret)",
+    "secretConfiguredHint": "يوجد سر مسجَّل بالفعل. اتركه فارغًا إذا كنت لا تريد تغييره.",
+    "secretNotConfiguredHint": "لا يوجد سر مسجَّل بعد."
+  }
+}

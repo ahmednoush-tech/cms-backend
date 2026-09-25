@@ -1,0 +1,53 @@
+{
+  "workflows": {
+    "title": "Approval Workflows",
+    "description": "Define ordered, role-based approval chains that any internal process can use — e.g. \"Purchases over 10,000 SAR\".",
+    "stepLabel": "Step {{n}}",
+    "fields": {
+      "name": "Workflow Name",
+      "steps": "Approval Steps"
+    },
+    "action": {
+      "add": "Add Workflow",
+      "addStep": "Add Step",
+      "activate": "Activate",
+      "deactivate": "Deactivate"
+    },
+    "errors": {
+      "needAtLeastOneStep": "Choose a role for at least one step."
+    }
+  },
+  "myApprovals": {
+    "title": "My Approvals",
+    "description": "Requests currently waiting on a role you hold.",
+    "empty": "Nothing waiting on your approval right now."
+  },
+  "requests": {
+    "title": "Approval Requests",
+    "empty": "No approval requests yet.",
+    "rejectTitle": "Reject Request",
+    "stepsProgress": "Steps",
+    "history": "Decision History",
+    "fields": {
+      "title": "Title",
+      "description": "Description (optional)",
+      "amount": "Amount (optional)",
+      "workflow": "Workflow",
+      "requestedBy": "Requested By",
+      "status": "Status",
+      "comments": "Comments (optional)"
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "action": {
+      "new": "New Request",
+      "approve": "Approve",
+      "reject": "Reject",
+      "cancel": "Withdraw"
+    }
+  }
+}

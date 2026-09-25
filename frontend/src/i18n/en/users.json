@@ -1,0 +1,29 @@
+{
+  "title": "Users",
+  "action": { "create": "New User" },
+  "columns": { "name": "Name", "email": "Email", "status": "Status", "lastLogin": "Last Login", "never": "Never" },
+  "status": { "active": "Active", "inactive": "Inactive", "locked": "Locked" },
+  "empty": { "title": "No users yet", "description": "Create your first user to get started." },
+  "fields": { "name": "Name", "email": "Email", "password": "Password", "phone": "Phone", "status": "Status", "lastLogin": "Last Login" },
+  "form": { "createTitle": "New User", "editTitle": "Edit User" },
+  "detail": {
+    "currentRoles": "Current Roles",
+    "noRoles": "No roles assigned to this user yet.",
+    "removeRole": "Remove {{name}} role",
+    "selectRolePlaceholder": "Select a role to assign…",
+    "assignRole": "Assign",
+    "directPermissions": "Additional Direct Permissions",
+    "directPermissionsHint": "One-off exceptions granted to this specific user, without needing to create or edit a role.",
+    "noDirectPermissions": "No additional direct permissions yet.",
+    "revokePermission": "Revoke {{name}}",
+    "selectPermissionPlaceholder": "Select a permission to grant…",
+    "grantPermission": "Grant",
+    "setPassword": "Set New Password",
+    "setPasswordHint": "This immediately replaces the user's password — they are not notified automatically, so let them know the new password directly.",
+    "newPasswordPlaceholder": "New password (min. 8 characters, incl. uppercase, lowercase, number, and symbol)",
+    "setPasswordAction": "Set Password",
+    "setPasswordSuccess": "Password updated successfully.",
+    "deleteTitle": "Delete this user?",
+    "deleteMessage": "Delete \"{{name}}\"? This person will immediately lose the ability to log in. This cannot be undone."
+  }
+}

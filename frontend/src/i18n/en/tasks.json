@@ -1,0 +1,34 @@
+{
+  "title": "Tasks",
+  "action": { "create": "New Task" },
+  "columns": { "title": "Title", "status": "Status", "priority": "Priority", "dueDate": "Due Date" },
+  "filters": {
+    "projectId": "Project ID",
+    "workOrderId": "Work Order ID",
+    "status": "Status",
+    "assignedToEmployeeId": "Assigned To (Employee ID)"
+  },
+  "empty": { "title": "No tasks yet", "description": "Create your first task to get started." },
+  "fields": {
+    "projectId": "Project ID",
+    "workOrderId": "Work Order ID",
+    "title": "Title",
+    "description": "Description",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "assignedToEmployeeId": "Assigned To (Employee ID)"
+  },
+  "form": {
+    "createTitle": "New Task",
+    "parentHint": "At least one of Project ID or Work Order ID is required"
+  },
+  "detail": {
+    "unassigned": "Unassigned",
+    "moveTo": "Move to {{status}}",
+    "statusChangeTitle": "Change status",
+    "statusChangeMessage": "Move this task to \"{{status}}\"?",
+    "assign": "Assign",
+    "assignAction": "Assign",
+    "employeeIdPlaceholder": "Employee ID"
+  }
+}

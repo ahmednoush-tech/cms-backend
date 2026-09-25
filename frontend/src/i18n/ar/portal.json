@@ -1,0 +1,67 @@
+{
+  "title": "بوابة العميل",
+  "backToList": "الرجوع للقائمة",
+  "nav": {
+    "quotations": "عروض الأسعار",
+    "invoices": "الفواتير",
+    "projects": "المشاريع",
+    "statement": "كشف الحساب"
+  },
+  "columns": {
+    "number": "الرقم",
+    "date": "التاريخ",
+    "description": "الوصف",
+    "quantity": "الكمية",
+    "unitPrice": "سعر الوحدة",
+    "total": "الإجمالي",
+    "status": "الحالة"
+  },
+  "totals": {
+    "subtotal": "الإجمالي الفرعي",
+    "discount": "الخصم",
+    "tax": "الضريبة",
+    "total": "الإجمالي"
+  },
+  "quotations": {
+    "title": "عروض الأسعار",
+    "empty": "لا توجد عروض أسعار بعد.",
+    "validUntil": "صالح حتى"
+  },
+  "invoices": {
+    "title": "الفواتير",
+    "empty": "لا توجد فواتير بعد.",
+    "remaining": "المتبقي",
+    "paid": "المدفوع",
+    "paymentHistory": "سجل الدفعات"
+  },
+  "projects": {
+    "title": "المشاريع",
+    "empty": "لا توجد مشاريع بعد.",
+    "ongoing": "مستمر"
+  },
+  "statement": {
+    "title": "كشف الحساب",
+    "fromDate": "من",
+    "toDate": "إلى",
+    "run": "عرض",
+    "openingBalance": "الرصيد الافتتاحي",
+    "closingBalance": "الرصيد الختامي",
+    "balance": "الرصيد",
+    "reference": "المرجع",
+    "empty": "لا يوجد نشاط في هذه الفترة.",
+    "type": {
+      "label": "النوع",
+      "invoice": "فاتورة",
+      "payment": "دفعة",
+      "creditNote": "إشعار دائن",
+      "debitNote": "إشعار مدين"
+    }
+  },
+  "paymentMethod": {
+    "cash": "نقدي",
+    "bank_transfer": "تحويل بنكي",
+    "card": "بطاقة",
+    "cheque": "شيك",
+    "other": "أخرى"
+  }
+}

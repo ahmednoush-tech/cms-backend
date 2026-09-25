@@ -1,0 +1,37 @@
+{
+  "title": "Automation Rules",
+  "description": "Automatically notify the record's owner when a Lead is created, or when an Opportunity is created or moves to a specific stage. These rules run instantly, in the background, whenever that event happens — no manual trigger needed.",
+  "actions": {
+    "new": "New Rule"
+  },
+  "empty": {
+    "title": "No automation rules yet",
+    "description": "Create a rule to automatically notify someone when a Lead or Opportunity event happens."
+  },
+  "columns": {
+    "trigger": "Trigger",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "entityType": {
+    "lead": "Lead",
+    "opportunity": "Opportunity"
+  },
+  "event": {
+    "created": "Created",
+    "stage_changed": "Stage changed to"
+  },
+  "fields": {
+    "name": "Rule Name",
+    "triggerEntityType": "When this happens to a",
+    "triggerEvent": "Event",
+    "triggerToStage": "Target Stage",
+    "selectStage": "Select a stage…",
+    "notificationTitle": "Notification Title",
+    "notificationMessage": "Notification Message",
+    "templateHint": "You can insert the record's name using the placeholder shown below the field."
+  }
+}

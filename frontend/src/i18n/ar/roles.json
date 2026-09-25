@@ -1,0 +1,37 @@
+{
+  "title": "الأدوار",
+  "action": { "create": "دور جديد" },
+  "empty": { "title": "لا توجد أدوار بعد", "description": "أنشئ أول دور للبدء." },
+  "fields": { "name": "الاسم", "description": "الوصف" },
+  "form": { "createTitle": "دور جديد" },
+  "list": { "permissionCount": "{{count}} صلاحية" },
+  "module": {
+    "Common": "عام",
+    "Administration": "الإدارة",
+    "CRM": "إدارة علاقات العملاء",
+    "Operations": "العمليات",
+    "Finance": "المالية",
+    "Payroll": "الرواتب",
+    "Analytics": "التحليلات",
+    "Fleet": "الأسطول",
+    "HR": "الموارد البشرية"
+  },
+  "detail": {
+    "grantedPermissions": "الصلاحيات الممنوحة",
+    "noPermissions": "لم تُمنح أي صلاحيات بعد",
+    "addPermissions": "إضافة صلاحيات",
+    "allGranted": "جميع الصلاحيات المتاحة ممنوحة بالفعل لهذا الدور",
+    "grantSelected": "منح {{count}} المحددة",
+    "assignedUsers": "المستخدمون المُسنَدون",
+    "noAssignedUsers": "لا يوجد أي مستخدم مُسنَد لهذا الدور بعد.",
+    "removeUserAria": "إزالة {{name}}",
+    "assignToUser": "إسناد هذا الدور لمستخدم",
+    "wholeCompany": "الشركة بالكامل",
+    "scopeHint": "اختياريًا، قصر هذا الإسناد على قسم واحد بدل الشركة كلها",
+    "scopedToDepartment": "قسم: {{name}}",
+    "selectUserPlaceholder": "اختر مستخدمًا…",
+    "assign": "إسناد",
+    "removeUserTitle": "إزالة الدور من المستخدم",
+    "removeUserMessage": "سيفقد هذا المستخدم جميع الصلاحيات الممنوحة بواسطة هذا الدور."
+  }
+}

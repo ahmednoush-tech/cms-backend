@@ -1,0 +1,40 @@
+{
+  "title": "Leads",
+  "action": {
+    "create": "New Lead"
+  },
+  "columns": {
+    "name": "Name",
+    "company": "Company",
+    "status": "Status",
+    "source": "Source"
+  },
+  "empty": {
+    "title": "No leads yet",
+    "description": "Create your first lead to get started."
+  },
+  "fields": {
+    "name": "Name",
+    "companyName": "Company Name",
+    "email": "Email",
+    "phone": "Phone",
+    "source": "Source",
+    "notes": "Notes"
+  },
+  "form": {
+    "createTitle": "New Lead",
+    "editTitle": "Edit Lead"
+  },
+  "detail": {
+    "alreadyConverted": "This lead has already been converted",
+    "moveTo": "Move to {{status}}",
+    "convert": "Convert to Customer",
+    "statusChangeTitle": "Change status",
+    "statusChangeMessage": "Move this lead to \"{{status}}\"?",
+    "convertTitle": "Convert lead",
+    "convertMessage": "This will create (or match) a customer and contact from this lead's information."
+  },
+  "timeline": {
+    "title": "Timeline"
+  }
+}

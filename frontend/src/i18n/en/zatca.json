@@ -1,0 +1,32 @@
+{
+  "title": "ZATCA Phase 2 (Integration)",
+  "empty": "No certificates yet — generate a CSR to begin onboarding.",
+  "disclosure": {
+    "title": "This integration has not been verified against a live ZATCA environment.",
+    "body": "The cryptographic operations (key generation, signing, CSR) were tested directly during development. The exact ZATCA API request/response shapes and XML schema rules have not been confirmed against ZATCA's own sandbox. Have this reviewed against a real ZATCA test environment before relying on it for real invoices."
+  },
+  "fields": {
+    "csidType": "Certificate Type",
+    "status": "Status",
+    "issuedAt": "Issued",
+    "organizationUnitName": "Branch / Organization Unit Name"
+  },
+  "csidType": {
+    "compliance": "Compliance (testing)",
+    "production": "Production (live)"
+  },
+  "status": {
+    "pending_csr": "CSR generated — submit to ZATCA's portal",
+    "pending_zatca_issuance": "Awaiting ZATCA",
+    "active": "Active",
+    "expired": "Expired",
+    "revoked": "Revoked"
+  },
+  "action": {
+    "generateCsr": "Generate CSR",
+    "submitOtp": "Submit OTP",
+    "requestProductionCsid": "Request Production Certificate"
+  },
+  "csrResultHint": "Copy this CSR and submit it, along with an OTP from ZATCA's Fatoora portal, to complete onboarding.",
+  "otpHint": "Enter the one-time password (OTP) you received from ZATCA's Fatoora portal for this CSR."
+}

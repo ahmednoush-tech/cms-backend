@@ -1,0 +1,44 @@
+{
+  "title": "الحقول المخصصة",
+  "description": "حدّد حقول إضافية للعملاء المحتملين من غير أي تعديل كود أو نشر — هتظهر تلقائيًا في نموذج العميل المحتمل وشاشة تفاصيله.",
+  "sectionTitle": "حقول إضافية",
+  "selectPlaceholder": "اختر…",
+  "actions": {
+    "new": "حقل جديد",
+    "deactivate": "تعطيل"
+  },
+  "empty": {
+    "title": "لا توجد حقول مخصصة بعد",
+    "description": "أنشئ حقلًا لتبدأ في جمع معلومات إضافية عن العملاء المحتملين."
+  },
+  "columns": {
+    "required": "إجباري",
+    "status": "الحالة"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "معطّل"
+  },
+  "fieldType": {
+    "text": "نص",
+    "number": "رقم",
+    "date": "تاريخ",
+    "select": "قائمة اختيار (اختيار واحد)"
+  },
+  "fields": {
+    "label": "عنوان الحقل",
+    "fieldKey": "مفتاح الحقل",
+    "fieldKeyHint": "مثال: referral_source",
+    "fieldType": "نوع الحقل",
+    "selectOptions": "الخيارات",
+    "selectOptionsHint": "افصل بفاصلة، مثال: منزلي، تجاري",
+    "isRequired": "إجباري"
+  },
+  "booleanYes": "أيوة",
+  "booleanNo": "لأ",
+  "entityType": {
+    "lead": "العملاء المحتملون",
+    "opportunity": "الفرص البيعية",
+    "customer": "العملاء"
+  }
+}

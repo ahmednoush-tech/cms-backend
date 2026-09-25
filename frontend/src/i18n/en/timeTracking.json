@@ -1,0 +1,28 @@
+{
+  "fields": {
+    "employee": "Employee",
+    "entryDate": "Date",
+    "hours": "Hours",
+    "notes": "Notes",
+    "billable": "Billable",
+    "nonBillable": "non-billable"
+  },
+  "form": {
+    "createTitle": "Log Time",
+    "editTitle": "Edit Time Entry"
+  },
+  "section": {
+    "title": "Time Logged",
+    "logTime": "Log Time",
+    "empty": "No time logged against this task yet.",
+    "deleteConfirmTitle": "Delete this time entry?",
+    "deleteConfirmMessage": "This cannot be undone."
+  },
+  "summary": {
+    "title": "Time Summary",
+    "totalHours": "Total Hours",
+    "billableHours": "Billable Hours",
+    "totalCost": "Labor Cost",
+    "costUnknown": "Not priced"
+  }
+}

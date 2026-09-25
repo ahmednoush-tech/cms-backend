@@ -1,0 +1,65 @@
+{
+  "title": "Purchase Orders",
+  "fields": {
+    "vendor": "Vendor",
+    "expectedDeliveryDate": "Expected Delivery Date",
+    "notes": "Notes",
+    "total": "Total",
+    "approvedBy": "Approved By",
+    "rejectionReason": "Rejection Reason",
+    "stockItem": "Stock Item"
+  },
+  "columns": {
+    "poNumber": "PO Number",
+    "vendor": "Vendor",
+    "status": "Status",
+    "total": "Total",
+    "expectedDeliveryDate": "Expected Delivery"
+  },
+  "actions": {
+    "new": "New Purchase Order",
+    "submit": "Submit for Approval",
+    "approve": "Approve",
+    "reject": "Reject",
+    "send": "Send to Vendor",
+    "convertToBill": "Convert to Bill",
+    "cancel": "Cancel Order",
+    "receive": "Receive Goods"
+  },
+  "form": {
+    "createTitle": "New Purchase Order"
+  },
+  "empty": {
+    "title": "No purchase orders yet",
+    "description": "Create a purchase order to start the approval workflow before a bill is received."
+  },
+  "detail": {
+    "rejectionReason": "Rejection reason",
+    "convertedNotice": "This purchase order has been converted to a bill."
+  },
+  "confirm": {
+    "submitTitle": "Submit for approval?",
+    "submitMessage": "The line items will be locked until an approver responds.",
+    "approveTitle": "Approve this purchase order?",
+    "approveMessage": "This does not send it to the vendor yet — a separate step does that.",
+    "sendTitle": "Send to vendor?",
+    "sendMessage": "This marks the order as sent — it does not email or notify the vendor automatically.",
+    "convertTitle": "Convert to a bill?",
+    "convertMessage": "This creates a new draft bill pre-filled with this order's vendor and items.",
+    "cancelTitle": "Cancel this purchase order?",
+    "cancelMessage": "This cannot be undone.",
+    "deleteTitle": "Delete this purchase order?",
+    "deleteMessage": "This cannot be undone."
+  },
+  "receive": {
+    "fields": {
+      "warehouse": "Receiving Warehouse",
+      "remaining": "Remaining"
+    },
+    "notStockTracked": "Not stock-tracked — updates received quantity only",
+    "errors": {
+      "warehouseRequired": "Select a warehouse to receive into.",
+      "noQuantities": "Enter a quantity for at least one line."
+    }
+  }
+}

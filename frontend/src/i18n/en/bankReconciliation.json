@@ -1,0 +1,57 @@
+{
+  "title": "Bank Reconciliation",
+  "status": {
+    "in_progress": "In Progress",
+    "completed": "Completed"
+  },
+  "unmatchedCount": "Unmatched Items",
+  "columns": {
+    "bankAccount": "Bank Account",
+    "statementDate": "Statement Date",
+    "statementBalance": "Statement Balance",
+    "status": "Status"
+  },
+  "actions": {
+    "new": "New Reconciliation",
+    "autoMatch": "Auto-Match",
+    "match": "Match",
+    "unmatch": "Unmatch",
+    "select": "Select",
+    "complete": "Complete Reconciliation"
+  },
+  "autoMatch": {
+    "result": "Matched {{matched}} item(s) automatically — {{remaining}} still unmatched."
+  },
+  "form": {
+    "createTitle": "New Bank Reconciliation"
+  },
+  "fields": {
+    "bankAccount": "Bank Account",
+    "statementDate": "Statement Date",
+    "statementEndingBalance": "Statement Ending Balance",
+    "bookBalance": "Book Balance"
+  },
+  "empty": {
+    "title": "No reconciliations yet",
+    "description": "Start a reconciliation to match your bank statement against the ledger."
+  },
+  "statementLines": {
+    "title": "Statement Lines",
+    "date": "Date",
+    "description": "Description",
+    "amount": "Amount",
+    "matchStatus": "Match Status",
+    "matched": "Matched",
+    "unmatched": "Unmatched",
+    "add": "Add Line"
+  },
+  "unmatchedLedgerLines": {
+    "selectPrompt": "Select the ledger entry this statement line corresponds to:",
+    "entryNumber": "Entry #",
+    "description": "Description"
+  },
+  "confirm": {
+    "completeTitle": "Complete this reconciliation?",
+    "completeMessage": "This locks in the book balance as of the statement date. If the bank and book balances don't reconcile exactly, completion will be rejected with the exact variance shown."
+  }
+}

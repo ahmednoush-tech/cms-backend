@@ -1,0 +1,58 @@
+{
+  "title": "الأسطول",
+  "unassigned": "غير مخصَّصة",
+  "documentsExpiringSoon": "الأوراق قربت تخلص",
+  "status": {
+    "active": "نشطة",
+    "maintenance": "في الصيانة",
+    "retired": "خارج الخدمة"
+  },
+  "columns": {
+    "plateNumber": "رقم اللوحة",
+    "vehicle": "المركبة",
+    "assignedTo": "مخصَّصة لـ",
+    "status": "الحالة",
+    "documents": "الأوراق"
+  },
+  "actions": {
+    "new": "مركبة جديدة",
+    "assign": "تخصيص",
+    "returnVehicle": "إرجاع",
+    "addMaintenanceRecord": "إضافة سجل"
+  },
+  "empty": {
+    "title": "لا يوجد مركبات بعد",
+    "description": "أضف مركبة لمتابعة تخصيصها وسجل صيانتها."
+  },
+  "form": {
+    "createTitle": "مركبة جديدة",
+    "odometerHint": "قراءة عداد المسافة الحالية للمركبة، لو معروفة."
+  },
+  "fields": {
+    "plateNumber": "رقم اللوحة",
+    "make": "الماركة",
+    "model": "الموديل",
+    "year": "السنة",
+    "vin": "رقم الشاصي",
+    "odometerReading": "عداد المسافة",
+    "registrationExpiryDate": "انتهاء الاستمارة",
+    "insuranceExpiryDate": "انتهاء التأمين",
+    "notes": "ملاحظات",
+    "employee": "الموظف",
+    "assignedDate": "تاريخ التخصيص",
+    "returnedDate": "تاريخ الإرجاع",
+    "serviceDate": "تاريخ الصيانة",
+    "serviceType": "نوع الصيانة",
+    "cost": "التكلفة",
+    "odometerAtService": "العداد وقت الصيانة",
+    "performedBy": "جهة التنفيذ"
+  },
+  "detail": {
+    "assignment": "التخصيص",
+    "currentlyAssignedTo": "مخصَّصة حاليًا لـ",
+    "cannotAssignNotActive": "لا يمكن تخصيص هذه المركبة وهي غير نشطة.",
+    "assignmentHistory": "سجل التخصيصات",
+    "stillAssigned": "لا تزال مخصَّصة",
+    "maintenanceHistory": "سجل الصيانة"
+  }
+}

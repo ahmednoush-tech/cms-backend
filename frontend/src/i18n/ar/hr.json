@@ -1,0 +1,112 @@
+{
+  "title": "الموارد البشرية",
+  "leaveTypes": {
+    "title": "أنواع الإجازات",
+    "description": "حدّد أنواع الإجازات التي تقدّمها شركتك (سنوية، مرضية، بدون راتب، إلخ) وما إذا كان كل نوع يُخصم من رصيد سنوي أم لا.",
+    "fields": {
+      "name": "الاسم",
+      "requiresBalance": "له رصيد",
+      "isPaid": "مدفوعة"
+    },
+    "action": {
+      "add": "إضافة نوع إجازة",
+      "deactivate": "إلغاء التفعيل"
+    }
+  },
+  "leaveBalances": {
+    "title": "أرصدة الإجازات",
+    "description": "حدّد أو صحّح عدد أيام كل نوع إجازة له رصيد سنوي، لموظف معيّن في سنة معيّنة.",
+    "selectEmployeePrompt": "اختر موظفًا لعرض أرصدته.",
+    "fields": {
+      "employee": "الموظف",
+      "year": "السنة",
+      "leaveType": "نوع الإجازة",
+      "allocated": "المخصَّص",
+      "used": "المستخدَم",
+      "remaining": "المتبقي"
+    },
+    "action": {
+      "set": "تحديد",
+      "edit": "تعديل"
+    }
+  },
+  "leaveRequests": {
+    "title": "طلبات الإجازات",
+    "empty": "لا توجد طلبات إجازة.",
+    "rejectTitle": "رفض طلب الإجازة",
+    "fields": {
+      "employee": "الموظف",
+      "leaveType": "نوع الإجازة",
+      "dates": "التواريخ",
+      "days": "الأيام",
+      "status": "الحالة",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "reason": "السبب (اختياري)",
+      "rejectionReason": "سبب الرفض"
+    },
+    "status": {
+      "pending": "معلّق",
+      "approved": "موافَق عليه",
+      "rejected": "مرفوض",
+      "cancelled": "ملغي",
+      "all": "الكل"
+    },
+    "action": {
+      "new": "طلب إجازة جديد",
+      "approve": "موافقة",
+      "reject": "رفض"
+    }
+  },
+  "performanceCycles": {
+    "title": "دورات التقييم",
+    "description": "حدّد فترات التقييم (مثل \"الربع الأول 2026\") التي تتجمّع تحتها تقييمات الموظفين.",
+    "fields": {
+      "name": "الاسم",
+      "startDate": "تاريخ البداية",
+      "endDate": "تاريخ النهاية",
+      "status": "الحالة"
+    },
+    "status": {
+      "open": "مفتوحة",
+      "closed": "مغلقة"
+    },
+    "action": {
+      "add": "إضافة دورة",
+      "close": "إغلاق",
+      "reopen": "إعادة فتح"
+    }
+  },
+  "performanceCriteria": {
+    "title": "معايير التقييم",
+    "description": "حدّد أبعاد التقييم (مثل \"التواصل\"، \"المهارات الفنية\") المستخدمة في كل تقييم.",
+    "fields": {
+      "name": "الاسم",
+      "description": "الوصف"
+    },
+    "action": {
+      "add": "إضافة معيار",
+      "deactivate": "إلغاء التفعيل"
+    }
+  },
+  "performanceEvaluations": {
+    "title": "تقييمات الأداء",
+    "empty": "لا توجد تقييمات بعد لهذه الدورة.",
+    "selectCyclePrompt": "اختر دورة لعرض تقييماتها.",
+    "fields": {
+      "employee": "الموظف",
+      "status": "الحالة",
+      "overallRating": "التقييم الإجمالي",
+      "overallComments": "ملاحظات عامة",
+      "criterionComments": "ملاحظات (اختياري)"
+    },
+    "status": {
+      "draft": "مسودة",
+      "finalized": "معتمد"
+    },
+    "action": {
+      "new": "تقييم جديد",
+      "finalize": "اعتماد نهائي"
+    }
+  }
+}

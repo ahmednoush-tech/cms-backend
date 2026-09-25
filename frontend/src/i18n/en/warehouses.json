@@ -1,0 +1,66 @@
+{
+  "title": "Warehouses",
+  "fields": {
+    "name": "Name",
+    "address": "Address",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "action": {
+    "add": "Add Warehouse",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
+  },
+  "items": {
+    "title": "Stock Items",
+    "empty": "No stock items yet.",
+    "stockByWarehouse": "Stock by Warehouse",
+    "noStock": "This item has no stock recorded at any warehouse yet.",
+    "fields": {
+      "sku": "SKU",
+      "name": "Name",
+      "unitOfMeasure": "Unit",
+      "reorderPoint": "Reorder Point",
+      "status": "Status",
+      "quantityOnHand": "Quantity on Hand"
+    },
+    "action": {
+      "add": "Add Item",
+      "deactivate": "Deactivate"
+    }
+  },
+  "movements": {
+    "history": "Movement History",
+    "fields": {
+      "quantity": "Quantity",
+      "newQuantity": "New Quantity (after count)",
+      "reason": "Reason (optional)",
+      "fromWarehouse": "From Warehouse",
+      "toWarehouse": "To Warehouse"
+    },
+    "action": {
+      "receipt": "Receive Stock",
+      "issue": "Issue Stock",
+      "transfer": "Transfer",
+      "adjustment": "Adjust (Stocktake)"
+    },
+    "type": {
+      "receipt": "Receipt",
+      "issue": "Issue",
+      "transfer_out": "Transfer Out",
+      "transfer_in": "Transfer In",
+      "adjustment": "Adjustment"
+    }
+  },
+  "lowStock": {
+    "title": "Low Stock Alerts",
+    "description": "Items at or below their reorder point, totaled across all warehouses.",
+    "empty": "Nothing is currently low on stock.",
+    "fields": {
+      "totalQuantity": "Total Quantity"
+    }
+  }
+}

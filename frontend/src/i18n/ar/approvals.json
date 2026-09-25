@@ -1,0 +1,53 @@
+{
+  "workflows": {
+    "title": "سير عمل الموافقات",
+    "description": "حدّد سلاسل موافقات مرتبة حسب الأدوار، تصلح لأي عملية داخلية — مثل \"مشتريات فوق 10,000 ريال\".",
+    "stepLabel": "الخطوة {{n}}",
+    "fields": {
+      "name": "اسم سير العمل",
+      "steps": "خطوات الموافقة"
+    },
+    "action": {
+      "add": "إضافة سير عمل",
+      "addStep": "إضافة خطوة",
+      "activate": "تفعيل",
+      "deactivate": "إلغاء التفعيل"
+    },
+    "errors": {
+      "needAtLeastOneStep": "اختر دور لخطوة واحدة على الأقل."
+    }
+  },
+  "myApprovals": {
+    "title": "موافقاتي",
+    "description": "طلبات تنتظر دورًا تحمله.",
+    "empty": "لا يوجد ما ينتظر موافقتك حاليًا."
+  },
+  "requests": {
+    "title": "طلبات الموافقة",
+    "empty": "لا توجد طلبات موافقة بعد.",
+    "rejectTitle": "رفض الطلب",
+    "stepsProgress": "الخطوات",
+    "history": "سجل القرارات",
+    "fields": {
+      "title": "العنوان",
+      "description": "الوصف (اختياري)",
+      "amount": "المبلغ (اختياري)",
+      "workflow": "سير العمل",
+      "requestedBy": "الطالب",
+      "status": "الحالة",
+      "comments": "ملاحظات (اختياري)"
+    },
+    "status": {
+      "pending": "معلّق",
+      "approved": "موافَق عليه",
+      "rejected": "مرفوض",
+      "cancelled": "ملغي"
+    },
+    "action": {
+      "new": "طلب جديد",
+      "approve": "موافقة",
+      "reject": "رفض",
+      "cancel": "سحب"
+    }
+  }
+}

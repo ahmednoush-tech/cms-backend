@@ -1,0 +1,28 @@
+{
+  "title": "الإشعارات",
+  "bellWithCount_one": "الإشعارات — إشعار واحد غير مقروء",
+  "bellWithCount_other": "الإشعارات — {{count}} غير مقروءة",
+  "markAllRead": "تحديد الكل كمقروء",
+  "markRead": "تحديد كمقروء",
+  "viewAll": "عرض كل الإشعارات",
+  "loading": "جارٍ التحميل…",
+  "empty": "لا توجد إشعارات بعد.",
+  "emptyUnread": "لا توجد إشعارات غير مقروءة.",
+  "dismiss": "إغلاق",
+  "filter": {
+    "all": "الكل",
+    "unread": "غير المقروءة ({{count}})"
+  },
+  "type": {
+    "task_assigned": "إسناد مهمة إليك",
+    "work_order_assigned": "إسناد أمر شغل إليك",
+    "work_order_completed": "اكتمال أمر شغل",
+    "quotation_sent": "إرسال عرض سعر",
+    "quotation_accepted": "قبول عرض سعر",
+    "quotation_rejected": "رفض عرض سعر",
+    "project_on_hold": "تعليق مشروع",
+    "project_cancelled": "إلغاء مشروع",
+    "project_completed": "اكتمال مشروع",
+    "iqama_expiring": "إقامة على وشك الانتهاء"
+  }
+}

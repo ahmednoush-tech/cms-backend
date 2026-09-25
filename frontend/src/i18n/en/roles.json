@@ -1,0 +1,26 @@
+{
+  "title": "Roles",
+  "action": { "create": "New Role" },
+  "empty": { "title": "No roles yet", "description": "Create your first role to get started." },
+  "fields": { "name": "Name", "description": "Description" },
+  "form": { "createTitle": "New Role" },
+  "list": { "permissionCount": "{{count}} permission", "permissionCount_other": "{{count}} permissions" },
+  "detail": {
+    "grantedPermissions": "Granted Permissions",
+    "noPermissions": "No permissions granted yet",
+    "addPermissions": "Add Permissions",
+    "allGranted": "Every available permission is already granted to this role",
+    "grantSelected": "Grant {{count}} Selected",
+    "assignedUsers": "Assigned Users",
+    "noAssignedUsers": "No users assigned to this role yet.",
+    "removeUserAria": "Remove {{name}}",
+    "assignToUser": "Assign This Role to a User",
+    "wholeCompany": "Whole Company",
+    "scopeHint": "Optionally limit this assignment to a single department instead of the whole company",
+    "scopedToDepartment": "Dept: {{name}}",
+    "selectUserPlaceholder": "Select a user…",
+    "assign": "Assign",
+    "removeUserTitle": "Remove role from user",
+    "removeUserMessage": "This user will lose all permissions granted by this role."
+  }
+}

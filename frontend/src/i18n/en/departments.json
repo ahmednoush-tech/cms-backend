@@ -1,0 +1,20 @@
+{
+  "title": "Departments",
+  "action": { "create": "New Department" },
+  "columns": { "name": "Name", "status": "Status", "managerId": "Manager" },
+  "status": { "active": "Active", "inactive": "Inactive" },
+  "empty": { "title": "No departments yet", "description": "Create your first department to get started." },
+  "fields": { "name": "Name", "description": "Description", "managerId": "Manager", "status": "Status" },
+  "form": {
+    "createTitle": "New Department",
+    "editTitle": "Edit Department",
+    "managerIdHint": "Must be an active employee in your company"
+  },
+  "detail": {
+    "deleteTitle": "Delete department",
+    "deleteMessage": "Delete \"{{name}}\"? This cannot be undone if the department has no active employees.",
+    "noManager": "No manager assigned",
+    "employees": "Employees",
+    "noEmployees": "No employees in this department yet."
+  }
+}

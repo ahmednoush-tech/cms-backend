@@ -1,0 +1,44 @@
+{
+  "title": "Custom Fields",
+  "description": "Define additional fields for Leads with no code change or deployment — they'll appear automatically on the Lead form and detail page.",
+  "sectionTitle": "Additional Fields",
+  "selectPlaceholder": "Select…",
+  "actions": {
+    "new": "New Field",
+    "deactivate": "Deactivate"
+  },
+  "empty": {
+    "title": "No custom fields yet",
+    "description": "Create one to start collecting additional information on Leads."
+  },
+  "columns": {
+    "required": "Required",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "fieldType": {
+    "text": "Text",
+    "number": "Number",
+    "date": "Date",
+    "select": "Dropdown (choose one)"
+  },
+  "fields": {
+    "label": "Field Label",
+    "fieldKey": "Field Key",
+    "fieldKeyHint": "e.g. referral_source",
+    "fieldType": "Field Type",
+    "selectOptions": "Options",
+    "selectOptionsHint": "Comma-separated, e.g. residential, commercial",
+    "isRequired": "Required"
+  },
+  "booleanYes": "Yes",
+  "booleanNo": "No",
+  "entityType": {
+    "lead": "Leads",
+    "opportunity": "Opportunities",
+    "customer": "Customers"
+  }
+}

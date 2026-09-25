@@ -1,0 +1,73 @@
+{
+  "title": "عروض الأسعار",
+  "action": {
+    "create": "عرض سعر جديد"
+  },
+  "columns": {
+    "number": "الرقم",
+    "status": "الحالة",
+    "total": "الإجمالي",
+    "validUntil": "صالح حتى"
+  },
+  "filters": {
+    "customerId": "معرّف العميل",
+    "status": "الحالة"
+  },
+  "empty": {
+    "title": "لا توجد عروض أسعار بعد",
+    "description": "أنشئ أول عرض سعر للبدء."
+  },
+  "fields": {
+    "customerId": "معرّف العميل",
+    "opportunityId": "معرّف الفرصة (اختياري)",
+    "validUntil": "صالح حتى",
+    "currency": "العملة",
+    "exchangeRateToBase": "سعر الصرف مقابل الريال"
+  },
+  "form": {
+    "createTitle": "عرض سعر جديد",
+    "customerIdHint": "تُضاف بنود العرض بعد إنشائه",
+    "exchangeRateHint": "عدد وحدات الريال مقابل وحدة واحدة من العملة المختارة، يُجمَّد وقت إنشاء عرض السعر هذا."
+  },
+  "detail": {
+    "validUntil": "صالح حتى {{date}}",
+    "exportPdf": "تصدير PDF",
+    "send": "إرسال",
+    "accept": "قبول",
+    "reject": "رفض",
+    "expire": "تحديد كمنتهي الصلاحية",
+    "items": "بنود العرض",
+    "noItems": "لا توجد بنود بعد",
+    "description": "الوصف",
+    "quantity": "الكمية",
+    "unitPrice": "سعر الوحدة",
+    "lineTotal": "الإجمالي",
+    "addItem": "إضافة بند",
+    "subtotal": "المجموع الفرعي",
+    "discount": "الخصم",
+    "tax": "الضريبة",
+    "total": "الإجمالي",
+    "actionConfirmTitle": "تأكيد الإجراء",
+    "actionConfirmMessage": {
+      "send": "إرسال عرض السعر هذا إلى العميل؟ لن يمكن تعديله كمسودة بعد ذلك.",
+      "accept": "تحديد عرض السعر هذا كمقبول؟",
+      "reject": "تحديد عرض السعر هذا كمرفوض؟",
+      "expire": "تحديد عرض السعر هذا كمنتهي الصلاحية؟"
+    },
+    "share": "مشاركة",
+    "exportPdfArabic": "تصدير PDF (عربي)",
+    "foreignCurrencyNote": "المبالغ أعلاه بعملة {{currency}}. بسعر الصرف المجمَّد {{rate}}، يبلغ الإجمالي تقريبًا {{sarEquivalent}} ريال.",
+    "stockItem": "صنف المخزون (اختياري)"
+  },
+  "share": {
+    "title": "مشاركة عرض السعر",
+    "hint": "يمكن لأي شخص لديه هذا الرابط أو رمز QR عرض عرض السعر هذا — دون تسجيل دخول.",
+    "copied": "تم النسخ!"
+  },
+  "publicView": {
+    "notFoundTitle": "عرض السعر غير موجود",
+    "notFoundMessage": "قد يكون هذا الرابط منتهي الصلاحية أو غير صالح.",
+    "preparedFor": "مُعَد لـ",
+    "validUntil": "صالح حتى"
+  }
+}

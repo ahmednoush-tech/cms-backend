@@ -1,0 +1,47 @@
+{
+  "title": "Business Intelligence",
+  "fromDate": "From",
+  "toDate": "To",
+  "apply": "Apply",
+  "revenueTrend": {
+    "title": "Revenue Trend (Last 12 Months)"
+  },
+  "salesFunnel": {
+    "title": "Sales Funnel",
+    "leads": "Leads",
+    "opportunities": "Opportunities",
+    "won": "Won",
+    "leadToOpportunity": "Lead → Opportunity",
+    "opportunityToWon": "Opportunity → Won",
+    "leadToWon": "Overall Lead → Won"
+  },
+  "topCustomers": {
+    "title": "Top Customers by Revenue",
+    "empty": "No invoiced revenue in this period."
+  },
+  "utilization": {
+    "title": "Employee Utilization",
+    "empty": "No time logged in this period.",
+    "employee": "Employee",
+    "totalHours": "Total Hours",
+    "billableHours": "Billable Hours",
+    "rate": "Utilization"
+  },
+  "salesForecast": {
+    "title": "Sales Forecast",
+    "methodologyNote": "Weighted value = opportunity value × probability. Opportunities with no explicit probability use standard stage-based estimates for this calculation only — nothing is changed on the opportunity itself.",
+    "totalPipeline": "Total Pipeline",
+    "weightedPipeline": "Weighted Forecast",
+    "openOpportunities": "Open Opportunities",
+    "historicalWinRate": "Historical Win Rate",
+    "noClosedDataYet": "No closed deals yet",
+    "byStage": "By Stage",
+    "byOwner": "By Sales Rep",
+    "byMonth": "By Expected Close Month",
+    "noOpenOpportunities": "No open opportunities.",
+    "month": "Month",
+    "pipelineValue": "Pipeline Value",
+    "weightedValue": "Weighted Value",
+    "unscheduled": "No close date set"
+  }
+}

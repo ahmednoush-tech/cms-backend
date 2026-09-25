@@ -1,0 +1,58 @@
+{
+  "title": "Fleet",
+  "unassigned": "Unassigned",
+  "documentsExpiringSoon": "Docs expiring soon",
+  "status": {
+    "active": "Active",
+    "maintenance": "In Maintenance",
+    "retired": "Retired"
+  },
+  "columns": {
+    "plateNumber": "Plate Number",
+    "vehicle": "Vehicle",
+    "assignedTo": "Assigned To",
+    "status": "Status",
+    "documents": "Documents"
+  },
+  "actions": {
+    "new": "New Vehicle",
+    "assign": "Assign",
+    "returnVehicle": "Return",
+    "addMaintenanceRecord": "Add Record"
+  },
+  "empty": {
+    "title": "No vehicles yet",
+    "description": "Add a vehicle to start tracking its assignment and service history."
+  },
+  "form": {
+    "createTitle": "New Vehicle",
+    "odometerHint": "The vehicle's current odometer reading, if known."
+  },
+  "fields": {
+    "plateNumber": "Plate Number",
+    "make": "Make",
+    "model": "Model",
+    "year": "Year",
+    "vin": "VIN",
+    "odometerReading": "Odometer",
+    "registrationExpiryDate": "Registration Expiry",
+    "insuranceExpiryDate": "Insurance Expiry",
+    "notes": "Notes",
+    "employee": "Employee",
+    "assignedDate": "Assigned Date",
+    "returnedDate": "Returned Date",
+    "serviceDate": "Service Date",
+    "serviceType": "Service Type",
+    "cost": "Cost",
+    "odometerAtService": "Odometer at Service",
+    "performedBy": "Performed By"
+  },
+  "detail": {
+    "assignment": "Assignment",
+    "currentlyAssignedTo": "Currently assigned to",
+    "cannotAssignNotActive": "This vehicle cannot be assigned while it is not active.",
+    "assignmentHistory": "Assignment History",
+    "stillAssigned": "Still assigned",
+    "maintenanceHistory": "Maintenance History"
+  }
+}

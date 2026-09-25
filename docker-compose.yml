@@ -1,0 +1,94 @@
+# ============================================================
+# Run the whole system: docker compose up --build
+#
+# SECURITY: the secret values below (JWT_ACCESS_SECRET,
+# JWT_REFRESH_SECRET, PLATFORM_ADMIN_JWT_SECRET,
+# CREDENTIALS_ENCRYPTION_KEY, POSTGRES_PASSWORD) are PLACEHOLDERS
+# for local development only. Generate real ones before running
+# this anywhere reachable by anyone else — e.g.:
+#   openssl rand -hex 32
+# CREDENTIALS_ENCRYPTION_KEY in particular: once anything is
+# encrypted with it (S3 secrets, Microsoft Client Secret, ZATCA
+# private keys), changing it later makes those permanently
+# undecryptable — generate it once, before first real use, and
+# keep it backed up outside this file.
+# ============================================================
+
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: mizan
+      POSTGRES_PASSWORD: change_this_password
+      POSTGRES_DB: mizan
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mizan -d mizan"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgresql://mizan:change_this_password@postgres:5432/mizan?schema=public"
+      PORT: "3000"
+      NODE_ENV: "production"
+      JWT_ACCESS_SECRET: "change_this_to_a_random_64_char_hex_string"
+      JWT_ACCESS_TTL: "15m"
+      JWT_REFRESH_SECRET: "change_this_to_a_different_random_64_char_hex_string"
+      JWT_REFRESH_TTL: "7d"
+      PLATFORM_ADMIN_JWT_SECRET: "change_this_to_yet_another_random_64_char_hex_string"
+      PLATFORM_ADMIN_JWT_TTL: "1h"
+      CREDENTIALS_ENCRYPTION_KEY: "change_this_before_first_real_use_see_comment_above"
+      FRONTEND_URL: "http://localhost:8080"
+      MAX_FAILED_LOGIN_ATTEMPTS: "5"
+      STORAGE_DRIVER: "local"
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      # Must match the -d flag used with init-letsencrypt.sh below.
+      DOMAIN: "your-domain.example.com"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./certbot-data/conf:/etc/letsencrypt
+      - ./certbot-data/www:/var/www/certbot
+
+  # Renews the Let's Encrypt certificate automatically — checks
+  # every 12 hours and only actually renews when a certificate is
+  # within its real renewal window (Certbot's own logic decides
+  # this; running the check twice a day is Certbot's own
+  # documented recommendation, not an arbitrary interval chosen
+  # here). Reloading Nginx after a renewal is NOT automatic from
+  # this loop alone — see the note in init-letsencrypt.sh; for a
+  # long-running server, add a cron job that runs
+  # `docker compose exec frontend nginx -s reload` daily as a
+  # simple, reliable way to pick up a renewed certificate.
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./certbot-data/conf:/etc/letsencrypt
+      - ./certbot-data/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+volumes:
+  postgres_data:

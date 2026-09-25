@@ -1,0 +1,22 @@
+{
+  "title": "Attachments",
+  "upload": "Upload File",
+  "loading": "Loading attachments…",
+  "empty": "No files attached yet.",
+  "confirm": {
+    "deleteTitle": "Delete this file?",
+    "deleteMessage": "This cannot be undone."
+  },
+  "viewDetails": "Details",
+  "noPreview": "No preview available for this file type — download it to view.",
+  "uploadNewVersion": "Upload New Version",
+  "signTyped": "Sign (Type Name)",
+  "signDrawn": "Sign (Draw)",
+  "typedNameLabel": "Type your full name",
+  "submitSignature": "Submit Signature",
+  "drawSignatureHint": "Draw your signature below using your mouse.",
+  "versionHistory": "Version History",
+  "versionLabel": "Version {{number}}",
+  "current": "Current",
+  "signedBy": "Signed by {{name}} on {{date}}"
+}

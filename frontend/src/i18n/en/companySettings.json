@@ -1,0 +1,30 @@
+{
+  "title": "Company Settings",
+  "saveSuccess": "Company settings saved.",
+  "fields": {
+    "name": "Company Name",
+    "legalName": "Legal Name",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "taxNumber": "Tax Number"
+  },
+  "logo": {
+    "title": "Company Logo",
+    "alt": "Company logo",
+    "none": "No logo",
+    "upload": "Upload Logo",
+    "hint": "JPEG, PNG, WebP, or SVG. Max 2 MB."
+  },
+  "microsoft": {
+    "title": "Microsoft Integration",
+    "description": "Enter your own Azure App Registration credentials so employees can connect their Outlook accounts for automatic email logging. Create an app at portal.azure.com — see the setup guide for the exact redirect URI to register.",
+    "clientId": "Client ID",
+    "clientSecret": "Client Secret",
+    "secretConfiguredHint": "A secret is already saved. Leave this blank to keep it unchanged.",
+    "secretNotConfiguredHint": "No secret saved yet."
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "title": "Customer Portal",
+  "backToList": "Back to list",
+  "nav": {
+    "quotations": "Quotations",
+    "invoices": "Invoices",
+    "projects": "Projects",
+    "statement": "Statement"
+  },
+  "columns": {
+    "number": "Number",
+    "date": "Date",
+    "description": "Description",
+    "quantity": "Qty",
+    "unitPrice": "Unit Price",
+    "total": "Total",
+    "status": "Status"
+  },
+  "totals": {
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "tax": "Tax",
+    "total": "Total"
+  },
+  "quotations": {
+    "title": "Quotations",
+    "empty": "You have no quotations yet.",
+    "validUntil": "Valid until"
+  },
+  "invoices": {
+    "title": "Invoices",
+    "empty": "You have no invoices yet.",
+    "remaining": "Remaining",
+    "paid": "Paid",
+    "paymentHistory": "Payment History"
+  },
+  "projects": {
+    "title": "Projects",
+    "empty": "You have no projects yet.",
+    "ongoing": "Ongoing"
+  },
+  "statement": {
+    "title": "Statement of Account",
+    "fromDate": "From",
+    "toDate": "To",
+    "run": "Run",
+    "openingBalance": "Opening Balance",
+    "closingBalance": "Closing Balance",
+    "balance": "Balance",
+    "reference": "Reference",
+    "empty": "No activity in this period.",
+    "type": {
+      "label": "Type",
+      "invoice": "Invoice",
+      "payment": "Payment",
+      "creditNote": "Credit Note",
+      "debitNote": "Debit Note"
+    }
+  },
+  "paymentMethod": {
+    "cash": "Cash",
+    "bank_transfer": "Bank Transfer",
+    "card": "Card",
+    "cheque": "Cheque",
+    "other": "Other"
+  }
+}

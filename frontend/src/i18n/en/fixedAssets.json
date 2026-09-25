@@ -1,0 +1,72 @@
+{
+  "title": "Fixed Assets",
+  "fields": {
+    "assetNumber": "Asset Number",
+    "name": "Name",
+    "category": "Category",
+    "categoryPlaceholder": "e.g. Vehicles, IT Equipment",
+    "description": "Description",
+    "purchaseDate": "Purchase Date",
+    "purchaseCost": "Purchase Cost",
+    "salvageValue": "Salvage Value",
+    "usefulLifeMonths": "Useful Life (Months)",
+    "accumulatedDepreciation": "Accumulated Depreciation",
+    "netBookValue": "Net Book Value",
+    "fixedAssetAccount": "Fixed Asset Account",
+    "accumulatedDepreciationAccount": "Accumulated Depreciation Account",
+    "depreciationExpenseAccount": "Depreciation Expense Account",
+    "disposalDate": "Disposal Date",
+    "disposalProceeds": "Disposal Proceeds"
+  },
+  "columns": {
+    "assetNumber": "Asset #",
+    "name": "Name",
+    "category": "Category",
+    "status": "Status",
+    "purchaseCost": "Cost",
+    "accumulatedDepreciation": "Accum. Depreciation",
+    "netBookValue": "Net Book Value"
+  },
+  "actions": {
+    "new": "New Asset",
+    "dispose": "Dispose Asset",
+    "depreciationRuns": "Depreciation Runs"
+  },
+  "form": {
+    "createTitle": "New Fixed Asset",
+    "accountsSection": "Accounting Setup",
+    "accountsHint": "Required before this asset can be included in a monthly depreciation run.",
+    "disposalProceedsHint": "What you received for it, if anything. Leave as 0 if scrapped or written off with no payment."
+  },
+  "empty": {
+    "title": "No fixed assets yet",
+    "description": "Add a fixed asset to start tracking its depreciation over time."
+  },
+  "detail": {
+    "date": "Date",
+    "depreciationAmount": "Depreciation Amount",
+    "depreciationHistory": "Depreciation History",
+    "noDepreciationYet": "No depreciation posted yet for this asset.",
+    "accountsIncompleteWarning": "This asset is missing one or more accounting accounts — it will be skipped in the next depreciation run until configured.",
+    "netBookValue": "Net Book Value"
+  },
+  "confirm": {
+    "disposeTitle": "Dispose this asset?",
+    "disposeMessage": "This marks the asset as no longer in service and excludes it from future depreciation runs. It does not post any accounting entry — recording a disposal gain or loss is a separate step.",
+    "estimatedGain": "Estimated gain",
+    "estimatedLoss": "Estimated loss"
+  },
+  "depreciationRuns": {
+    "title": "Depreciation Runs",
+    "runNew": "Run Monthly Depreciation",
+    "month": "Month",
+    "year": "Year",
+    "run": "Run Depreciation",
+    "runSuccess": "Depreciation posted successfully — total {{total}}.",
+    "skippedAssets": "Skipped assets:",
+    "history": "Run History",
+    "empty": "No depreciation runs yet.",
+    "period": "Period",
+    "totalDepreciation": "Total Depreciation"
+  }
+}

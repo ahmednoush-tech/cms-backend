@@ -1,0 +1,28 @@
+{
+  "title": "Notifications",
+  "bellWithCount_one": "Notifications — 1 unread",
+  "bellWithCount_other": "Notifications — {{count}} unread",
+  "markAllRead": "Mark all as read",
+  "markRead": "Mark as read",
+  "viewAll": "View all notifications",
+  "loading": "Loading…",
+  "empty": "No notifications yet.",
+  "emptyUnread": "No unread notifications.",
+  "dismiss": "Dismiss",
+  "filter": {
+    "all": "All",
+    "unread": "Unread ({{count}})"
+  },
+  "type": {
+    "task_assigned": "Task assigned to you",
+    "work_order_assigned": "Work order assigned to you",
+    "work_order_completed": "Work order completed",
+    "quotation_sent": "Quotation sent",
+    "quotation_accepted": "Quotation accepted",
+    "quotation_rejected": "Quotation rejected",
+    "project_on_hold": "Project put on hold",
+    "project_cancelled": "Project cancelled",
+    "project_completed": "Project completed",
+    "iqama_expiring": "Iqama expiring soon"
+  }
+}

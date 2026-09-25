@@ -1,0 +1,34 @@
+{
+  "title": "Custom Reports",
+  "description": "Build your own reports by picking a data source, a grouping field, and how to aggregate it.",
+  "empty": "No custom reports yet.",
+  "previewTitle": "Preview",
+  "noData": "No data matches this report yet.",
+  "fields": {
+    "name": "Report Name",
+    "entityType": "Data Source",
+    "groupByField": "Group By",
+    "aggregateType": "Measure",
+    "aggregateField": "Sum Field",
+    "chartType": "Chart Type"
+  },
+  "aggregateType": {
+    "count": "Count",
+    "sum": "Sum"
+  },
+  "chartType": {
+    "bar": "Bar Chart",
+    "line": "Line Chart",
+    "table": "Table"
+  },
+  "action": {
+    "new": "New Report",
+    "edit": "Edit Report",
+    "preview": "Preview"
+  },
+  "export": {
+    "csv": "Export CSV",
+    "inProgress": "Exporting…",
+    "error": "Couldn't export the report. Please try again."
+  }
+}
